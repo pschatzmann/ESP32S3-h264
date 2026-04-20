@@ -118,6 +118,7 @@ class H264Decoder {
    * @note Frame callback is nullptr - set manually for real-time processing
    */
   Config defaultConfig() {
+    ESP_LOGD(TAG, "defaultConfig");
     Config cfg;
     cfg.output_format = ESP_H264_RAW_FMT_I420;
     cfg.input_buffer_size = 400 * 1024;
@@ -138,7 +139,9 @@ class H264Decoder {
    * @note The stream must remain valid for the lifetime of the decoder
    * @note Call begin() to initialize decoder resources
    */
-  explicit H264Decoder(Stream* input_stream) : input_stream_(input_stream) {}
+  explicit H264Decoder(Stream* input_stream) : input_stream_(input_stream) {
+    ESP_LOGD(TAG, "H264Decoder(Stream*)");
+  }
   
   /**
    * @brief Default constructor (no input stream)
@@ -149,7 +152,7 @@ class H264Decoder {
    * @note Call begin() to initialize decoder resources
    * @note Use setInputStream() to assign a stream later if needed
    */
-  H264Decoder() : input_stream_(nullptr) {}
+  H264Decoder() : input_stream_(nullptr) { ESP_LOGD(TAG, "H264Decoder"); }
   
   /**
    * @brief Destructor
@@ -158,7 +161,10 @@ class H264Decoder {
    * 
    * @note Safe to destroy without calling end() explicitly
    */
-  ~H264Decoder() { end(); }
+  ~H264Decoder() {
+    ESP_LOGD(TAG, "~H264Decoder");
+    end();
+  }
 
   /**
    * @brief Set input stream for H.264 data
@@ -171,6 +177,7 @@ class H264Decoder {
    * @note Can be called at any time to change input source
    */
   void setInputStream(Stream* input_stream) {
+    ESP_LOGD(TAG, "setInputStream");
     input_stream_ = input_stream;
   }
 
@@ -188,6 +195,7 @@ class H264Decoder {
    * @note On failure, any partially initialized resources are cleaned up
    */
   bool begin(Config cfg) {
+    ESP_LOGD(TAG, "begin");
     cfg_ = cfg;
     if (!initDecoder()) return false;
     if (!initBuffers()) return false;
@@ -209,6 +217,7 @@ class H264Decoder {
    * @note Use this method in loop() for continuous stream processing
    */
   bool processStream() {
+    ESP_LOGD(TAG, "processStream");
     if (!input_stream_) {
       ESP_LOGW(TAG, "No input stream configured");
       return false;
@@ -249,6 +258,7 @@ class H264Decoder {
    * @note This method can be used without an input stream
    */
   bool decode(const uint8_t* h264_data, size_t h264_len) {
+    ESP_LOGD(TAG, "decode");
     if (!dec_handle_ || !h264_data || h264_len == 0) return false;
     
     esp_h264_dec_in_frame_t in_frame{};
@@ -313,6 +323,7 @@ class H264Decoder {
    * @note This method is useful for polling-based frame processing
    */
   bool hasFrame() const {
+    ESP_LOGD(TAG, "hasFrame");
     return frame_ready_;
   }
 
@@ -333,6 +344,7 @@ class H264Decoder {
    * @note Frame format matches Config::output_format setting
    */
   bool getFrame(uint8_t* dst, size_t dst_len, uint32_t& width, uint32_t& height) {
+    ESP_LOGD(TAG, "getFrame");
     if (!frame_ready_ || !dst) return false;
     
     size_t frame_size = frame_width_ * frame_height_ * 
@@ -361,6 +373,7 @@ class H264Decoder {
    * @note Useful for monitoring decoder performance
    */
   uint32_t getFrameCount() const {
+    ESP_LOGD(TAG, "getFrameCount");
     return frame_count_;
   }
 
@@ -373,6 +386,7 @@ class H264Decoder {
    * @note Useful for monitoring stream quality and decoder health
    */
   uint32_t getDecodeErrors() const {
+    ESP_LOGD(TAG, "getDecodeErrors");
     return decode_errors_;
   }
 
@@ -387,6 +401,7 @@ class H264Decoder {
    * @note Dimensions may change if stream resolution changes
    */
   bool getFrameDimensions(uint32_t& width, uint32_t& height) const {
+    ESP_LOGD(TAG, "getFrameDimensions");
     if (frame_count_ == 0 || frame_width_ == 0 || frame_height_ == 0) return false;
     width = frame_width_;
     height = frame_height_;
@@ -405,6 +420,7 @@ class H264Decoder {
    * @note Automatically called by destructor
    */
   void end() {
+    ESP_LOGD(TAG, "end");
     if (dec_handle_) {
       esp_h264_dec_close(dec_handle_);
       esp_h264_dec_del(dec_handle_);
@@ -450,6 +466,7 @@ class H264Decoder {
    * @note Uses esp_h264 software decoder (tinyH264)
    */
   bool initDecoder() {
+    ESP_LOGD(TAG, "initDecoder");
     esp_h264_dec_cfg_sw_t dec_cfg{};
     dec_cfg.pic_type = cfg_.output_format;
     
@@ -477,6 +494,7 @@ class H264Decoder {
    * @note Uses template allocator (Alloc) for memory management
    */
   bool initBuffers() {
+    ESP_LOGD(TAG, "initBuffers");
     try {
       input_buf_.clear();
       output_buf_.clear();
@@ -507,6 +525,7 @@ class H264Decoder {
    * @note Updates internal frame state and buffers
    */
   bool processDecodedFrame(const uint8_t* frame_data, uint32_t frame_size) {
+    ESP_LOGD(TAG, "processDecodedFrame");
     if (!frame_data || frame_size == 0) return false;
     
     // Calculate required output buffer size
@@ -549,6 +568,7 @@ class H264Decoder {
    * @note Writes converted data to output_buf_
    */
   bool convertFormat(const uint8_t* i420_data, uint32_t i420_size) {
+    ESP_LOGD(TAG, "convertFormat");
     switch (cfg_.output_format) {
       case ESP_H264_RAW_FMT_RGB565_LE:
         return convertI420ToRGB565(i420_data, i420_size);
@@ -573,6 +593,7 @@ class H264Decoder {
    * @note Performs YUV to RGB color space conversion
    */
   bool convertI420ToRGB565(const uint8_t* i420_data, uint32_t i420_size) {
+    ESP_LOGD(TAG, "convertI420ToRGB565");
     if (!i420_data || frame_width_ == 0 || frame_height_ == 0) return false;
     
     const uint8_t* y_plane = i420_data;
