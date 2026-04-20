@@ -188,9 +188,9 @@ class H264Encoder {
     ESP_LOGD(TAG, "begin");
     // copy the provided config into the stored config_
     cfg_ = cfg;
-    if (!initWiFi()) return false;
     if (!initCamera()) return false;
     if (!initEncoder()) return false;
+    if (!initWiFi()) return false;
     return true;
   }
 
