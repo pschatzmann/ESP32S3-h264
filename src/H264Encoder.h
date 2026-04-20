@@ -102,39 +102,22 @@ class H264Encoder {
     /** @brief Output buffer size for encoded H.264 data (bytes) */
     size_t outBufferSize = 400 * 1024;
 
-    // Camera pin configuration (ESP32-S3-EYE development board defaults)
-    /** @brief Power down pin (active high) */
-    int pwdn_pin = 43;
-    /** @brief Reset pin (active low) */
-    int reset_pin = 44;
-    /** @brief External clock (XCLK) pin */
-    int xclk_pin = 15;
-    /** @brief SCCB data pin (I2C SDA equivalent) */
-    int siod_pin = 4;
-    /** @brief SCCB clock pin (I2C SCL equivalent) */
-    int sioc_pin = 5;
-    /** @brief Data pin Y2 (LSB) */
-    int y2_pin = 11;
-    /** @brief Data pin Y3 */
-    int y3_pin = 9;
-    /** @brief Data pin Y4 */
-    int y4_pin = 8;
-    /** @brief Data pin Y5 */
-    int y5_pin = 10;
-    /** @brief Data pin Y6 */
-    int y6_pin = 12;
-    /** @brief Data pin Y7 */
-    int y7_pin = 18;
-    /** @brief Data pin Y8 */
-    int y8_pin = 17;
-    /** @brief Data pin Y9 (MSB) */
-    int y9_pin = 16;
-    /** @brief Vertical sync pin */
-    int vsync_pin = 6;
-    /** @brief Horizontal reference pin */
-    int href_pin = 7;
-    /** @brief Pixel clock pin */
-    int pclk_pin = 13;
+    int pwdn_pin = -1;
+    int reset_pin = -1;
+    int xclk_pin = -1;
+    int siod_pin = -1;
+    int sioc_pin = -1;
+    int y2_pin = -1;
+    int y3_pin = -1;
+    int y4_pin = -1;
+    int y5_pin = -1;
+    int y6_pin = -1;
+    int y7_pin = -1;
+    int y8_pin = -1;
+    int y9_pin = -1;
+    int vsync_pin = -1;
+    int href_pin = -1;
+    int pclk_pin = -1;
   };
 
   /**
@@ -444,6 +427,8 @@ class H264Encoder {
     framesize_t fs = pick_frame_size(cfg_.width, cfg_.height);
     if (!tryInitCamera(fs, cfg_, "current-config")) {
       static constexpr PinMapping kFallbackMappings[] = {
+          {"ESP32-S3-CAM-TS", -1, -1, 33, 37, 36, 7, 5, 4, 6, 8, 42, 48, 47, 35,
+           34, 41},
           {"GENERIC_S3_CAM", -1, -1, 40, 17, 18, 39, 41, 42, 12, 3, 14, 47, 13,
            21, 38, 11},
           {"ESP32-S3-KORVO", -1, -1, 40, 17, 18, 13, 47, 14, 3, 12, 42, 41, 39,
@@ -528,6 +513,15 @@ class H264Encoder {
 
   bool tryInitCamera(framesize_t fs, const Config& camera_cfg,
                      const char* preset_name = nullptr) {
+    if (camera_cfg.y2_pin == -1 || camera_cfg.y3_pin == -1 ||
+        camera_cfg.y4_pin == -1 || camera_cfg.y5_pin == -1 ||
+        camera_cfg.y6_pin == -1 || camera_cfg.y7_pin == -1 ||
+        camera_cfg.y8_pin == -1 || camera_cfg.y9_pin == -1 ||
+        camera_cfg.xclk_pin == -1 || camera_cfg.pclk_pin == -1 ||
+        camera_cfg.vsync_pin == -1 || camera_cfg.href_pin == -1 ||
+        camera_cfg.siod_pin == -1 || camera_cfg.sioc_pin == -1) {
+      return false;
+    }
     if (preset_name && preset_name[0] != '\0') {
       ESP_LOGI(TAG, "Trying camera preset: %s", preset_name);
     }
@@ -563,19 +557,21 @@ class H264Encoder {
     config.pin_reset = camera_cfg.reset_pin;
     config.xclk_freq_hz = 20000000;
     config.frame_size = fs;
-    // config.pixel_format = PIXFORMAT_RGB565;
+    config.pixel_format = PIXFORMAT_RGB565;
     config.fb_count = 1;
 
-    config.pixel_format = PIXFORMAT_JPEG;
-    config.frame_size = FRAMESIZE_QQVGA;
-    config.fb_location = CAMERA_FB_IN_DRAM;
+    // config.xclk_freq_hz = 10000000;
+    // config.pixel_format = PIXFORMAT_JPEG;
+    // config.frame_size = FRAMESIZE_QQVGA;
+    // config.fb_location = CAMERA_FB_IN_DRAM;
     config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
     esp_err_t err = esp_camera_init(&config);
     if (err == ESP_OK) {
       return true;
     }
 
-    ESP_LOGW(TAG, "esp_camera_init failed with error 0x%x", (unsigned)err);
+    ESP_LOGW(TAG, "esp_camera_init '%s' failed with error 0x%x",
+             preset_name ? preset_name : "unknown", (unsigned)err);
     esp_camera_deinit();
     return false;
   }
