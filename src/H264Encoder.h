@@ -449,8 +449,6 @@ class H264Encoder {
            13, 14, 7},
           {"ESP32-S3-XIAO", -1, -1, 10, 40, 39, 15, 17, 18, 16, 14, 12, 11, 48,
            38, 47, 13},
-          {"AI-Thinker ESP32-CAM", 32, -1, 0, 26, 27, 35, 34, 39, 36, 21, 19, 18, 5,
-           25, 23, 22},
       };
 
       for (const auto& mapping : kFallbackMappings) {
