@@ -519,6 +519,8 @@ class H264Encoder {
 
   bool cameraInitialized() const { return esp_camera_sensor_get() != nullptr; }
 
+  static constexpr unsigned long kCameraRetryDelayMs = 80;
+
   bool tryInitCamera(framesize_t fs, const Config& camera_cfg,
                      const char* preset_name = nullptr) {
     if (camera_cfg.y2_pin == -1 || camera_cfg.y3_pin == -1 ||
@@ -581,6 +583,7 @@ class H264Encoder {
     ESP_LOGW(TAG, "esp_camera_init '%s' failed with error 0x%x",
              preset_name ? preset_name : "unknown", (unsigned)err);
     esp_camera_deinit();
+    delay(kCameraRetryDelayMs);
     return false;
   }
 
