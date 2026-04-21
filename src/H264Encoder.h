@@ -146,6 +146,31 @@ class H264Encoder {
   }
 
   /**
+   * @brief Create a default configuration based on camera preset name
+   *
+   * Searches for a predefined camera preset that contains the specified name
+   * and returns a Config structure with the corresponding pin mappings and
+   * default settings. If no matching preset is found, returns the generic
+   * default configuration.
+   *
+   * @param camera Name of the camera preset
+   * @return Config Configuration structure for the specified camera preset
+   */
+  Config defaultConfig(const char* camera) {
+    for (const auto& mapping : kFallbackMappings) {
+      if (strstr(mapping.name, camera) != nullptr) {
+        Config cfg = defaultConfig();
+        applyPinMapping(cfg, mapping);
+        ESP_LOGI(TAG, "Using default config for camera preset: %s", camera);
+        return cfg;
+      }
+    }
+    ESP_LOGW(TAG, "No preset found for camera: %s, using generic defaults",
+             camera);
+    return defaultConfig();
+  }
+
+  /**
    * @brief Default constructor
    *
    * Creates an uninitialized H264Encoder. Call begin() to initialize
@@ -375,6 +400,30 @@ class H264Encoder {
     int href_pin;
     int pclk_pin;
   };
+  static constexpr PinMapping kFallbackMappings[] = {
+      {"ESP32-S3-CAM-TS", -1, -1, 33, 37, 36, 7, 5, 4, 6, 8, 42, 48, 47, 35, 34,
+       41},
+      {"GENERIC_S3_CAM", -1, -1, 40, 17, 18, 39, 41, 42, 12, 3, 14, 47, 13, 21,
+       38, 11},
+      {"ESP32-S3-KORVO", -1, -1, 40, 17, 18, 13, 47, 14, 3, 12, 42, 41, 39, 21,
+       38, 11},
+      {"ESP32-S3-EYE", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
+       13},
+      {"ESP32-S3-CAM", 38, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
+       13},
+      {"ESP32-S3-GOOUUU", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
+       13},
+      {"LILYGO-TCAM-PLUS-S3-V1.2", 4, -1, 7, 1, 2, 12, 14, 11, 9, 8, 6, 15, 13,
+       3, 5, 10},
+      {"LILYGO-TCAM-PLUS-S3-V1.0", -1, 3, 7, 1, 2, 12, 14, 11, 13, 8, 6, 15, 9,
+       4, 5, 10},
+      {"DFROBOT-FIREBEETLE2", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6,
+       7, 13},
+      {"ESP32-S3-12K", 2, 21, 38, 4, 11, 6, 5, 8, 10, 12, 18, 17, 39, 13, 14,
+       7},
+      {"ESP32-S3-XIAO", -1, -1, 10, 40, 39, 15, 17, 18, 16, 14, 12, 11, 48, 38,
+       47, 13},
+  };
 
   Config cfg_;
   esp_h264_enc_handle_t enc_handle_ = nullptr;
@@ -426,31 +475,6 @@ class H264Encoder {
     };
     framesize_t fs = pick_frame_size(cfg_.width, cfg_.height);
     if (!tryInitCamera(fs, cfg_, "current-config")) {
-      static constexpr PinMapping kFallbackMappings[] = {
-          {"ESP32-S3-CAM-TS", -1, -1, 33, 37, 36, 7, 5, 4, 6, 8, 42, 48, 47, 35,
-           34, 41},
-          {"GENERIC_S3_CAM", -1, -1, 40, 17, 18, 39, 41, 42, 12, 3, 14, 47, 13,
-           21, 38, 11},
-          {"ESP32-S3-KORVO", -1, -1, 40, 17, 18, 13, 47, 14, 3, 12, 42, 41, 39,
-           21, 38, 11},
-          {"ESP32-S3-EYE", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
-           13},
-          {"ESP32-S3-CAM", 38, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
-           13},
-          {"ESP32-S3-GOOUUU", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6,
-           7, 13},
-          {"LILYGO-TCAM-PLUS-S3-V1.2", 4, -1, 7, 1, 2, 12, 14, 11, 9, 8, 6, 15, 13,
-           3, 5, 10},
-          {"LILYGO-TCAM-PLUS-S3-V1.0", -1, 3, 7, 1, 2, 12, 14, 11, 13, 8, 6, 15, 9,
-           4, 5, 10},
-          {"DFROBOT-FIREBEETLE2", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16,
-           6, 7, 13},
-          {"ESP32-S3-12K", 2, 21, 38, 4, 11, 6, 5, 8, 10, 12, 18, 17, 39,
-           13, 14, 7},
-          {"ESP32-S3-XIAO", -1, -1, 10, 40, 39, 15, 17, 18, 16, 14, 12, 11, 48,
-           38, 47, 13},
-      };
-
       for (const auto& mapping : kFallbackMappings) {
         Config fallback = cfg_;
         applyPinMapping(fallback, mapping);
