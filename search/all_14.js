@@ -54,7 +54,7 @@ var searchData=
   ['uispatialid_51',['uiSpatialId',['../structSLayerBSInfo.html#ab7c167ea3871f1538d5021ccc9b6db8a',1,'SLayerBSInfo']]],
   ['uitargetdqlayer_52',['uiTargetDqLayer',['../structTagSVCDecodingParam.html#ac16de7855ba15313160ae1a95c75d086',1,'TagSVCDecodingParam']]],
   ['uitemporalid_53',['uiTemporalId',['../structSLayerBSInfo.html#a6a9f5c469870860228f69fc9f8194ada',1,'SLayerBSInfo']]],
-  ['uitimestamp_54',['uiTimeStamp',['../structSource__Picture__s.html#a0c6c74b2df6da49f87ff53d65c28fb16',1,'Source_Picture_s::uiTimeStamp()'],['../structSFrameBSInfo.html#a0c6c74b2df6da49f87ff53d65c28fb16',1,'SFrameBSInfo::uiTimeStamp()']]],
+  ['uitimestamp_54',['uiTimeStamp',['../structSFrameBSInfo.html#a0c6c74b2df6da49f87ff53d65c28fb16',1,'SFrameBSInfo::uiTimeStamp()'],['../structSource__Picture__s.html#a0c6c74b2df6da49f87ff53d65c28fb16',1,'Source_Picture_s::uiTimeStamp()']]],
   ['uitransfercharacteristics_55',['uiTransferCharacteristics',['../structSSpatialLayerConfig.html#a5cbfcd1a355da21ee13bd1a318d2d396',1,'SSpatialLayerConfig']]],
   ['uivideoformat_56',['uiVideoFormat',['../structSSpatialLayerConfig.html#ab261e6d24d2d8a15f39e0608e3fbad49',1,'SSpatialLayerConfig']]],
   ['uiwidth_57',['uiWidth',['../structTagVideoDecoderStatistics.html#a8e891f733a783f55ec28fb4652a41148',1,'TagVideoDecoderStatistics::uiWidth()'],['../structTagVideoEncoderStatistics.html#a8e891f733a783f55ec28fb4652a41148',1,'TagVideoEncoderStatistics::uiWidth()']]],
@@ -64,5 +64,6 @@ var searchData=
   ['unspecified_5fbit_5frate_61',['UNSPECIFIED_BIT_RATE',['../codec__app__def_8h.html#a36c86bd16572107e32f1313164e97f40',1,'codec_app_def.h']]],
   ['ureserved_62',['uReserved',['../struct__tagVersion.html#ae0c64eab63a4ed40c76932ac8c501025',1,'_tagVersion']]],
   ['urevision_63',['uRevision',['../struct__tagVersion.html#a4c66c5c952d85d0a4ffe99e519cda1f2',1,'_tagVersion']]],
-  ['usrdata_64',['UsrData',['../structTagBufferInfo.html#a1f92f40adedaaa278781693bc5a37446',1,'TagBufferInfo']]]
+  ['use_5fcamera_64',['use_camera',['../structesp__h264_1_1H264Encoder_1_1Config.html#adba0ab9883d90c273af445dad3ab6b76',1,'esp_h264::H264Encoder::Config']]],
+  ['usrdata_65',['UsrData',['../structTagBufferInfo.html#a1f92f40adedaaa278781693bc5a37446',1,'TagBufferInfo']]]
 ];

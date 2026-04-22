@@ -90,9 +90,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a587ba0cb07f02913598610049a3bbb79"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a587ba0cb07f02913598610049a3bbb79">ssid</a> = nullptr</td></tr>
 <tr class="memdesc:a587ba0cb07f02913598610049a3bbb79"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi SSID (nullptr to skip WiFi initialization)  <br /></td></tr>
 <tr class="separator:a587ba0cb07f02913598610049a3bbb79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bef28806edf8f4c8cb82584b7e8c3cb"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a3bef28806edf8f4c8cb82584b7e8c3cb">pass</a> = nullptr</td></tr>
-<tr class="memdesc:a3bef28806edf8f4c8cb82584b7e8c3cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi password (nullptr to skip WiFi initialization)  <br /></td></tr>
-<tr class="separator:a3bef28806edf8f4c8cb82584b7e8c3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4a2ebcb494493f648ae1e6975672575"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#aa4a2ebcb494493f648ae1e6975672575">password</a> = nullptr</td></tr>
+<tr class="memdesc:aa4a2ebcb494493f648ae1e6975672575"><td class="mdescLeft">&#160;</td><td class="mdescRight">WiFi password (nullptr to skip WiFi initialization)  <br /></td></tr>
+<tr class="separator:aa4a2ebcb494493f648ae1e6975672575"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2474a5474cbff19523a51eb1de01cda4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a2474a5474cbff19523a51eb1de01cda4">width</a> = 640</td></tr>
 <tr class="memdesc:a2474a5474cbff19523a51eb1de01cda4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frame width in pixels.  <br /></td></tr>
 <tr class="separator:a2474a5474cbff19523a51eb1de01cda4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -105,6 +105,8 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a16c084b439c50b60b975ee30a37bfad5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a16c084b439c50b60b975ee30a37bfad5">outBufferSize</a> = 400 * 1024</td></tr>
 <tr class="memdesc:a16c084b439c50b60b975ee30a37bfad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output buffer size for encoded H.264 data (bytes)  <br /></td></tr>
 <tr class="separator:a16c084b439c50b60b975ee30a37bfad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adba0ab9883d90c273af445dad3ab6b76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#adba0ab9883d90c273af445dad3ab6b76">use_camera</a> = false</td></tr>
+<tr class="separator:adba0ab9883d90c273af445dad3ab6b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37f18ac93c71df2671bcd7fbad37d47d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a37f18ac93c71df2671bcd7fbad37d47d">pwdn_pin</a> = -1</td></tr>
 <tr class="separator:a37f18ac93c71df2671bcd7fbad37d47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b8b4e78308c9cf861e4d27f32878dcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a2b8b4e78308c9cf861e4d27f32878dcf">reset_pin</a> = -1</td></tr>
@@ -205,14 +207,14 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
 
 </div>
 </div>
-<a id="a3bef28806edf8f4c8cb82584b7e8c3cb" name="a3bef28806edf8f4c8cb82584b7e8c3cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3bef28806edf8f4c8cb82584b7e8c3cb">&#9670;&#160;</a></span>pass</h2>
+<a id="aa4a2ebcb494493f648ae1e6975672575" name="aa4a2ebcb494493f648ae1e6975672575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4a2ebcb494493f648ae1e6975672575">&#9670;&#160;</a></span>password</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* pass = nullptr</td>
+          <td class="memname">const char* password = nullptr</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -304,6 +306,20 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
 </div><div class="memdoc">
 
 <p>WiFi SSID (nullptr to skip WiFi initialization) </p>
+
+</div>
+</div>
+<a id="adba0ab9883d90c273af445dad3ab6b76" name="adba0ab9883d90c273af445dad3ab6b76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adba0ab9883d90c273af445dad3ab6b76">&#9670;&#160;</a></span>use_camera</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool use_camera = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

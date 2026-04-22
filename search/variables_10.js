@@ -57,5 +57,6 @@ var searchData=
   ['uninitialize_54',['Uninitialize',['../structISVCEncoderVtbl.html#afd5a4ae085056b835ddcc146c7b98c4f',1,'ISVCEncoderVtbl::Uninitialize()'],['../structISVCDecoderVtbl.html#a6dcac05e0cfd55dda861c10bab0d6970',1,'ISVCDecoderVtbl::Uninitialize()']]],
   ['ureserved_55',['uReserved',['../struct__tagVersion.html#ae0c64eab63a4ed40c76932ac8c501025',1,'_tagVersion']]],
   ['urevision_56',['uRevision',['../struct__tagVersion.html#a4c66c5c952d85d0a4ffe99e519cda1f2',1,'_tagVersion']]],
-  ['usrdata_57',['UsrData',['../structTagBufferInfo.html#a1f92f40adedaaa278781693bc5a37446',1,'TagBufferInfo']]]
+  ['use_5fcamera_57',['use_camera',['../structesp__h264_1_1H264Encoder_1_1Config.html#adba0ab9883d90c273af445dad3ab6b76',1,'esp_h264::H264Encoder::Config']]],
+  ['usrdata_58',['UsrData',['../structTagBufferInfo.html#a1f92f40adedaaa278781693bc5a37446',1,'TagBufferInfo']]]
 ];
