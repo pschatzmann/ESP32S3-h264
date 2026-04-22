@@ -242,6 +242,56 @@ class H264Encoder {
   }
 
   /**
+   * @brief Encode raw YUV422 frame data to H.264 and write to Print stream
+   *
+   * Converts YUV422 data to I420, encodes it, and writes to the Print stream.
+   * @param raw_data Pointer to YUV422 pixel data buffer
+   * @param raw_len Size of YUV422 data in bytes
+   * @param out Print stream to receive encoded H.264 data
+   * @return true if encoding and writing succeeded, false otherwise
+   */
+  bool encodeYUV422(const uint8_t* raw_data, size_t raw_len, Print& out) {
+    ESP_LOGD(TAG, "encodeYUV422");
+    if (!enc_handle_ || !raw_data || raw_len == 0 || in_buf_.empty() ||
+        out_buf_.empty())
+      return false;
+    // Convert YUV422 to I420 using color conversion utility
+    // Assume width and height from config
+    size_t expected = (size_t)cfg_.width * (size_t)cfg_.height * 2;
+    if (raw_len < expected) return false;
+    // Use optimized color conversion functions from h264_color_convert.h
+#ifdef HAVE_ESP32S3
+    yuyv2iyuv_esp32s3((uint32_t)cfg_.height, (uint32_t)cfg_.width,
+                      (uint8_t*)raw_data, in_buf_.data());
+#else
+    yuyv2iyuv((uint32_t)cfg_.height, (uint32_t)cfg_.width, (uint8_t*)raw_data,
+              in_buf_.data());
+#endif
+    // Now encode the I420 data
+    return encode(in_buf_.data(), in_buf_.size(), out);
+  }
+
+  /**
+   * @brief Encode raw RGB565 frame data to H.264 and write to Print stream
+   *
+   * Converts RGB565 data to I420, encodes it, and writes to the Print stream.
+   * @param raw_data Pointer to RGB565 pixel data buffer
+   * @param raw_len Size of RGB565 data in bytes
+   * @param out Print stream to receive encoded H.264 data
+   * @return true if encoding and writing succeeded, false otherwise
+   */
+  bool encodeRGB565(const uint8_t* raw_data, size_t raw_len, Print& out) {
+    ESP_LOGD(TAG, "encodeRGB565");
+    if (!enc_handle_ || !raw_data || raw_len == 0 || in_buf_.empty() ||
+        out_buf_.empty())
+      return false;
+    size_t expected = (size_t)cfg_.width * (size_t)cfg_.height * 2;
+    if (raw_len < expected) return false;
+    rgb565_to_i420(raw_data, in_buf_.data(), cfg_.width, cfg_.height);
+    return encode(in_buf_.data(), in_buf_.size(), out);
+  }
+
+  /**
    * @brief Encode raw I420 frame data to H.264 and write to Print stream
    *
    * Takes raw I420 pixel data, encodes it using the H.264 software encoder,
@@ -703,6 +753,56 @@ class H264Encoder {
   }
 
   /**
+   * @brief Convert raw RGB565 buffer to I420 (YUV420 planar) format
+   * @param src Pointer to RGB565 input buffer
+   * @param dst Pointer to I420 output buffer
+   * @param w Frame width in pixels
+   * @param h Frame height in pixels
+   */
+  void rgb565_to_i420(const uint8_t* src, uint8_t* dst, int w, int h) {
+    // Y plane
+    for (int y = 0; y < h; ++y) {
+      for (int x = 0; x < w; ++x) {
+        int i = (y * w + x) * 2;
+        uint16_t val = src[i] | (src[i + 1] << 8);
+        uint8_t r = (uint8_t)((((val >> 11) & 0x1F) * 527 + 23) >> 6);
+        uint8_t g = (uint8_t)((((val >> 5) & 0x3F) * 259 + 33) >> 6);
+        uint8_t b = (uint8_t)(((val & 0x1F) * 527 + 23) >> 6);
+        uint8_t yv = (uint8_t)((66 * r + 129 * g + 25 * b + 128) >> 8) + 16;
+        dst[y * w + x] = yv;
+      }
+    }
+    uint8_t* uplane = dst + w * h;
+    uint8_t* vplane = uplane + (w / 2) * (h / 2);
+    for (int y = 0; y < h; y += 2) {
+      for (int x = 0; x < w; x += 2) {
+        int idx0 = (y * w + x) * 2;
+        int idx1 = (y * w + x + 1) * 2;
+        int idx2 = ((y + 1) * w + x) * 2;
+        int idx3 = ((y + 1) * w + x + 1) * 2;
+        int indices[4] = {idx0, idx1, idx2, idx3};
+        int sumU = 0, sumV = 0;
+        for (int k = 0; k < 4; ++k) {
+          int ii = indices[k];
+          uint16_t vval = src[ii] | (src[ii + 1] << 8);
+          uint8_t rr = (uint8_t)((((vval >> 11) & 0x1F) * 527 + 23) >> 6);
+          uint8_t gg = (uint8_t)((((vval >> 5) & 0x3F) * 259 + 33) >> 6);
+          uint8_t bb = (uint8_t)(((vval & 0x1F) * 527 + 23) >> 6);
+          int u = ((-38 * rr - 74 * gg + 112 * bb + 128) >> 8) + 128;
+          int vvv = ((112 * rr - 94 * gg - 18 * bb + 128) >> 8) + 128;
+          sumU += u;
+          sumV += vvv;
+        }
+        int ux = x / 2;
+        int uy = y / 2;
+        int pos = uy * (w / 2) + ux;
+        uplane[pos] = (uint8_t)(sumU / 4);
+        vplane[pos] = (uint8_t)(sumV / 4);
+      }
+    }
+  }
+
+  /**
    * @brief Convert RGB565 framebuffer to I420 format
    *
    * Converts ESP32 camera RGB565 framebuffer to I420 (YUV420 planar) format.
@@ -723,47 +823,7 @@ class H264Encoder {
   bool captureFrameI420_RGB565(uint8_t* dst, size_t /*dst_len*/,
                                camera_fb_t* fb, int w, int h) {
     ESP_LOGD(TAG, "captureFrameI420_RGB565");
-    uint8_t* p = fb->buf;
-    // Y plane
-    for (int y = 0; y < h; ++y) {
-      for (int x = 0; x < w; ++x) {
-        int i = (y * w + x) * 2;
-        uint16_t val = p[i] | (p[i + 1] << 8);
-        uint8_t r = (uint8_t)((((val >> 11) & 0x1F) * 527 + 23) >> 6);
-        uint8_t g = (uint8_t)((((val >> 5) & 0x3F) * 259 + 33) >> 6);
-        uint8_t b = (uint8_t)(((val & 0x1F) * 527 + 23) >> 6);
-        uint8_t yv = (uint8_t)((66 * r + 129 * g + 25 * b + 128) >> 8) + 16;
-        dst[y * w + x] = yv;
-      }
-    }
-    uint8_t* uplane = dst + w * h;
-    uint8_t* vplane = uplane + (w / 2) * (h / 2);
-    for (int y = 0; y < h; y += 2) {
-      for (int x = 0; x < w; x += 2) {
-        int idx0 = (y * w + x) * 2;
-        int idx1 = (y * w + x + 1) * 2;
-        int idx2 = ((y + 1) * w + x) * 2;
-        int idx3 = ((y + 1) * w + x + 1) * 2;
-        int indices[4] = {idx0, idx1, idx2, idx3};
-        int sumU = 0, sumV = 0;
-        for (int k = 0; k < 4; ++k) {
-          int ii = indices[k];
-          uint16_t vval = p[ii] | (p[ii + 1] << 8);
-          uint8_t rr = (uint8_t)((((vval >> 11) & 0x1F) * 527 + 23) >> 6);
-          uint8_t gg = (uint8_t)(((((vval >> 5) & 0x3F) * 259 + 33) >> 6));
-          uint8_t bb = (uint8_t)(((vval & 0x1F) * 527 + 23) >> 6);
-          int u = ((-38 * rr - 74 * gg + 112 * bb + 128) >> 8) + 128;
-          int vvv = ((112 * rr - 94 * gg - 18 * bb + 128) >> 8) + 128;
-          sumU += u;
-          sumV += vvv;
-        }
-        int ux = x / 2;
-        int uy = y / 2;
-        int pos = uy * (w / 2) + ux;
-        uplane[pos] = (uint8_t)(sumU / 4);
-        vplane[pos] = (uint8_t)(sumV / 4);
-      }
-    }
+    rgb565_to_i420(fb->buf, dst, w, h);
     esp_camera_fb_return(fb);
     return true;
   }
