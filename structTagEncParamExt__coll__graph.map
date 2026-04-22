@@ -1,0 +1,5 @@
+<map id="TagEncParamExt" name="TagEncParamExt">
+<area shape="rect" id="node1" title="SVC Encoding Parameters extention." alt="" coords="17,181,146,207"/>
+<area shape="rect" id="node2" href="$structSSpatialLayerConfig.html" title="Structure for spatial layer configuration." alt="" coords="5,93,157,119"/>
+<area shape="rect" id="node3" href="$structSSliceArgument.html" title="Structure for slice argument." alt="" coords="19,5,144,31"/>
+</map>

@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['esp_5fh264_5f4cc_0',['ESP_H264_4CC',['../esp__h264__types_8h.html#a38848fe1b9fe96d876fefb81f8aeb3f8',1,'esp_h264_types.h']]],
+  ['esp_5fh264_5ffree_1',['esp_h264_free',['../esp__h264__alloc_8h.html#acca6ab0f80cc47ce3526e0822e4be508',1,'esp_h264_alloc.h']]],
+  ['esp_5fh264_5fget_5fbpp_5fby_5fpic_5ftype_2',['ESP_H264_GET_BPP_BY_PIC_TYPE',['../esp__h264__types_8h.html#abd7e4905f1008a59d8aba0710a9c66f3',1,'esp_h264_types.h']]],
+  ['esp_5fh264_5fgoto_5fon_5ffalse_3',['ESP_H264_GOTO_ON_FALSE',['../esp__h264__check_8h.html#a726e3504797859a475aea939686489df',1,'esp_h264_check.h']]],
+  ['esp_5fh264_5fhw_5fis_5fsupported_5fpic_5ftype_4',['ESP_H264_HW_IS_SUPPORTED_PIC_TYPE',['../esp__h264__types_8h.html#a89ff8611e75aaa3c7439ee44c084e6f6',1,'esp_h264_types.h']]],
+  ['esp_5fh264_5fintr_5falloc_5',['esp_h264_intr_alloc',['../esp__h264__intr__alloc_8h.html#a75a2ac720ce9ca47bf87c3b86b90ddab',1,'esp_h264_intr_alloc.h']]],
+  ['esp_5fh264_5fintr_5ffree_6',['esp_h264_intr_free',['../esp__h264__intr__alloc_8h.html#a2c696f0f1c43184c800427f5b43becc8',1,'esp_h264_intr_alloc.h']]],
+  ['esp_5fh264_5floge_7',['ESP_H264_LOGE',['../esp__h264__check_8h.html#a6f370c526c7e7af17a7fa25eebc01fc6',1,'esp_h264_check.h']]],
+  ['esp_5fh264_5flogi_8',['ESP_H264_LOGI',['../esp__h264__check_8h.html#a64374adbc5459dcd70a7fc636a94f3a1',1,'esp_h264_check.h']]],
+  ['esp_5fh264_5fmax_5fdelay_9',['ESP_H264_MAX_DELAY',['../esp__h264__mutex_8h.html#af94b130301eaef0cb0a8d63c5987c388',1,'esp_h264_mutex.h']]],
+  ['esp_5fh264_5fmem_5finternal_10',['ESP_H264_MEM_INTERNAL',['../esp__h264__alloc_8h.html#a387a7a04ba225c4181c06b9ec693eb50',1,'esp_h264_alloc.h']]],
+  ['esp_5fh264_5fmem_5fspiram_11',['ESP_H264_MEM_SPIRAM',['../esp__h264__alloc_8h.html#addb451a2c57a520d10d1f81014e28115',1,'esp_h264_alloc.h']]],
+  ['esp_5fh264_5fmutex_5fcreate_12',['esp_h264_mutex_create',['../esp__h264__mutex_8h.html#a3feb4b7639342cd0bec4004eae71efa7',1,'esp_h264_mutex.h']]],
+  ['esp_5fh264_5fmutex_5fdelete_13',['esp_h264_mutex_delete',['../esp__h264__mutex_8h.html#aa61845ad3cfa9f08514ecca0a21fd623',1,'esp_h264_mutex.h']]],
+  ['esp_5fh264_5fmutex_5flock_14',['esp_h264_mutex_lock',['../esp__h264__mutex_8h.html#af6963a8306c17f77b4ac0447ec18a61f',1,'esp_h264_mutex.h']]],
+  ['esp_5fh264_5fmutex_5funlock_15',['esp_h264_mutex_unlock',['../esp__h264__mutex_8h.html#a589b74bb60f7c78eb243fc9b9db5cd8c',1,'esp_h264_mutex.h']]],
+  ['esp_5fh264_5fmutex_5funlock_5ffrom_5fisr_16',['esp_h264_mutex_unlock_from_isr',['../esp__h264__mutex_8h.html#a26d60f30a5e3990785433f988991386b',1,'esp_h264_mutex.h']]],
+  ['esp_5fh264_5fport_5fyield_5ffrom_5fisr_17',['esp_h264_port_yield_from_isr',['../esp__h264__mutex_8h.html#af3d5edbf4cb4397ea75eaf345c08aeff',1,'esp_h264_mutex.h']]],
+  ['esp_5fh264_5fqp_5fmax_18',['ESP_H264_QP_MAX',['../esp__h264__types_8h.html#a0cf47ef31c2582078fa93179ed27ee45',1,'esp_h264_types.h']]],
+  ['esp_5fh264_5fret_5fon_5ffalse_19',['ESP_H264_RET_ON_FALSE',['../esp__h264__check_8h.html#a94c6ab2934035b29ae85c7cfd10ee4b4',1,'esp_h264_check.h']]],
+  ['esp_5fh264_5fsw_5fmin_5fheight_20',['ESP_H264_SW_MIN_HEIGHT',['../esp__h264__enc__sw__param_8h.html#acabe6b9477090d3213aac6e393999115',1,'esp_h264_enc_sw_param.h']]],
+  ['esp_5fh264_5fsw_5fmin_5fwidth_21',['ESP_H264_SW_MIN_WIDTH',['../esp__h264__enc__sw__param_8h.html#a8f7a88881fde28824a42bc9f948c6e8f',1,'esp_h264_enc_sw_param.h']]],
+  ['esp_5fh264_5fversion_22',['ESP_H264_VERSION',['../esp__h264__version_8h.html#ab63a6d58c0fa4be4cfd51ae22b51f613',1,'esp_h264_version.h']]],
+  ['extapi_23',['EXTAPI',['../codec__api_8h.html#a9f80f8c9be0ca9f9ea746e9df55855bc',1,'codec_api.h']]]
+];

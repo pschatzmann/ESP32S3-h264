@@ -1,0 +1,11 @@
+<map id="src/h264/esp_h264_enc_single.h" name="src/h264/esp_h264_enc_single.h">
+<area shape="rect" id="node1" title=" " alt="" coords="167,5,340,45"/>
+<area shape="rect" id="node2" href="$H264Encoder_8h.html" title="Header&#45;only helper to capture frames from ESP32 camera and encode to H.264." alt="" coords="169,277,311,302"/>
+<area shape="rect" id="node3" href="$esp__h264__enc__single_8c.html" title=" " alt="" coords="43,93,216,133"/>
+<area shape="rect" id="node4" href="$esp__h264__enc__single__sw_8c.html" title=" " alt="" coords="43,181,216,221"/>
+<area shape="rect" id="node5" href="$esp__h264__enc__single__sw_8h.html" title=" " alt="" coords="291,93,464,133"/>
+<area shape="rect" id="node8" href="$esp__h264__sw__enc__test_8h.html" title=" " alt="" coords="525,181,693,221"/>
+<area shape="rect" id="node6" href="$esp__h264__arduino_8h.html" title=" " alt="" coords="291,189,501,214"/>
+<area shape="rect" id="node7" href="$H264Decoder_8h.html" title="ESP32&#45;S3 H.264 Decoder with Stream Input Support." alt="" coords="336,277,480,302"/>
+<area shape="rect" id="node9" href="$esp__h264__sw__enc__test_8c.html" title=" " alt="" coords="525,269,693,309"/>
+</map>

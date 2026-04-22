@@ -1,0 +1,4 @@
+<map id="esp_h264_enc_out_frame_t" name="esp_h264_enc_out_frame_t">
+<area shape="rect" id="node1" title="Data stream information after encoding." alt="" coords="5,93,205,119"/>
+<area shape="rect" id="node2" href="$structesp__h264__pkt__t.html" title="H.264 Data packet." alt="" coords="43,5,167,31"/>
+</map>

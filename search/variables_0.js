@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['base_0',['base',['../structesp__h264__enc__sw__handle.html#a9eeb1df11d13a51e3394abb7502ca382',1,'esp_h264_enc_sw_handle::base()'],['../structesp__h264__dec__sw__handle.html#a4fdeabd26a54309fd3cbf0c0520b1247',1,'esp_h264_dec_sw_handle::base()']]],
+  ['baspectratiopresent_1',['bAspectRatioPresent',['../structSSpatialLayerConfig.html#aa85ef39203a13c896cc31bbbcf4b516e',1,'SSpatialLayerConfig']]],
+  ['bcolordescriptionpresent_2',['bColorDescriptionPresent',['../structSSpatialLayerConfig.html#a28b5aabdee5bd458571273ed83182fa9',1,'SSpatialLayerConfig']]],
+  ['bdeliveryflag_3',['bDeliveryFlag',['../structTagDeliveryStatus.html#aeb5178a3b2e175ce107ab90eb5377d1e',1,'TagDeliveryStatus']]],
+  ['benableadaptivequant_4',['bEnableAdaptiveQuant',['../structTagEncParamExt.html#a127e6e216393085d28aab8aac8d0880c',1,'TagEncParamExt']]],
+  ['benablebackgrounddetection_5',['bEnableBackgroundDetection',['../structTagEncParamExt.html#a440d36a48ad15f1ad884bd52c6ad5448',1,'TagEncParamExt']]],
+  ['benabledenoise_6',['bEnableDenoise',['../structTagEncParamExt.html#a866a5c6a5f53fd798ad593ee55f7f89b',1,'TagEncParamExt']]],
+  ['benableframecroppingflag_7',['bEnableFrameCroppingFlag',['../structTagEncParamExt.html#a481dba08751fe18d05775818a0dd60de',1,'TagEncParamExt']]],
+  ['benableframeskip_8',['bEnableFrameSkip',['../structTagEncParamExt.html#a55d957f824526e32be0ce08f356373cb',1,'TagEncParamExt']]],
+  ['benablelongtermreference_9',['bEnableLongTermReference',['../structSLTRConfig.html#a3493d5a62ecd2dc1dc030aeb032ca7a3',1,'SLTRConfig::bEnableLongTermReference()'],['../structTagEncParamExt.html#a3493d5a62ecd2dc1dc030aeb032ca7a3',1,'TagEncParamExt::bEnableLongTermReference()']]],
+  ['benablescenechangedetect_10',['bEnableSceneChangeDetect',['../structTagEncParamExt.html#a4e47608bd7d003f2baf6db4d1ffe75ef',1,'TagEncParamExt']]],
+  ['benablessei_11',['bEnableSSEI',['../structTagEncParamExt.html#af6c0b779a75048bee35282b48b516416',1,'TagEncParamExt']]],
+  ['bfullrange_12',['bFullRange',['../structSSpatialLayerConfig.html#aba883c5f7aa76ee5359d223c5af9919b',1,'SSpatialLayerConfig']]],
+  ['bislosslesslink_13',['bIsLosslessLink',['../structTagEncParamExt.html#a3d404a8841c86eb6f28bc425baf9116d',1,'TagEncParamExt']]],
+  ['bitrate_14',['bitrate',['../structesp__h264__enc__rc__t.html#a32678c62007e0748dae550bd1007a07d',1,'esp_h264_enc_rc_t']]],
+  ['boverscanappropriateflag_15',['bOverscanAppropriateFlag',['../structTagVuiSarInfo.html#ac902cfab94706e9ffb67409f895b91dc',1,'TagVuiSarInfo']]],
+  ['bparseonly_16',['bParseOnly',['../structTagSVCDecodingParam.html#a1f6e9f40b37dc574a8b5d350ee1f2dd7',1,'TagSVCDecodingParam']]],
+  ['bprefixnaladdingctrl_17',['bPrefixNalAddingCtrl',['../structTagEncParamExt.html#a2b724f03eed270267c1a6f8ac045397d',1,'TagEncParamExt']]],
+  ['bredpiccap_18',['bRedPicCap',['../structTagDecoderCapability.html#a0a65e9016f7c6a65ee927d4523b54588',1,'TagDecoderCapability']]],
+  ['bsimulcastavc_19',['bSimulcastAVC',['../structTagEncParamExt.html#a5111a86407c455bafb5d03cece352235',1,'TagEncParamExt']]],
+  ['buffer_20',['buffer',['../structesp__h264__pkt__t.html#a56ed84df35de10bdb65e72b184309497',1,'esp_h264_pkt_t']]],
+  ['buseloadbalancing_21',['bUseLoadBalancing',['../structTagEncParamExt.html#a2d062b326f8b8ae0ab13adea0634aaca',1,'TagEncParamExt']]],
+  ['bvideosignaltypepresent_22',['bVideoSignalTypePresent',['../structSSpatialLayerConfig.html#a60adf033e91a3e1416f42500377b27ff',1,'SSpatialLayerConfig']]]
+];

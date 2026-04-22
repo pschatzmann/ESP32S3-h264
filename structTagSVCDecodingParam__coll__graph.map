@@ -1,0 +1,4 @@
+<map id="TagSVCDecodingParam" name="TagSVCDecodingParam">
+<area shape="rect" id="node1" title="SVC Decoding Parameters, reserved here and potential applicable in the future." alt="" coords="5,93,177,119"/>
+<area shape="rect" id="node2" href="$structSVideoProperty.html" title="Define a new struct to show the property of video bitstream." alt="" coords="30,5,153,31"/>
+</map>

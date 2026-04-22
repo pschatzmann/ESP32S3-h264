@@ -1,0 +1,4 @@
+<map id="esp_h264_set_cfg" name="esp_h264_set_cfg">
+<area shape="rect" id="node1" title="Configuration structure for software&#45;based H.264 encoder parameters." alt="" coords="5,93,144,119"/>
+<area shape="rect" id="node2" href="$structISVCEncoderVtbl.html" title=" " alt="" coords="9,5,140,31"/>
+</map>

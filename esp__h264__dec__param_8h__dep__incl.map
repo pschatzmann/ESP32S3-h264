@@ -1,0 +1,9 @@
+<map id="src/h264/esp_h264_dec_param.h" name="src/h264/esp_h264_dec_param.h">
+<area shape="rect" id="node1" title=" " alt="" coords="223,5,396,45"/>
+<area shape="rect" id="node2" href="$H264Decoder_8h.html" title="ESP32&#45;S3 H.264 Decoder with Stream Input Support." alt="" coords="5,189,149,214"/>
+<area shape="rect" id="node3" href="$esp__h264__dec__param_8c.html" title=" " alt="" coords="115,93,288,133"/>
+<area shape="rect" id="node4" href="$esp__h264__dec__sw_8h.html" title=" " alt="" coords="313,101,522,126"/>
+<area shape="rect" id="node7" href="$esp__h264__sw__dec__test_8c.html" title=" " alt="" coords="465,269,633,309"/>
+<area shape="rect" id="node5" href="$esp__h264__dec__sw_8c.html" title=" " alt="" coords="173,189,381,214"/>
+<area shape="rect" id="node6" href="$esp__h264__sw__dec__test_8h.html" title=" " alt="" coords="405,181,573,221"/>
+</map>

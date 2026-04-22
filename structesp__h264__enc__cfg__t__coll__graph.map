@@ -1,0 +1,5 @@
+<map id="esp_h264_enc_cfg_t" name="esp_h264_enc_cfg_t">
+<area shape="rect" id="node1" title="Encoder configure information." alt="" coords="103,93,257,119"/>
+<area shape="rect" id="node2" href="$structesp__h264__resolution__t.html" title="Picture resolution In the case of a certain display resolution, the smaller the display,..." alt="" coords="5,5,173,31"/>
+<area shape="rect" id="node3" href="$structesp__h264__enc__rc__t.html" title="Rate control(RC) parameter The size of the output stream approaching the target stream is controlled ..." alt="" coords="198,5,343,31"/>
+</map>

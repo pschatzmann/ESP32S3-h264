@@ -1,0 +1,7 @@
+<map id="esp_h264_enc_sw_handle" name="esp_h264_enc_sw_handle">
+<area shape="rect" id="node1" title=" " alt="" coords="243,93,434,119"/>
+<area shape="rect" id="node2" href="$structesp__h264__enc__if.html" title="The H.264 single stream encoder interface." alt="" coords="5,5,136,31"/>
+<area shape="rect" id="node3" href="$structesp__h264__enc__param__if.html" title="The H.264 encoder parameter interface." alt="" coords="160,5,339,31"/>
+<area shape="rect" id="node4" href="$structSource__Picture__s.html" title="Structure for source picture." alt="" coords="363,5,495,31"/>
+<area shape="rect" id="node5" href="$structISVCEncoderVtbl.html" title=" " alt="" coords="520,5,651,31"/>
+</map>

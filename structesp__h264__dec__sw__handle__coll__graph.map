@@ -1,0 +1,5 @@
+<map id="esp_h264_dec_sw_handle" name="esp_h264_dec_sw_handle">
+<area shape="rect" id="node1" title=" " alt="" coords="65,93,255,119"/>
+<area shape="rect" id="node2" href="$structesp__h264__dec__if.html" title="The H.264 stream decoder interface." alt="" coords="5,5,136,31"/>
+<area shape="rect" id="node3" href="$structesp__h264__dec__param__if.html" title="The H.264 decoder parameter interface." alt="" coords="160,5,339,31"/>
+</map>

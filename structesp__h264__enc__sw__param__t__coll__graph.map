@@ -1,0 +1,5 @@
+<map id="esp_h264_enc_sw_param_t" name="esp_h264_enc_sw_param_t">
+<area shape="rect" id="node1" title=" " alt="" coords="84,93,284,119"/>
+<area shape="rect" id="node2" href="$structesp__h264__enc__param__if.html" title="The H.264 encoder parameter interface." alt="" coords="5,5,184,31"/>
+<area shape="rect" id="node3" href="$structISVCEncoderVtbl.html" title=" " alt="" coords="208,5,339,31"/>
+</map>

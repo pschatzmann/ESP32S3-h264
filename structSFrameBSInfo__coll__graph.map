@@ -1,0 +1,4 @@
+<map id="SFrameBSInfo" name="SFrameBSInfo">
+<area shape="rect" id="node1" title="Frame bit stream info." alt="" coords="5,93,119,119"/>
+<area shape="rect" id="node2" href="$structSLayerBSInfo.html" title="Bitstream inforamtion of a layer being encoded." alt="" coords="8,5,116,31"/>
+</map>

@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['saspectratioextheight_0',['sAspectRatioExtHeight',['../structSSpatialLayerConfig.html#a30dd37d77ba1eba3bee53969c25d3c72',1,'SSpatialLayerConfig']]],
+  ['saspectratioextwidth_1',['sAspectRatioExtWidth',['../structSSpatialLayerConfig.html#a47e71412aac54e39c499352b50dc4c64',1,'SSpatialLayerConfig']]],
+  ['set_5fbitrate_2',['set_bitrate',['../structesp__h264__enc__param__if.html#a3df0dfd080af36c5ce46539dac962b0e',1,'esp_h264_enc_param_if']]],
+  ['set_5ffps_3',['set_fps',['../structesp__h264__enc__param__if.html#ae56f9ed195145717df8662d56e95b72b',1,'esp_h264_enc_param_if']]],
+  ['set_5fgop_4',['set_gop',['../structesp__h264__enc__param__if.html#a23cb541dfe754320e72bf0a97d4b98df',1,'esp_h264_enc_param_if']]],
+  ['setoption_5',['SetOption',['../structISVCEncoderVtbl.html#a1bd20d7c02b771d22b6da4e9b33a1a1e',1,'ISVCEncoderVtbl::SetOption()'],['../structISVCDecoderVtbl.html#a8bee07b7f7b4eb383e246e49592900b4',1,'ISVCDecoderVtbl::SetOption()']]],
+  ['sioc_5fpin_6',['sioc_pin',['../structesp__h264_1_1H264Encoder_1_1Config.html#ace7002e0c4a5e6460be2ff34e9f73dd5',1,'esp_h264::H264Encoder::Config']]],
+  ['siod_5fpin_7',['siod_pin',['../structesp__h264_1_1H264Encoder_1_1Config.html#aa662d40fedaae0e20cf68b58036e8a74',1,'esp_h264::H264Encoder::Config']]],
+  ['size_8',['size',['../structSVideoProperty.html#ab2c6b258f02add8fdf4cfc7c371dd772',1,'SVideoProperty']]],
+  ['slayerinfo_9',['sLayerInfo',['../structSFrameBSInfo.html#a40336ca3263c9b9b6855b8c7df7eca3b',1,'SFrameBSInfo']]],
+  ['src_5fpic_10',['src_pic',['../structesp__h264__enc__sw__handle.html#aad99a353f50a3e7fb4785876c7be6623',1,'esp_h264_enc_sw_handle']]],
+  ['ssid_11',['ssid',['../structesp__h264_1_1H264Encoder_1_1Config.html#a587ba0cb07f02913598610049a3bbb79',1,'esp_h264::H264Encoder::Config']]],
+  ['ssliceargument_12',['sSliceArgument',['../structSSpatialLayerConfig.html#a99db42b7210777d86c0bd02121b9bf93',1,'SSpatialLayerConfig']]],
+  ['sspatiallayers_13',['sSpatialLayers',['../structTagEncParamExt.html#aa9b0d9fb9aa545dd510985f44ca2b20f',1,'TagEncParamExt']]],
+  ['ssystembuffer_14',['sSystemBuffer',['../structTagBufferInfo.html#a1fb6f002ba5b310496577832dd42be30',1,'TagBufferInfo']]],
+  ['svideoproperty_15',['sVideoProperty',['../structTagSVCDecodingParam.html#a10338cdd64d88490058f0f9ad9fb7ca6',1,'TagSVCDecodingParam']]],
+  ['sw_5fbase_16',['sw_base',['../structesp__h264__enc__sw__param__t.html#a77edf5510a710881c852f1813734ec67',1,'esp_h264_enc_sw_param_t']]]
+];
