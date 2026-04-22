@@ -75,6 +75,12 @@ $(function() {
 <div class="textblock"><p><a href="https://www.arduino.cc/reference/en/libraries/"><img src="https://img.shields.io/badge/Arduino-Library-blue.svg" alt="Arduino Library" style="pointer-events: none;" class="inline"/></a> <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache-yellow.svg" alt="License: Apache" style="pointer-events: none;" class="inline"/></a></p>
 <p>This project provides Espressif's lightweight H.264 encoder and decoder component as Arduino library, offering a software implementations. The software encoder (SW encoder) is sourced from v2.2.0 of <a href="https://github.com/cisco/openh264">openh264</a>, while the decoder is obtained from <a href="https://github.com/udevbe/tinyh264">tinyH264</a>. Both the software encoder and decoder are optimized for memory and CPU usage, ensuring optimal performance on Espressif chips.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
+Documentation</h1>
+<ul>
+<li><a href="https://pschatzmann.github.io/ESP32S3-h264/namespaceesp__h264.html">Class Documentation</a></li>
+<li>[Examples](examples)</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Term</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -126,14 +132,14 @@ Term</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">RC   </td><td class="markdownTableBodyNone">Rate control   </td><td class="markdownTableBodyNone">The size of the output stream approaching the target stream is controlled.   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Supported chip</h1>
 <ul>
 <li>ESP32-S3</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Features</h1>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 encoder</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -175,7 +181,7 @@ encoder</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">MV   </td><td class="markdownTableBodyNone">Supported output MV data   </td><td class="markdownTableBodyNone">Un-supported   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 decoder</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -209,11 +215,11 @@ decoder</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">dual task decoder   </td><td class="markdownTableBodyNone">Supported, config task core and priority with menuconfig   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Performance</h1>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Test on chip ESP32-S3R8</h2>
-<h3><a class="anchor" id="autotoc_md8"></a>
+<h3><a class="anchor" id="autotoc_md9"></a>
 SW ENCODER</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -223,7 +229,7 @@ SW ENCODER</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">320 * 240   </td><td class="markdownTableBodyNone">ESP_H264_RAW_FMT_YUYV   </td><td class="markdownTableBodyNone">1 M   </td><td class="markdownTableBodyNone">11.23   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md9"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 DECODER</h3>
 <p>Note: the memory consumption is strongly dependent on the resolution of H264 stream and the encoded data.</p>
 <p>For the <b>mono task</b> decoder implementation, the performance is as follows:</p>
@@ -244,9 +250,9 @@ DECODER</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">320 * 192   </td><td class="markdownTableBodyNone">ESP_H264_RAW_FMT_I420   </td><td class="markdownTableBodyNone">1.0 M   </td><td class="markdownTableBodyNone">27   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Test on chip</h2>
-<h3><a class="anchor" id="autotoc_md11"></a>
+<h3><a class="anchor" id="autotoc_md12"></a>
 HW ENCODER</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -264,7 +270,7 @@ HW ENCODER</h3>
 <li>1920 × 1080 is the number of pixels for 1080p resolution</li>
 <li>bytes_per_pixel_1080p is the number of bytes per pixel for 1080p</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md12"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 DECODER</h3>
 <p>Note: the memory consumption is strongly dependent on the resolution of H264 stream and the encoded data.</p>
 <p>For the <b>mono task</b> decoder implementation, the performance is as follows:</p>
@@ -285,14 +291,14 @@ DECODER</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">640 * 480   </td><td class="markdownTableBodyNone">ESP_H264_RAW_FMT_I420   </td><td class="markdownTableBodyNone">2.5 M   </td><td class="markdownTableBodyNone">31   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md13"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 Example</h1>
 <p>Please refer to the files test_apps/esp_h264_*_test.c and test_apps/esp_h264_*_test.h for more details on API usage.</p>
-<h1><a class="anchor" id="autotoc_md14"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 FAQ</h1>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 Performance Issues</h2>
-<h3><a class="anchor" id="autotoc_md16"></a>
+<h3><a class="anchor" id="autotoc_md17"></a>
 Q: Why is decoding speed slow on certain chips?</h3>
 <p><b>A:</b> Decoding performance depends on several factors:</p>
 <ul>
