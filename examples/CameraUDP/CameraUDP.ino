@@ -50,15 +50,16 @@ void setup() {
   // configure streamer (populate global cfg)
   auto cfg = streamer.defaultConfig();
   cfg.ssid = "YourSSID";
-  cfg.pass = "YourPassword";
+  cfg.password = "YourPassword";
   cfg.width = 640;
   cfg.height = 480;
   cfg.fps = 15;
-  up.begin(DEST_IP, DEST_PORT);
+  cfg.use_camera = true;  // Enable camera initialization
   if (!streamer.begin(cfg)) {
     Serial.println("Streamer failed to start");
     while (1) delay(1000);
   }
+  up.begin(DEST_IP, DEST_PORT);
   Serial.println("Streamer started");
 }
 

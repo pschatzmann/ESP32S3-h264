@@ -92,7 +92,7 @@ class H264Encoder {
     /** @brief WiFi SSID (nullptr to skip WiFi initialization) */
     const char* ssid = nullptr;
     /** @brief WiFi password (nullptr to skip WiFi initialization) */
-    const char* pass = nullptr;
+    const char* password = nullptr;
     /** @brief Frame width in pixels */
     int width = 640;
     /** @brief Frame height in pixels */
@@ -101,6 +101,8 @@ class H264Encoder {
     int fps = 15;
     /** @brief Output buffer size for encoded H.264 data (bytes) */
     size_t outBufferSize = 400 * 1024;
+
+    bool use_camera = false;  // Internal flag to track camera state
 
     int pwdn_pin = -1;
     int reset_pin = -1;
@@ -213,9 +215,16 @@ class H264Encoder {
     ESP_LOGD(TAG, "begin");
     // copy the provided config into the stored config_
     cfg_ = cfg;
-    if (!initCamera()) return false;
+    // init encoder
     if (!initEncoder()) return false;
-    if (!initWiFi()) return false;
+    // init camera if requested
+    if (cfg_.use_camera) {
+      if (!initCamera()) return false;
+    }
+    // init wifi only when ssid and password are provided!
+    if (cfg_.ssid && cfg_.password) {
+      if (!initWiFi()) return false;
+    }
     return true;
   }
 
