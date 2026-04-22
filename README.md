@@ -5,6 +5,11 @@
 
 This project provides Espressif's lightweight H.264 encoder and decoder component as Arduino library, offering a software implementations. The software encoder (SW encoder) is sourced from v2.2.0 of [openh264](https://github.com/cisco/openh264), while the decoder is obtained from [tinyH264](https://github.com/udevbe/tinyh264). Both the software encoder and decoder are optimized for memory and CPU usage, ensuring optimal performance on Espressif chips.
 
+## Documentation
+
+- [Class Documentation](https://pschatzmann.github.io/ESP32S3-h264/namespaceesp__h264.html)
+- [Examples](examples)
+
 ## Term
 
 | Term Abbr  | Full Name               | Description                                                                             |
