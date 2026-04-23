@@ -143,7 +143,7 @@ class H264Encoder {
     cfg.width = 640;
     cfg.height = 480;
     cfg.fps = 15;
-    cfg.outBufferSize = 400 * 1024;
+    cfg.outBufferSize = 0;
     return cfg;
   }
 
@@ -225,7 +225,7 @@ class H264Encoder {
     if (cfg_.ssid && cfg_.password) {
       if (!initWiFi()) return false;
     }
-    return true;
+    return initData();
   }
 
   /**
@@ -260,14 +260,31 @@ class H264Encoder {
    * @return true if encoding and writing succeeded, false otherwise
    */
   bool encodeYUV422(const uint8_t* raw_data, size_t raw_len, Print& out) {
-    ESP_LOGD(TAG, "encodeYUV422");
-    if (!enc_handle_ || !raw_data || raw_len == 0 || in_buf_.empty() ||
-        out_buf_.empty())
+    ESP_LOGD(TAG, "encodeYUV422: %u bytes", (unsigned)raw_len);
+    if (!enc_handle_) {
+      ESP_LOGE(TAG, "Invalid encoder handle in encodeYUV422");
       return false;
+    }
+    if (!raw_data || raw_len == 0) {
+      ESP_LOGE(TAG, "No data provided to encodeYUV422 (raw_data=%p, raw_len=%u)", raw_data, (unsigned)raw_len);
+      return false;
+    }
+    if (in_buf_.empty()) {
+      ESP_LOGE(TAG, "Input buffer is empty in encodeYUV422");
+      return false;
+    }
+    if (out_buf_.empty()) {
+      ESP_LOGE(TAG, "Output buffer is empty in encodeYUV422");
+      return false;
+    }
     // Convert YUV422 to I420 using color conversion utility
     // Assume width and height from config
     size_t expected = (size_t)cfg_.width * (size_t)cfg_.height * 2;
-    if (raw_len < expected) return false;
+    if (raw_len < expected) {
+      ESP_LOGE(TAG, "Insufficient data for encodeYUV422: expected %u bytes, got %u bytes",
+               (unsigned)expected, (unsigned)raw_len);
+      return false;
+    }
     // Use optimized color conversion functions from h264_color_convert.h
 #ifdef HAVE_ESP32S3
     yuyv2iyuv_esp32s3((uint32_t)cfg_.height, (uint32_t)cfg_.width,
@@ -290,14 +307,40 @@ class H264Encoder {
    * @return true if encoding and writing succeeded, false otherwise
    */
   bool encodeRGB565(const uint8_t* raw_data, size_t raw_len, Print& out) {
-    ESP_LOGD(TAG, "encodeRGB565");
-    if (!enc_handle_ || !raw_data || raw_len == 0 || in_buf_.empty() ||
-        out_buf_.empty())
+    ESP_LOGD(TAG, "encodeRGB565: %u bytes", (unsigned)raw_len);
+    if (!enc_handle_) {
+      ESP_LOGE(TAG, "Invalid encoder handle in encodeRGB565");
       return false;
+    }
+    if (!raw_data || raw_len == 0) {
+      ESP_LOGE(TAG, "No data provided to encodeRGB565 (raw_data=%p, raw_len=%u)", raw_data, (unsigned)raw_len);
+      return false;
+    }
+    if (in_buf_.empty()) {
+      ESP_LOGE(TAG, "Input buffer is empty in encodeRGB565");
+      return false;
+    }
+    if (out_buf_.empty()) {
+      ESP_LOGE(TAG, "Output buffer is empty in encodeRGB565");
+      return false;
+    }
     size_t expected = (size_t)cfg_.width * (size_t)cfg_.height * 2;
-    if (raw_len < expected) return false;
+    if (raw_len < expected) {
+      ESP_LOGE(TAG, "Insufficient data for encodeRGB565: expected %u bytes, got %u bytes",
+               (unsigned)expected, (unsigned)raw_len);
+      return false;
+    }
+    size_t expected_i420 = (size_t)cfg_.width * (size_t)cfg_.height * 3 / 2;
+    if (in_buf_.size() < expected_i420) {
+      ESP_LOGE(TAG, "Input buffer too small for I420: need %u bytes, got %u bytes",
+               (unsigned)expected_i420, (unsigned)in_buf_.size());
+      return false;
+    }
+    ESP_LOGI(TAG, "Converting RGB565 to I420 for encoding: input %u bytes, output buffer %u bytes",
+             (unsigned)raw_len, (unsigned)in_buf_.size());
+
     rgb565_to_i420(raw_data, in_buf_.data(), cfg_.width, cfg_.height);
-    return encode(in_buf_.data(), in_buf_.size(), out);
+    return encode(in_buf_.data(), expected_i420, out);
   }
 
   /**
@@ -318,10 +361,20 @@ class H264Encoder {
    * instead
    */
   bool encode(const uint8_t* raw_data, size_t raw_len, Print& out) {
-    ESP_LOGD(TAG, "encode");
-    if (!enc_handle_) return false;
-    if (!raw_data || raw_len == 0) return false;
-    if (out_buf_.empty()) return false;
+    ESP_LOGD(TAG, "encode: %u bytes", (unsigned)raw_len);
+    if (!enc_handle_) {
+      ESP_LOGE(TAG, "Invalid encoder handle in encode()");
+      return false;
+    }
+    if (!raw_data || raw_len == 0) {
+      ESP_LOGE(TAG, "Invalid input data for encode(): raw_data=%p, raw_len=%u", raw_data, (unsigned)raw_len);
+      return false;
+    }
+    if (out_buf_.empty()) {
+      ESP_LOGE(TAG, "Output buffer is empty in encode()");
+      return false;
+    }
+
 
     esp_h264_enc_in_frame_t in_frame{};
     esp_h264_enc_out_frame_t out_frame{};
@@ -330,12 +383,31 @@ class H264Encoder {
     out_frame.raw_data.buffer = out_buf_.data();
     out_frame.raw_data.len = out_buf_.size();
 
-    esp_h264_err_t r = esp_h264_enc_process(enc_handle_, &in_frame, &out_frame);
+    // Zero out the output buffer before encoding for diagnostics
+    memset(out_buf_.data(), 0, out_buf_.size());
 
-    if (out_frame.raw_data.len > 0) {
+    ESP_LOGD(TAG, "Starting encoding: input size=%u bytes, output buffer size=%u bytes",
+             (unsigned)raw_len, (unsigned)out_buf_.size());
+
+    esp_h264_err_t r = esp_h264_enc_process(enc_handle_, &in_frame, &out_frame);
+    if (r != ESP_H264_ERR_OK) {
+      ESP_LOGE(TAG, "Encoding failed with error code: %d", r);
+      return false;
+    }
+
+    // Ugly Hack: Find the actual end of the encoded data by looking for trailing zeros
+    size_t end = out_frame.raw_data.len;
+    for (int j=out_frame.raw_data.len; j>0 && out_buf_[j-1] == 0; --j) {
+      end = j-1;
+    }
+
+    ESP_LOGD(TAG, "Encoding succeeded: output size=%u bytes, frame type=%d, found end at %u",
+             (unsigned)out_frame.raw_data.len, out_frame.frame_type, (unsigned)end);
+
+    size_t written = 0;
+    if (end > 0) {
       const uint8_t* buf = out_frame.raw_data.buffer;
-      size_t to_write = out_frame.raw_data.len;
-      size_t written = 0;
+      size_t to_write = end;
       const int max_retries = 5;
       int attempts = 0;
       while (written < to_write && attempts < max_retries) {
@@ -355,6 +427,9 @@ class H264Encoder {
         return false;
       }
     }
+    ESP_LOGI(TAG, "Encoded frame: type=%d, size=%u bytes, written=%u bytes",
+             out_frame.frame_type, (unsigned)out_frame.raw_data.len,
+             (unsigned)written);
 
     return (r == ESP_H264_ERR_OK);
   }
@@ -499,6 +574,7 @@ class H264Encoder {
   bool initWiFi() {
     ESP_LOGD(TAG, "initWiFi");
     WiFi.mode(WIFI_STA);
+    WiFi.setSleep(false);
     WiFi.begin(cfg_.ssid, cfg_.password);
     unsigned long start = millis();
     while (WiFi.status() != WL_CONNECTED) {
@@ -567,9 +643,17 @@ class H264Encoder {
       s->set_framesize(s, fs);
     }
 
+    return true;
+  }
+
+  /**
+   * @brief Initialize internal buffers
+   */
+  bool initData() {
     // allocate buffers sized for cfg_.width/height
     size_t in_len = (size_t)cfg_.width * (size_t)cfg_.height * 3 / 2;
-    size_t out_len = cfg_.outBufferSize;
+    size_t out_len = cfg_.outBufferSize > 0 ? cfg_.outBufferSize : in_len;
+
     try {
       in_buf_.clear();
       out_buf_.clear();
@@ -698,9 +782,16 @@ class H264Encoder {
     enc_cfg.res.width = (uint16_t)cfg_.width;
     enc_cfg.res.height = (uint16_t)cfg_.height;
     enc_cfg.fps = (uint8_t)cfg_.fps;
-    enc_cfg.gop = (uint8_t)(cfg_.fps * 2);
+    enc_cfg.gop = (uint8_t)(cfg_.fps * 4); // Larger GOP for fewer keyframes
     enc_cfg.pic_type = ESP_H264_RAW_FMT_I420;
-    enc_cfg.rc.bitrate = (uint32_t)(cfg_.width * cfg_.height * cfg_.fps / 20);
+    enc_cfg.rc.bitrate = (uint32_t)(cfg_.width * cfg_.height * cfg_.fps / 40); // Lower bitrate for higher compression
+    enc_cfg.rc.qp_min = 28;
+    enc_cfg.rc.qp_max = 51;
+
+    ESP_LOGI(TAG, "Encoder settings: width=%u, height=%u, fps=%u, gop=%u, pic_type=0x%08X, bitrate=%u, qp_min=%u, qp_max=%u", 
+      (unsigned)enc_cfg.res.width, (unsigned)enc_cfg.res.height, (unsigned)enc_cfg.fps, (unsigned)enc_cfg.gop, 
+      (unsigned)enc_cfg.pic_type, (unsigned)enc_cfg.rc.bitrate, (unsigned)enc_cfg.rc.qp_min, (unsigned)enc_cfg.rc.qp_max);
+
     esp_h264_err_t res = esp_h264_enc_sw_new(&enc_cfg, &enc_handle_);
     if (res != ESP_H264_ERR_OK || !enc_handle_) {
       ESP_LOGE(TAG, "esp_h264_enc_sw_new failed: %d", (int)res);
@@ -864,7 +955,7 @@ class H264Encoder {
    */
   bool captureFrameI420_YUV422(uint8_t* dst, size_t /*dst_len*/,
                                camera_fb_t* fb, int w, int h) {
-    ESP_LOGD(TAG, "captureFrameI420_YUV422");
+    ESP_LOGD(TAG, "captureFrameI422_YUV422");
     uint8_t* p = fb->buf;
 
     // Use optimized color conversion functions from h264_color_convert.h
