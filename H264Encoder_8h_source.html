@@ -136,7 +136,7 @@ $(function() {
 <div class="line"><span class="lineno">   58</span><span class="comment"> * void setup() {</span></div>
 <div class="line"><span class="lineno">   59</span><span class="comment"> *   auto cfg = streamer.defaultConfig();</span></div>
 <div class="line"><span class="lineno">   60</span><span class="comment"> *   cfg.ssid = &quot;MyWiFi&quot;;</span></div>
-<div class="line"><span class="lineno">   61</span><span class="comment"> *   cfg.pass = &quot;MyPassword&quot;;</span></div>
+<div class="line"><span class="lineno">   61</span><span class="comment"> *   cfg.password = &quot;MyPassword&quot;;</span></div>
 <div class="line"><span class="lineno">   62</span><span class="comment"> *   cfg.width = 640;</span></div>
 <div class="line"><span class="lineno">   63</span><span class="comment"> *   cfg.height = 480;</span></div>
 <div class="line"><span class="lineno">   64</span><span class="comment"> *   cfg.fps = 15;</span></div>
@@ -217,7 +217,7 @@ $(function() {
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;defaultConfig&quot;</span>);</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a> cfg;</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    cfg.ssid = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    cfg.pass = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    cfg.password = <span class="keywordtype">nullptr</span>;</div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    cfg.width = 640;</div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    cfg.height = 480;</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    cfg.fps = 15;</div>
@@ -576,416 +576,420 @@ $(function() {
 <div class="line"><span class="lineno">  498</span><span class="comment">   */</span></div>
 <div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>  <span class="keywordtype">bool</span> initWiFi() {</div>
 <div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;initWiFi&quot;</span>);</div>
-<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>    <span class="keywordflow">if</span> (!cfg_.ssid || !cfg_.pass) <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">// assume user-managed WiFi</span></div>
-<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>    WiFi.mode(WIFI_STA);</div>
-<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>    WiFi.begin(cfg_.ssid, cfg_.pass);</div>
-<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start = millis();</div>
-<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>    <span class="keywordflow">while</span> (WiFi.status() != WL_CONNECTED) {</div>
-<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>      delay(200);</div>
-<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>      <span class="keywordflow">if</span> (millis() - start &gt; 15000) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>    WiFi.mode(WIFI_STA);</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>    WiFi.begin(cfg_.ssid, cfg_.password);</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start = millis();</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>    <span class="keywordflow">while</span> (WiFi.status() != WL_CONNECTED) {</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>      delay(200);</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>      <span class="keywordflow">if</span> (millis() - start &gt; 15000) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>      Serial.print(<span class="stringliteral">&quot;.&quot;</span>);</div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>    }</div>
-<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>  }</div>
-<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span> </div>
-<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  513</span><span class="comment">   * @brief Initialize ESP32 camera with Config pin mappings and settings</span></div>
-<div class="line"><span class="lineno">  514</span><span class="comment">   * @return true if camera initialization successful and buffers allocated,</span></div>
-<div class="line"><span class="lineno">  515</span><span class="comment">   * false on error</span></div>
-<div class="line"><span class="lineno">  516</span><span class="comment">   * @note Allocates I420 conversion buffer (width×height×1.5 bytes) and output</span></div>
-<div class="line"><span class="lineno">  517</span><span class="comment">   * buffer using configured allocator</span></div>
-<div class="line"><span class="lineno">  518</span><span class="comment">   * @note Automatically selects framesize based on Config::width and</span></div>
-<div class="line"><span class="lineno">  519</span><span class="comment">   * Config::height</span></div>
-<div class="line"><span class="lineno">  520</span><span class="comment">   * @note Sets RGB565 pixel format for color conversion compatibility</span></div>
-<div class="line"><span class="lineno">  521</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>  <span class="keywordtype">bool</span> initCamera() {</div>
-<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;initCamera&quot;</span>);</div>
-<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>    <span class="comment">// choose framesize from requested width/height; default to VGA</span></div>
-<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>    <span class="keyword">auto</span> pick_frame_size = [](<span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h) -&gt; framesize_t {</div>
-<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>      <span class="keywordflow">if</span> (w == 160 &amp;&amp; h == 120) <span class="keywordflow">return</span> FRAMESIZE_QQVGA;</div>
-<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>      <span class="keywordflow">if</span> (w == 320 &amp;&amp; h == 240) <span class="keywordflow">return</span> FRAMESIZE_QVGA;</div>
-<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>      <span class="keywordflow">if</span> (w == 640 &amp;&amp; h == 480) <span class="keywordflow">return</span> FRAMESIZE_VGA;</div>
-<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>      <span class="keywordflow">if</span> (w == 800 &amp;&amp; h == 600) <span class="keywordflow">return</span> FRAMESIZE_SVGA;</div>
-<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>      <span class="keywordflow">if</span> (w == 1024 &amp;&amp; h == 768) <span class="keywordflow">return</span> FRAMESIZE_XGA;</div>
-<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>      <span class="comment">// fallback</span></div>
-<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>      ESP_LOGI(TAG, <span class="stringliteral">&quot;Unsupported resolution %dx%d, defaulting to VGA&quot;</span>, w, h);</div>
-<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>      <span class="keywordflow">return</span> FRAMESIZE_VGA;</div>
-<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>    };</div>
-<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>    framesize_t fs = pick_frame_size(cfg_.width, cfg_.height);</div>
-<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>    <span class="keywordflow">if</span> (!tryInitCamera(fs, cfg_, <span class="stringliteral">&quot;current-config&quot;</span>)) {</div>
-<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; mapping : kFallbackMappings) {</div>
-<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>        <a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a> fallback = cfg_;</div>
-<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>        applyPinMapping(fallback, mapping);</div>
-<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>        <span class="keywordflow">if</span> (samePins(cfg_, fallback)) {</div>
-<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>          <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>        }</div>
-<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>        <span class="keywordflow">if</span> (tryInitCamera(fs, fallback, mapping.name)) {</div>
-<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>          cfg_ = fallback;</div>
-<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>          <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>        }</div>
-<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>      }</div>
-<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span> </div>
-<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>      <span class="keywordflow">if</span> (!cameraInitialized()) {</div>
-<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>        ESP_LOGE(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>,</div>
-<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>                 <span class="stringliteral">&quot;esp_camera_init failed for all known ESP32-S3 camera pin &quot;</span></div>
-<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>                 <span class="stringliteral">&quot;mappings&quot;</span>);</div>
-<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>        ESP_LOGE(</div>
-<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>            <a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>,</div>
-<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>            <span class="stringliteral">&quot;Likely causes: unsupported camera sensor in esp_camera, &quot;</span></div>
-<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>            <span class="stringliteral">&quot;custom/non-standard ESP32-S3 board pinout, or incorrect wiring&quot;</span>);</div>
-<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>      }</div>
-<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>    }</div>
-<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;Camera initialized successfully&quot;</span>);</div>
-<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
-<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>    sensor_t* s = esp_camera_sensor_get();</div>
-<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>    <span class="keywordflow">if</span> (s) {</div>
-<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>      s-&gt;set_framesize(s, fs);</div>
-<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>    }</div>
-<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span> </div>
-<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>    <span class="comment">// allocate buffers sized for cfg_.width/height</span></div>
-<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    size_t in_len = (size_t)cfg_.width * (size_t)cfg_.height * 3 / 2;</div>
-<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>    size_t out_len = cfg_.outBufferSize;</div>
-<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>    <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>      in_buf_.clear();</div>
-<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>      out_buf_.clear();</div>
-<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>      in_buf_.resize(in_len);</div>
-<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>      out_buf_.resize(out_len);</div>
-<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::bad_alloc&amp; e) {</div>
-<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>      ESP_LOGE(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;Failed to allocate buffers: %s&quot;</span>, e.what());</div>
-<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>      in_buf_.clear();</div>
-<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>      out_buf_.clear();</div>
-<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>    }</div>
-<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>  }</div>
-<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span> </div>
-<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>  <span class="keywordtype">void</span> applyPinMapping(<a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a>&amp; config, <span class="keyword">const</span> PinMapping&amp; mapping) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>    config.pwdn_pin = mapping.pwdn_pin;</div>
-<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>    config.reset_pin = mapping.reset_pin;</div>
-<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>    config.xclk_pin = mapping.xclk_pin;</div>
-<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>    config.siod_pin = mapping.siod_pin;</div>
-<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>    config.sioc_pin = mapping.sioc_pin;</div>
-<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>    config.y2_pin = mapping.y2_pin;</div>
-<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>    config.y3_pin = mapping.y3_pin;</div>
-<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>    config.y4_pin = mapping.y4_pin;</div>
-<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>    config.y5_pin = mapping.y5_pin;</div>
-<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>    config.y6_pin = mapping.y6_pin;</div>
-<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>    config.y7_pin = mapping.y7_pin;</div>
-<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>    config.y8_pin = mapping.y8_pin;</div>
-<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>    config.y9_pin = mapping.y9_pin;</div>
-<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>    config.vsync_pin = mapping.vsync_pin;</div>
-<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>    config.href_pin = mapping.href_pin;</div>
-<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>    config.pclk_pin = mapping.pclk_pin;</div>
-<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span>  }</div>
-<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span> </div>
-<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>  <span class="keywordtype">bool</span> cameraInitialized() <span class="keyword">const</span> { <span class="keywordflow">return</span> esp_camera_sensor_get() != <span class="keywordtype">nullptr</span>; }</div>
-<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span> </div>
-<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> kCameraRetryDelayMs = 80;</div>
-<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span> </div>
-<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span>  <span class="keywordtype">bool</span> tryInitCamera(framesize_t fs, <span class="keyword">const</span> <a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a>&amp; camera_cfg,</div>
-<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>                     <span class="keyword">const</span> <span class="keywordtype">char</span>* preset_name = <span class="keywordtype">nullptr</span>) {</div>
-<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>    <span class="keywordflow">if</span> (camera_cfg.y2_pin == -1 || camera_cfg.y3_pin == -1 ||</div>
-<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>        camera_cfg.y4_pin == -1 || camera_cfg.y5_pin == -1 ||</div>
-<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>        camera_cfg.y6_pin == -1 || camera_cfg.y7_pin == -1 ||</div>
-<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>        camera_cfg.y8_pin == -1 || camera_cfg.y9_pin == -1 ||</div>
-<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>        camera_cfg.xclk_pin == -1 || camera_cfg.pclk_pin == -1 ||</div>
-<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span>        camera_cfg.vsync_pin == -1 || camera_cfg.href_pin == -1 ||</div>
-<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>        camera_cfg.siod_pin == -1 || camera_cfg.sioc_pin == -1) {</div>
-<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>    }</div>
-<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span>    <span class="keywordflow">if</span> (preset_name &amp;&amp; preset_name[0] != <span class="stringliteral">&#39;\0&#39;</span>) {</div>
-<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>      ESP_LOGI(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;Trying camera preset: %s&quot;</span>, preset_name);</div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>    Serial.println();</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>    Serial.print(<span class="stringliteral">&quot;WiFi connected, IP address: &quot;</span>);</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>    Serial.println(WiFi.localIP());</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>  }</div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> </div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  516</span><span class="comment">   * @brief Initialize ESP32 camera with Config pin mappings and settings</span></div>
+<div class="line"><span class="lineno">  517</span><span class="comment">   * @return true if camera initialization successful and buffers allocated,</span></div>
+<div class="line"><span class="lineno">  518</span><span class="comment">   * false on error</span></div>
+<div class="line"><span class="lineno">  519</span><span class="comment">   * @note Allocates I420 conversion buffer (width×height×1.5 bytes) and output</span></div>
+<div class="line"><span class="lineno">  520</span><span class="comment">   * buffer using configured allocator</span></div>
+<div class="line"><span class="lineno">  521</span><span class="comment">   * @note Automatically selects framesize based on Config::width and</span></div>
+<div class="line"><span class="lineno">  522</span><span class="comment">   * Config::height</span></div>
+<div class="line"><span class="lineno">  523</span><span class="comment">   * @note Sets RGB565 pixel format for color conversion compatibility</span></div>
+<div class="line"><span class="lineno">  524</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>  <span class="keywordtype">bool</span> initCamera() {</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;initCamera&quot;</span>);</div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>    <span class="comment">// choose framesize from requested width/height; default to VGA</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>    <span class="keyword">auto</span> pick_frame_size = [](<span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h) -&gt; framesize_t {</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>      <span class="keywordflow">if</span> (w == 160 &amp;&amp; h == 120) <span class="keywordflow">return</span> FRAMESIZE_QQVGA;</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>      <span class="keywordflow">if</span> (w == 320 &amp;&amp; h == 240) <span class="keywordflow">return</span> FRAMESIZE_QVGA;</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>      <span class="keywordflow">if</span> (w == 640 &amp;&amp; h == 480) <span class="keywordflow">return</span> FRAMESIZE_VGA;</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>      <span class="keywordflow">if</span> (w == 800 &amp;&amp; h == 600) <span class="keywordflow">return</span> FRAMESIZE_SVGA;</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>      <span class="keywordflow">if</span> (w == 1024 &amp;&amp; h == 768) <span class="keywordflow">return</span> FRAMESIZE_XGA;</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>      <span class="comment">// fallback</span></div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>      ESP_LOGI(TAG, <span class="stringliteral">&quot;Unsupported resolution %dx%d, defaulting to VGA&quot;</span>, w, h);</div>
+<div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>      <span class="keywordflow">return</span> FRAMESIZE_VGA;</div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>    };</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>    framesize_t fs = pick_frame_size(cfg_.width, cfg_.height);</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>    <span class="keywordflow">if</span> (!tryInitCamera(fs, cfg_, <span class="stringliteral">&quot;current-config&quot;</span>)) {</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>      <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; mapping : kFallbackMappings) {</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>        <a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a> fallback = cfg_;</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>        applyPinMapping(fallback, mapping);</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>        <span class="keywordflow">if</span> (samePins(cfg_, fallback)) {</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>          <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>        }</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>        <span class="keywordflow">if</span> (tryInitCamera(fs, fallback, mapping.name)) {</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>          cfg_ = fallback;</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>          <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>        }</div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>      }</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>      <span class="keywordflow">if</span> (!cameraInitialized()) {</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>        ESP_LOGE(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>,</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>                 <span class="stringliteral">&quot;esp_camera_init failed for all known ESP32-S3 camera pin &quot;</span></div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>                 <span class="stringliteral">&quot;mappings&quot;</span>);</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>        ESP_LOGE(</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>            <a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>,</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>            <span class="stringliteral">&quot;Likely causes: unsupported camera sensor in esp_camera, &quot;</span></div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>            <span class="stringliteral">&quot;custom/non-standard ESP32-S3 board pinout, or incorrect wiring&quot;</span>);</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>      }</div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>    }</div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;Camera initialized successfully&quot;</span>);</div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span> </div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>    sensor_t* s = esp_camera_sensor_get();</div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>    <span class="keywordflow">if</span> (s) {</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>      s-&gt;set_framesize(s, fs);</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>    }</div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span> </div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>    <span class="comment">// allocate buffers sized for cfg_.width/height</span></div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>    size_t in_len = (size_t)cfg_.width * (size_t)cfg_.height * 3 / 2;</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>    size_t out_len = cfg_.outBufferSize;</div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>      in_buf_.clear();</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>      out_buf_.clear();</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>      in_buf_.resize(in_len);</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>      out_buf_.resize(out_len);</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::bad_alloc&amp; e) {</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>      ESP_LOGE(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;Failed to allocate buffers: %s&quot;</span>, e.what());</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>      in_buf_.clear();</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>      out_buf_.clear();</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>    }</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>  }</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span> </div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>  <span class="keywordtype">void</span> applyPinMapping(<a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a>&amp; config, <span class="keyword">const</span> PinMapping&amp; mapping) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>    config.pwdn_pin = mapping.pwdn_pin;</div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>    config.reset_pin = mapping.reset_pin;</div>
+<div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>    config.xclk_pin = mapping.xclk_pin;</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>    config.siod_pin = mapping.siod_pin;</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>    config.sioc_pin = mapping.sioc_pin;</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>    config.y2_pin = mapping.y2_pin;</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>    config.y3_pin = mapping.y3_pin;</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>    config.y4_pin = mapping.y4_pin;</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>    config.y5_pin = mapping.y5_pin;</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>    config.y6_pin = mapping.y6_pin;</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>    config.y7_pin = mapping.y7_pin;</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span>    config.y8_pin = mapping.y8_pin;</div>
+<div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span>    config.y9_pin = mapping.y9_pin;</div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span>    config.vsync_pin = mapping.vsync_pin;</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>    config.href_pin = mapping.href_pin;</div>
+<div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span>    config.pclk_pin = mapping.pclk_pin;</div>
+<div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span>  }</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>  <span class="keywordtype">bool</span> cameraInitialized() <span class="keyword">const</span> { <span class="keywordflow">return</span> esp_camera_sensor_get() != <span class="keywordtype">nullptr</span>; }</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span> </div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> kCameraRetryDelayMs = 80;</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span> </div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>  <span class="keywordtype">bool</span> tryInitCamera(framesize_t fs, <span class="keyword">const</span> <a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a>&amp; camera_cfg,</div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>                     <span class="keyword">const</span> <span class="keywordtype">char</span>* preset_name = <span class="keywordtype">nullptr</span>) {</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>    <span class="keywordflow">if</span> (camera_cfg.y2_pin == -1 || camera_cfg.y3_pin == -1 ||</div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span>        camera_cfg.y4_pin == -1 || camera_cfg.y5_pin == -1 ||</div>
+<div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span>        camera_cfg.y6_pin == -1 || camera_cfg.y7_pin == -1 ||</div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span>        camera_cfg.y8_pin == -1 || camera_cfg.y9_pin == -1 ||</div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>        camera_cfg.xclk_pin == -1 || camera_cfg.pclk_pin == -1 ||</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span>        camera_cfg.vsync_pin == -1 || camera_cfg.href_pin == -1 ||</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span>        camera_cfg.siod_pin == -1 || camera_cfg.sioc_pin == -1) {</div>
+<div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>    }</div>
-<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>    ESP_LOGI(</div>
-<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>        <a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>,</div>
-<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>        <span class="stringliteral">&quot;Trying camera pins: pwdn=%d reset=%d xclk=%d siod=%d sioc=%d y2=%d &quot;</span></div>
-<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>        <span class="stringliteral">&quot;y3=%d y4=%d y5=%d y6=%d y7=%d y8=%d y9=%d vsync=%d href=%d pclk=%d&quot;</span>,</div>
-<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>        camera_cfg.pwdn_pin, camera_cfg.reset_pin, camera_cfg.xclk_pin,</div>
-<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>        camera_cfg.siod_pin, camera_cfg.sioc_pin, camera_cfg.y2_pin,</div>
-<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>        camera_cfg.y3_pin, camera_cfg.y4_pin, camera_cfg.y5_pin,</div>
-<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>        camera_cfg.y6_pin, camera_cfg.y7_pin, camera_cfg.y8_pin,</div>
-<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>        camera_cfg.y9_pin, camera_cfg.vsync_pin, camera_cfg.href_pin,</div>
-<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>        camera_cfg.pclk_pin);</div>
-<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span> </div>
-<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>    camera_config_t config{};</div>
-<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span>    config.ledc_channel = LEDC_CHANNEL_0;</div>
-<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>    config.ledc_timer = LEDC_TIMER_0;</div>
-<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>    config.pin_d0 = camera_cfg.y2_pin;</div>
-<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>    config.pin_d1 = camera_cfg.y3_pin;</div>
-<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>    config.pin_d2 = camera_cfg.y4_pin;</div>
-<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>    config.pin_d3 = camera_cfg.y5_pin;</div>
-<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>    config.pin_d4 = camera_cfg.y6_pin;</div>
-<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>    config.pin_d5 = camera_cfg.y7_pin;</div>
-<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>    config.pin_d6 = camera_cfg.y8_pin;</div>
-<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>    config.pin_d7 = camera_cfg.y9_pin;</div>
-<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>    config.pin_xclk = camera_cfg.xclk_pin;</div>
-<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>    config.pin_pclk = camera_cfg.pclk_pin;</div>
-<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>    config.pin_vsync = camera_cfg.vsync_pin;</div>
-<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>    config.pin_href = camera_cfg.href_pin;</div>
-<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>    config.pin_sccb_sda = camera_cfg.siod_pin;</div>
-<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>    config.pin_sccb_scl = camera_cfg.sioc_pin;</div>
-<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>    config.pin_pwdn = camera_cfg.pwdn_pin;</div>
-<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>    config.pin_reset = camera_cfg.reset_pin;</div>
-<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>    config.xclk_freq_hz = 20000000;</div>
-<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>    config.frame_size = fs;</div>
-<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>    config.pixel_format = PIXFORMAT_RGB565;</div>
-<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>    config.fb_count = 1;</div>
-<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span> </div>
-<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>    <span class="comment">// config.xclk_freq_hz = 10000000;</span></div>
-<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>    <span class="comment">// config.pixel_format = PIXFORMAT_JPEG;</span></div>
-<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>    <span class="comment">// config.frame_size = FRAMESIZE_QQVGA;</span></div>
-<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>    <span class="comment">// config.fb_location = CAMERA_FB_IN_DRAM;</span></div>
-<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>    config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;</div>
-<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>    esp_err_t err = esp_camera_init(&amp;config);</div>
-<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>    <span class="keywordflow">if</span> (err == ESP_OK) {</div>
-<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>    }</div>
-<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span> </div>
-<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>    ESP_LOGW(TAG, <span class="stringliteral">&quot;esp_camera_init &#39;%s&#39; failed with error 0x%x&quot;</span>,</div>
-<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>             preset_name ? preset_name : <span class="stringliteral">&quot;unknown&quot;</span>, (<span class="keywordtype">unsigned</span>)err);</div>
-<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>    esp_camera_deinit();</div>
-<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>    delay(kCameraRetryDelayMs);</div>
-<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>  }</div>
-<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span> </div>
-<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>  <span class="keywordtype">bool</span> samePins(<span class="keyword">const</span> <a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a>&amp; rhs) <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>    <span class="keywordflow">return</span> lhs.pwdn_pin == rhs.pwdn_pin &amp;&amp; lhs.reset_pin == rhs.reset_pin &amp;&amp;</div>
-<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>           lhs.xclk_pin == rhs.xclk_pin &amp;&amp; lhs.siod_pin == rhs.siod_pin &amp;&amp;</div>
-<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>           lhs.sioc_pin == rhs.sioc_pin &amp;&amp; lhs.y2_pin == rhs.y2_pin &amp;&amp;</div>
-<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>           lhs.y3_pin == rhs.y3_pin &amp;&amp; lhs.y4_pin == rhs.y4_pin &amp;&amp;</div>
-<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>           lhs.y5_pin == rhs.y5_pin &amp;&amp; lhs.y6_pin == rhs.y6_pin &amp;&amp;</div>
-<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>           lhs.y7_pin == rhs.y7_pin &amp;&amp; lhs.y8_pin == rhs.y8_pin &amp;&amp;</div>
-<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>           lhs.y9_pin == rhs.y9_pin &amp;&amp; lhs.vsync_pin == rhs.vsync_pin &amp;&amp;</div>
-<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>           lhs.href_pin == rhs.href_pin &amp;&amp; lhs.pclk_pin == rhs.pclk_pin;</div>
-<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>  }</div>
-<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span> </div>
-<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  685</span><span class="comment">   * @brief Initialize H.264 software encoder with Config settings</span></div>
-<div class="line"><span class="lineno">  686</span><span class="comment">   * @return true if encoder creation and opening successful, false on error</span></div>
-<div class="line"><span class="lineno">  687</span><span class="comment">   * @note Automatically calculates bitrate as width×height×fps÷20</span></div>
-<div class="line"><span class="lineno">  688</span><span class="comment">   * @note Sets GOP (Group of Pictures) to 2×fps for balanced</span></div>
-<div class="line"><span class="lineno">  689</span><span class="comment">   * compression/quality</span></div>
-<div class="line"><span class="lineno">  690</span><span class="comment">   * @note Uses esp_h264 software encoder (not hardware acceleration)</span></div>
-<div class="line"><span class="lineno">  691</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>  <span class="keywordtype">bool</span> initEncoder() {</div>
-<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;initEncoder&quot;</span>);</div>
-<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>    <a class="code hl_typedef" href="esp__h264__enc__single__sw_8h.html#aa9dfa2b7b75eed2c2cc9c352802e7c8d">esp_h264_enc_cfg_sw_t</a> enc_cfg{};</div>
-<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a1c6f6258eb60f8f0d2d9d2f4b7cb4eee">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a1c6f6258eb60f8f0d2d9d2f4b7cb4eee">res</a><a class="code hl_variable" href="structesp__h264__resolution__t.html#ad0eab1042455a2067c812ab8071d5376">.</a><a class="code hl_variable" href="structesp__h264__resolution__t.html#ad0eab1042455a2067c812ab8071d5376">width</a> = (uint16_t)cfg_.width;</div>
-<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a1c6f6258eb60f8f0d2d9d2f4b7cb4eee">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a1c6f6258eb60f8f0d2d9d2f4b7cb4eee">res</a><a class="code hl_variable" href="structesp__h264__resolution__t.html#a81c9f8d0b8c3b49d770be14dbe9f0d37">.</a><a class="code hl_variable" href="structesp__h264__resolution__t.html#a81c9f8d0b8c3b49d770be14dbe9f0d37">height</a> = (uint16_t)cfg_.height;</div>
-<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a2980a5cb9dc9a110cd49d22c12c96a3a">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a2980a5cb9dc9a110cd49d22c12c96a3a">fps</a> = (uint8_t)cfg_.fps;</div>
-<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#aa016a7266c0fdc809313557e0a18a5ec">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#aa016a7266c0fdc809313557e0a18a5ec">gop</a> = (uint8_t)(cfg_.fps * 2);</div>
-<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#acf0dab1619d55f677e09774b48ae74be">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#acf0dab1619d55f677e09774b48ae74be">rc</a><a class="code hl_variable" href="structesp__h264__enc__rc__t.html#a32678c62007e0748dae550bd1007a07d">.</a><a class="code hl_variable" href="structesp__h264__enc__rc__t.html#a32678c62007e0748dae550bd1007a07d">bitrate</a> = (uint32_t)(cfg_.width * cfg_.height * cfg_.fps / 20);</div>
-<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>    esp_h264_err_t res = <a class="code hl_function" href="esp__h264__enc__single__sw_8c.html#a5269e93a476666d6be2f1917f32e6956">esp_h264_enc_sw_new</a><a class="code hl_function" href="esp__h264__enc__single__sw_8c.html#a5269e93a476666d6be2f1917f32e6956">(</a>&amp;enc_cfg<a class="code hl_function" href="esp__h264__enc__single__sw_8c.html#a5269e93a476666d6be2f1917f32e6956">,</a> &amp;enc_handle_<a class="code hl_function" href="esp__h264__enc__single__sw_8c.html#a5269e93a476666d6be2f1917f32e6956">)</a>;</div>
-<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>    <span class="keywordflow">if</span> (res != <a class="code hl_enumvalue" href="esp__h264__types_8h.html#af33c05bf0df0a22eb633b30ae0ae13fca86565e433ee99e33655227f09f614d8d">ESP_H264_ERR_OK</a> || !enc_handle_) {</div>
-<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>      ESP_LOGE(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;esp_h264_enc_sw_new failed: %d&quot;</span>, (<span class="keywordtype">int</span>)res);</div>
-<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>    }</div>
-<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>    res = <a class="code hl_function" href="esp__h264__enc__single_8c.html#a339a15a0bf5a4ea1d4c00ba3aa3b75f4">esp_h264_enc_open</a><a class="code hl_function" href="esp__h264__enc__single_8c.html#a339a15a0bf5a4ea1d4c00ba3aa3b75f4">(</a>enc_handle_<a class="code hl_function" href="esp__h264__enc__single_8c.html#a339a15a0bf5a4ea1d4c00ba3aa3b75f4">)</a>;</div>
-<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>    <span class="keywordflow">if</span> (res != <a class="code hl_enumvalue" href="esp__h264__types_8h.html#af33c05bf0df0a22eb633b30ae0ae13fca86565e433ee99e33655227f09f614d8d">ESP_H264_ERR_OK</a>) {</div>
-<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>      ESP_LOGE(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;esp_h264_enc_open failed: %d&quot;</span>, (<span class="keywordtype">int</span>)res);</div>
-<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>    }</div>
-<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>  }</div>
-<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span> </div>
-<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  714</span><span class="comment">   * @brief Capture one frame and convert to I420 (YUV420 planar) format</span></div>
-<div class="line"><span class="lineno">  715</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  716</span><span class="comment">   * Captures frame from ESP32 camera and converts from the camera&#39;s native</span></div>
-<div class="line"><span class="lineno">  717</span><span class="comment">   * pixel format to I420 format required by H.264 encoder. Supports RGB565</span></div>
-<div class="line"><span class="lineno">  718</span><span class="comment">   * and YUV422 input formats with automatic format detection.</span></div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span>    <span class="keywordflow">if</span> (preset_name &amp;&amp; preset_name[0] != <span class="stringliteral">&#39;\0&#39;</span>) {</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span>      ESP_LOGI(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;Trying camera preset: %s&quot;</span>, preset_name);</div>
+<div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>    }</div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>    ESP_LOGI(</div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span>        <a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>,</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span>        <span class="stringliteral">&quot;Trying camera pins: pwdn=%d reset=%d xclk=%d siod=%d sioc=%d y2=%d &quot;</span></div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span>        <span class="stringliteral">&quot;y3=%d y4=%d y5=%d y6=%d y7=%d y8=%d y9=%d vsync=%d href=%d pclk=%d&quot;</span>,</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>        camera_cfg.pwdn_pin, camera_cfg.reset_pin, camera_cfg.xclk_pin,</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>        camera_cfg.siod_pin, camera_cfg.sioc_pin, camera_cfg.y2_pin,</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>        camera_cfg.y3_pin, camera_cfg.y4_pin, camera_cfg.y5_pin,</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>        camera_cfg.y6_pin, camera_cfg.y7_pin, camera_cfg.y8_pin,</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>        camera_cfg.y9_pin, camera_cfg.vsync_pin, camera_cfg.href_pin,</div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span>        camera_cfg.pclk_pin);</div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span> </div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>    camera_config_t config{};</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>    config.ledc_channel = LEDC_CHANNEL_0;</div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span>    config.ledc_timer = LEDC_TIMER_0;</div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>    config.pin_d0 = camera_cfg.y2_pin;</div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>    config.pin_d1 = camera_cfg.y3_pin;</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span>    config.pin_d2 = camera_cfg.y4_pin;</div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>    config.pin_d3 = camera_cfg.y5_pin;</div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>    config.pin_d4 = camera_cfg.y6_pin;</div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span>    config.pin_d5 = camera_cfg.y7_pin;</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>    config.pin_d6 = camera_cfg.y8_pin;</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>    config.pin_d7 = camera_cfg.y9_pin;</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>    config.pin_xclk = camera_cfg.xclk_pin;</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>    config.pin_pclk = camera_cfg.pclk_pin;</div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span>    config.pin_vsync = camera_cfg.vsync_pin;</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>    config.pin_href = camera_cfg.href_pin;</div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>    config.pin_sccb_sda = camera_cfg.siod_pin;</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>    config.pin_sccb_scl = camera_cfg.sioc_pin;</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>    config.pin_pwdn = camera_cfg.pwdn_pin;</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>    config.pin_reset = camera_cfg.reset_pin;</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>    config.xclk_freq_hz = 20000000;</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>    config.frame_size = fs;</div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>    config.pixel_format = PIXFORMAT_RGB565;</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>    config.fb_count = 1;</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>    <span class="comment">// config.xclk_freq_hz = 10000000;</span></div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>    <span class="comment">// config.pixel_format = PIXFORMAT_JPEG;</span></div>
+<div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>    <span class="comment">// config.frame_size = FRAMESIZE_QQVGA;</span></div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>    <span class="comment">// config.fb_location = CAMERA_FB_IN_DRAM;</span></div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>    config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>    esp_err_t err = esp_camera_init(&amp;config);</div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>    <span class="keywordflow">if</span> (err == ESP_OK) {</div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>    }</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span> </div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>    ESP_LOGW(TAG, <span class="stringliteral">&quot;esp_camera_init &#39;%s&#39; failed with error 0x%x&quot;</span>,</div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>             preset_name ? preset_name : <span class="stringliteral">&quot;unknown&quot;</span>, (<span class="keywordtype">unsigned</span>)err);</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>    esp_camera_deinit();</div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>    delay(kCameraRetryDelayMs);</div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>  }</div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span> </div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>  <span class="keywordtype">bool</span> samePins(<span class="keyword">const</span> <a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a>&amp; lhs, <span class="keyword">const</span> <a class="code hl_struct" href="structesp__h264_1_1H264Encoder_1_1Config.html">Config</a>&amp; rhs) <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>    <span class="keywordflow">return</span> lhs.pwdn_pin == rhs.pwdn_pin &amp;&amp; lhs.reset_pin == rhs.reset_pin &amp;&amp;</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>           lhs.xclk_pin == rhs.xclk_pin &amp;&amp; lhs.siod_pin == rhs.siod_pin &amp;&amp;</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>           lhs.sioc_pin == rhs.sioc_pin &amp;&amp; lhs.y2_pin == rhs.y2_pin &amp;&amp;</div>
+<div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>           lhs.y3_pin == rhs.y3_pin &amp;&amp; lhs.y4_pin == rhs.y4_pin &amp;&amp;</div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>           lhs.y5_pin == rhs.y5_pin &amp;&amp; lhs.y6_pin == rhs.y6_pin &amp;&amp;</div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>           lhs.y7_pin == rhs.y7_pin &amp;&amp; lhs.y8_pin == rhs.y8_pin &amp;&amp;</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>           lhs.y9_pin == rhs.y9_pin &amp;&amp; lhs.vsync_pin == rhs.vsync_pin &amp;&amp;</div>
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>           lhs.href_pin == rhs.href_pin &amp;&amp; lhs.pclk_pin == rhs.pclk_pin;</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>  }</div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span> </div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  688</span><span class="comment">   * @brief Initialize H.264 software encoder with Config settings</span></div>
+<div class="line"><span class="lineno">  689</span><span class="comment">   * @return true if encoder creation and opening successful, false on error</span></div>
+<div class="line"><span class="lineno">  690</span><span class="comment">   * @note Automatically calculates bitrate as width×height×fps÷20</span></div>
+<div class="line"><span class="lineno">  691</span><span class="comment">   * @note Sets GOP (Group of Pictures) to 2×fps for balanced</span></div>
+<div class="line"><span class="lineno">  692</span><span class="comment">   * compression/quality</span></div>
+<div class="line"><span class="lineno">  693</span><span class="comment">   * @note Uses esp_h264 software encoder (not hardware acceleration)</span></div>
+<div class="line"><span class="lineno">  694</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>  <span class="keywordtype">bool</span> initEncoder() {</div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;initEncoder&quot;</span>);</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>    <a class="code hl_typedef" href="esp__h264__enc__single__sw_8h.html#aa9dfa2b7b75eed2c2cc9c352802e7c8d">esp_h264_enc_cfg_sw_t</a> enc_cfg{};</div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a1c6f6258eb60f8f0d2d9d2f4b7cb4eee">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a1c6f6258eb60f8f0d2d9d2f4b7cb4eee">res</a><a class="code hl_variable" href="structesp__h264__resolution__t.html#ad0eab1042455a2067c812ab8071d5376">.</a><a class="code hl_variable" href="structesp__h264__resolution__t.html#ad0eab1042455a2067c812ab8071d5376">width</a> = (uint16_t)cfg_.width;</div>
+<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a1c6f6258eb60f8f0d2d9d2f4b7cb4eee">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a1c6f6258eb60f8f0d2d9d2f4b7cb4eee">res</a><a class="code hl_variable" href="structesp__h264__resolution__t.html#a81c9f8d0b8c3b49d770be14dbe9f0d37">.</a><a class="code hl_variable" href="structesp__h264__resolution__t.html#a81c9f8d0b8c3b49d770be14dbe9f0d37">height</a> = (uint16_t)cfg_.height;</div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a2980a5cb9dc9a110cd49d22c12c96a3a">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a2980a5cb9dc9a110cd49d22c12c96a3a">fps</a> = (uint8_t)cfg_.fps;</div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#aa016a7266c0fdc809313557e0a18a5ec">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#aa016a7266c0fdc809313557e0a18a5ec">gop</a> = (uint8_t)(cfg_.fps * 2);</div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a3911163be2c230eec2732f8e62fbd6af">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#a3911163be2c230eec2732f8e62fbd6af">pic_type</a> = <a class="code hl_enumvalue" href="esp__h264__types_8h.html#aa24d48f4e5115ebf5df6f0c1e53187f8a6e7ccae107f423fca41279523eebf8e7">ESP_H264_RAW_FMT_I420</a>;</div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>    enc_cfg<a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#acf0dab1619d55f677e09774b48ae74be">.</a><a class="code hl_variable" href="structesp__h264__enc__cfg__t.html#acf0dab1619d55f677e09774b48ae74be">rc</a><a class="code hl_variable" href="structesp__h264__enc__rc__t.html#a32678c62007e0748dae550bd1007a07d">.</a><a class="code hl_variable" href="structesp__h264__enc__rc__t.html#a32678c62007e0748dae550bd1007a07d">bitrate</a> = (uint32_t)(cfg_.width * cfg_.height * cfg_.fps / 20);</div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>    esp_h264_err_t res = <a class="code hl_function" href="esp__h264__enc__single__sw_8c.html#a5269e93a476666d6be2f1917f32e6956">esp_h264_enc_sw_new</a><a class="code hl_function" href="esp__h264__enc__single__sw_8c.html#a5269e93a476666d6be2f1917f32e6956">(</a>&amp;enc_cfg<a class="code hl_function" href="esp__h264__enc__single__sw_8c.html#a5269e93a476666d6be2f1917f32e6956">,</a> &amp;enc_handle_<a class="code hl_function" href="esp__h264__enc__single__sw_8c.html#a5269e93a476666d6be2f1917f32e6956">)</a>;</div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>    <span class="keywordflow">if</span> (res != <a class="code hl_enumvalue" href="esp__h264__types_8h.html#af33c05bf0df0a22eb633b30ae0ae13fca86565e433ee99e33655227f09f614d8d">ESP_H264_ERR_OK</a> || !enc_handle_) {</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>      ESP_LOGE(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;esp_h264_enc_sw_new failed: %d&quot;</span>, (<span class="keywordtype">int</span>)res);</div>
+<div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>    }</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>    res = <a class="code hl_function" href="esp__h264__enc__single_8c.html#a339a15a0bf5a4ea1d4c00ba3aa3b75f4">esp_h264_enc_open</a><a class="code hl_function" href="esp__h264__enc__single_8c.html#a339a15a0bf5a4ea1d4c00ba3aa3b75f4">(</a>enc_handle_<a class="code hl_function" href="esp__h264__enc__single_8c.html#a339a15a0bf5a4ea1d4c00ba3aa3b75f4">)</a>;</div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>    <span class="keywordflow">if</span> (res != <a class="code hl_enumvalue" href="esp__h264__types_8h.html#af33c05bf0df0a22eb633b30ae0ae13fca86565e433ee99e33655227f09f614d8d">ESP_H264_ERR_OK</a>) {</div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>      ESP_LOGE(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;esp_h264_enc_open failed: %d&quot;</span>, (<span class="keywordtype">int</span>)res);</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>    }</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>  }</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span> </div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  718</span><span class="comment">   * @brief Capture one frame and convert to I420 (YUV420 planar) format</span></div>
 <div class="line"><span class="lineno">  719</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  720</span><span class="comment">   * @param dst Destination buffer for I420 data (must be width×height×1.5</span></div>
-<div class="line"><span class="lineno">  721</span><span class="comment">   * bytes)</span></div>
-<div class="line"><span class="lineno">  722</span><span class="comment">   * @param dst_len Size of destination buffer in bytes</span></div>
-<div class="line"><span class="lineno">  723</span><span class="comment">   * @return true if frame captured and converted successfully, false on error</span></div>
-<div class="line"><span class="lineno">  724</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  725</span><span class="comment">   * @note I420 format: Y plane (width×height), U plane (width/2×height/2), V</span></div>
-<div class="line"><span class="lineno">  726</span><span class="comment">   * plane (width/2×height/2)</span></div>
-<div class="line"><span class="lineno">  727</span><span class="comment">   * @note Automatically returns camera framebuffer after conversion</span></div>
-<div class="line"><span class="lineno">  728</span><span class="comment">   * @note Logs error for unsupported pixel formats</span></div>
-<div class="line"><span class="lineno">  729</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>  <span class="keywordtype">bool</span> captureFrameI420(uint8_t* dst, size_t dst_len) {</div>
-<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;captureFrameI420&quot;</span>);</div>
-<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>    <span class="keywordflow">if</span> (!dst) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>    camera_fb_t* fb = esp_camera_fb_get();</div>
-<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>    <span class="keywordflow">if</span> (!fb) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> </div>
-<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    <span class="keywordtype">int</span> w = fb-&gt;width;</div>
-<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>    <span class="keywordtype">int</span> h = fb-&gt;height;</div>
-<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>    size_t expected = (size_t)w * (size_t)h * 3 / 2;</div>
-<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>    <span class="keywordflow">if</span> (dst_len &lt; expected) {</div>
-<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>      ESP_LOGE(TAG, <span class="stringliteral">&quot;Destination buffer too small: need %u got %u&quot;</span>,</div>
-<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>               (<span class="keywordtype">unsigned</span>)expected, (<span class="keywordtype">unsigned</span>)dst_len);</div>
-<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>      esp_camera_fb_return(fb);</div>
-<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>    }</div>
-<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span> </div>
-<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>    <span class="keywordtype">bool</span> res = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>    <span class="keywordflow">switch</span> (fb-&gt;format) {</div>
-<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>      <span class="keywordflow">case</span> PIXFORMAT_RGB565:</div>
-<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>        res = captureFrameI420_RGB565(dst, dst_len, fb, w, h);</div>
-<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>      <span class="keywordflow">case</span> PIXFORMAT_YUV422:</div>
-<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>        res = captureFrameI420_YUV422(dst, dst_len, fb, w, h);</div>
-<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>      <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>        ESP_LOGE(TAG, <span class="stringliteral">&quot;Unsupported camera pixel format: %d&quot;</span>, fb-&gt;format);</div>
-<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>        res = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>        esp_camera_fb_return(fb);</div>
-<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>    }</div>
-<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span> </div>
-<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>  }</div>
-<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span> </div>
-<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  765</span><span class="comment">   * @brief Convert raw RGB565 buffer to I420 (YUV420 planar) format</span></div>
-<div class="line"><span class="lineno">  766</span><span class="comment">   * @param src Pointer to RGB565 input buffer</span></div>
-<div class="line"><span class="lineno">  767</span><span class="comment">   * @param dst Pointer to I420 output buffer</span></div>
-<div class="line"><span class="lineno">  768</span><span class="comment">   * @param w Frame width in pixels</span></div>
-<div class="line"><span class="lineno">  769</span><span class="comment">   * @param h Frame height in pixels</span></div>
-<div class="line"><span class="lineno">  770</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span>  <span class="keywordtype">void</span> rgb565_to_i420(<span class="keyword">const</span> uint8_t* src, uint8_t* dst, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h) {</div>
-<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>    <span class="comment">// Y plane</span></div>
-<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; h; ++y) {</div>
-<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; w; ++x) {</div>
-<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>        <span class="keywordtype">int</span> i = (y * w + x) * 2;</div>
-<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>        uint16_t val = src[i] | (src[i + 1] &lt;&lt; 8);</div>
-<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>        uint8_t r = (uint8_t)((((val &gt;&gt; 11) &amp; 0x1F) * 527 + 23) &gt;&gt; 6);</div>
-<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>        uint8_t g = (uint8_t)((((val &gt;&gt; 5) &amp; 0x3F) * 259 + 33) &gt;&gt; 6);</div>
-<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>        uint8_t b = (uint8_t)(((val &amp; 0x1F) * 527 + 23) &gt;&gt; 6);</div>
-<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>        uint8_t yv = (uint8_t)((66 * r + 129 * g + 25 * b + 128) &gt;&gt; 8) + 16;</div>
-<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>        dst[y * w + x] = yv;</div>
-<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span>      }</div>
-<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span>    }</div>
-<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>    uint8_t* uplane = dst + w * h;</div>
-<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>    uint8_t* vplane = uplane + (w / 2) * (h / 2);</div>
-<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; h; y += 2) {</div>
-<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; w; x += 2) {</div>
-<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>        <span class="keywordtype">int</span> idx0 = (y * w + x) * 2;</div>
-<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>        <span class="keywordtype">int</span> idx1 = (y * w + x + 1) * 2;</div>
-<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>        <span class="keywordtype">int</span> idx2 = ((y + 1) * w + x) * 2;</div>
-<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span>        <span class="keywordtype">int</span> idx3 = ((y + 1) * w + x + 1) * 2;</div>
-<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>        <span class="keywordtype">int</span> indices[4] = {idx0, idx1, idx2, idx3};</div>
-<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>        <span class="keywordtype">int</span> sumU = 0, sumV = 0;</div>
-<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; 4; ++k) {</div>
-<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span>          <span class="keywordtype">int</span> ii = indices[k];</div>
-<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span>          uint16_t vval = src[ii] | (src[ii + 1] &lt;&lt; 8);</div>
-<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span>          uint8_t rr = (uint8_t)((((vval &gt;&gt; 11) &amp; 0x1F) * 527 + 23) &gt;&gt; 6);</div>
-<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>          uint8_t gg = (uint8_t)((((vval &gt;&gt; 5) &amp; 0x3F) * 259 + 33) &gt;&gt; 6);</div>
-<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span>          uint8_t bb = (uint8_t)(((vval &amp; 0x1F) * 527 + 23) &gt;&gt; 6);</div>
-<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>          <span class="keywordtype">int</span> u = ((-38 * rr - 74 * gg + 112 * bb + 128) &gt;&gt; 8) + 128;</div>
-<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>          <span class="keywordtype">int</span> vvv = ((112 * rr - 94 * gg - 18 * bb + 128) &gt;&gt; 8) + 128;</div>
-<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>          sumU += u;</div>
-<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>          sumV += vvv;</div>
-<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>        }</div>
-<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>        <span class="keywordtype">int</span> ux = x / 2;</div>
-<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>        <span class="keywordtype">int</span> uy = y / 2;</div>
-<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>        <span class="keywordtype">int</span> pos = uy * (w / 2) + ux;</div>
-<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>        uplane[pos] = (uint8_t)(sumU / 4);</div>
-<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>        vplane[pos] = (uint8_t)(sumV / 4);</div>
-<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>      }</div>
-<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>    }</div>
-<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>  }</div>
-<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span> </div>
-<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  815</span><span class="comment">   * @brief Convert RGB565 framebuffer to I420 format</span></div>
-<div class="line"><span class="lineno">  816</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  817</span><span class="comment">   * Converts ESP32 camera RGB565 framebuffer to I420 (YUV420 planar) format.</span></div>
-<div class="line"><span class="lineno">  818</span><span class="comment">   * Performs RGB to YUV color space conversion with proper scaling and</span></div>
-<div class="line"><span class="lineno">  819</span><span class="comment">   * subsampling.</span></div>
+<div class="line"><span class="lineno">  720</span><span class="comment">   * Captures frame from ESP32 camera and converts from the camera&#39;s native</span></div>
+<div class="line"><span class="lineno">  721</span><span class="comment">   * pixel format to I420 format required by H.264 encoder. Supports RGB565</span></div>
+<div class="line"><span class="lineno">  722</span><span class="comment">   * and YUV422 input formats with automatic format detection.</span></div>
+<div class="line"><span class="lineno">  723</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  724</span><span class="comment">   * @param dst Destination buffer for I420 data (must be width×height×1.5</span></div>
+<div class="line"><span class="lineno">  725</span><span class="comment">   * bytes)</span></div>
+<div class="line"><span class="lineno">  726</span><span class="comment">   * @param dst_len Size of destination buffer in bytes</span></div>
+<div class="line"><span class="lineno">  727</span><span class="comment">   * @return true if frame captured and converted successfully, false on error</span></div>
+<div class="line"><span class="lineno">  728</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  729</span><span class="comment">   * @note I420 format: Y plane (width×height), U plane (width/2×height/2), V</span></div>
+<div class="line"><span class="lineno">  730</span><span class="comment">   * plane (width/2×height/2)</span></div>
+<div class="line"><span class="lineno">  731</span><span class="comment">   * @note Automatically returns camera framebuffer after conversion</span></div>
+<div class="line"><span class="lineno">  732</span><span class="comment">   * @note Logs error for unsupported pixel formats</span></div>
+<div class="line"><span class="lineno">  733</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>  <span class="keywordtype">bool</span> captureFrameI420(uint8_t* dst, size_t dst_len) {</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;captureFrameI420&quot;</span>);</div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    <span class="keywordflow">if</span> (!dst) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>    camera_fb_t* fb = esp_camera_fb_get();</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>    <span class="keywordflow">if</span> (!fb) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span> </div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>    <span class="keywordtype">int</span> w = fb-&gt;width;</div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>    <span class="keywordtype">int</span> h = fb-&gt;height;</div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>    size_t expected = (size_t)w * (size_t)h * 3 / 2;</div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>    <span class="keywordflow">if</span> (dst_len &lt; expected) {</div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>      ESP_LOGE(TAG, <span class="stringliteral">&quot;Destination buffer too small: need %u got %u&quot;</span>,</div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span>               (<span class="keywordtype">unsigned</span>)expected, (<span class="keywordtype">unsigned</span>)dst_len);</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>      esp_camera_fb_return(fb);</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>    }</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>    <span class="keywordtype">bool</span> res = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>    <span class="keywordflow">switch</span> (fb-&gt;format) {</div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>      <span class="keywordflow">case</span> PIXFORMAT_RGB565:</div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>        res = captureFrameI420_RGB565(dst, dst_len, fb, w, h);</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>      <span class="keywordflow">case</span> PIXFORMAT_YUV422:</div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>        res = captureFrameI420_YUV422(dst, dst_len, fb, w, h);</div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>      <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>        ESP_LOGE(TAG, <span class="stringliteral">&quot;Unsupported camera pixel format: %d&quot;</span>, fb-&gt;format);</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>        res = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>        esp_camera_fb_return(fb);</div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>    }</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span> </div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>  }</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span> </div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  769</span><span class="comment">   * @brief Convert raw RGB565 buffer to I420 (YUV420 planar) format</span></div>
+<div class="line"><span class="lineno">  770</span><span class="comment">   * @param src Pointer to RGB565 input buffer</span></div>
+<div class="line"><span class="lineno">  771</span><span class="comment">   * @param dst Pointer to I420 output buffer</span></div>
+<div class="line"><span class="lineno">  772</span><span class="comment">   * @param w Frame width in pixels</span></div>
+<div class="line"><span class="lineno">  773</span><span class="comment">   * @param h Frame height in pixels</span></div>
+<div class="line"><span class="lineno">  774</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>  <span class="keywordtype">void</span> rgb565_to_i420(<span class="keyword">const</span> uint8_t* src, uint8_t* dst, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h) {</div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>    <span class="comment">// Y plane</span></div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; h; ++y) {</div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; w; ++x) {</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>        <span class="keywordtype">int</span> i = (y * w + x) * 2;</div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>        uint16_t val = src[i] | (src[i + 1] &lt;&lt; 8);</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>        uint8_t r = (uint8_t)((((val &gt;&gt; 11) &amp; 0x1F) * 527 + 23) &gt;&gt; 6);</div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span>        uint8_t g = (uint8_t)((((val &gt;&gt; 5) &amp; 0x3F) * 259 + 33) &gt;&gt; 6);</div>
+<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span>        uint8_t b = (uint8_t)(((val &amp; 0x1F) * 527 + 23) &gt;&gt; 6);</div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>        uint8_t yv = (uint8_t)((66 * r + 129 * g + 25 * b + 128) &gt;&gt; 8) + 16;</div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>        dst[y * w + x] = yv;</div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>      }</div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>    }</div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>    uint8_t* uplane = dst + w * h;</div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>    uint8_t* vplane = uplane + (w / 2) * (h / 2);</div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; h; y += 2) {</div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; w; x += 2) {</div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>        <span class="keywordtype">int</span> idx0 = (y * w + x) * 2;</div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>        <span class="keywordtype">int</span> idx1 = (y * w + x + 1) * 2;</div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span>        <span class="keywordtype">int</span> idx2 = ((y + 1) * w + x) * 2;</div>
+<div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span>        <span class="keywordtype">int</span> idx3 = ((y + 1) * w + x + 1) * 2;</div>
+<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span>        <span class="keywordtype">int</span> indices[4] = {idx0, idx1, idx2, idx3};</div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span>        <span class="keywordtype">int</span> sumU = 0, sumV = 0;</div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; 4; ++k) {</div>
+<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span>          <span class="keywordtype">int</span> ii = indices[k];</div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>          uint16_t vval = src[ii] | (src[ii + 1] &lt;&lt; 8);</div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>          uint8_t rr = (uint8_t)((((vval &gt;&gt; 11) &amp; 0x1F) * 527 + 23) &gt;&gt; 6);</div>
+<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>          uint8_t gg = (uint8_t)((((vval &gt;&gt; 5) &amp; 0x3F) * 259 + 33) &gt;&gt; 6);</div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>          uint8_t bb = (uint8_t)(((vval &amp; 0x1F) * 527 + 23) &gt;&gt; 6);</div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>          <span class="keywordtype">int</span> u = ((-38 * rr - 74 * gg + 112 * bb + 128) &gt;&gt; 8) + 128;</div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>          <span class="keywordtype">int</span> vvv = ((112 * rr - 94 * gg - 18 * bb + 128) &gt;&gt; 8) + 128;</div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>          sumU += u;</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>          sumV += vvv;</div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>        }</div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>        <span class="keywordtype">int</span> ux = x / 2;</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>        <span class="keywordtype">int</span> uy = y / 2;</div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>        <span class="keywordtype">int</span> pos = uy * (w / 2) + ux;</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>        uplane[pos] = (uint8_t)(sumU / 4);</div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>        vplane[pos] = (uint8_t)(sumV / 4);</div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>      }</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>    }</div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>  }</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span> </div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  819</span><span class="comment">   * @brief Convert RGB565 framebuffer to I420 format</span></div>
 <div class="line"><span class="lineno">  820</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  821</span><span class="comment">   * @param dst Destination I420 buffer</span></div>
-<div class="line"><span class="lineno">  822</span><span class="comment">   * @param dst_len Size of destination buffer (unused, validated by caller)</span></div>
-<div class="line"><span class="lineno">  823</span><span class="comment">   * @param fb Camera framebuffer containing RGB565 data</span></div>
-<div class="line"><span class="lineno">  824</span><span class="comment">   * @param w Frame width in pixels</span></div>
-<div class="line"><span class="lineno">  825</span><span class="comment">   * @param h Frame height in pixels</span></div>
-<div class="line"><span class="lineno">  826</span><span class="comment">   * @return true on successful conversion, false on error</span></div>
-<div class="line"><span class="lineno">  827</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  828</span><span class="comment">   * @note Y plane: full resolution luminance</span></div>
-<div class="line"><span class="lineno">  829</span><span class="comment">   * @note U/V planes: 2×2 subsampled chrominance (quarter resolution)</span></div>
-<div class="line"><span class="lineno">  830</span><span class="comment">   * @note Automatically releases framebuffer after conversion</span></div>
-<div class="line"><span class="lineno">  831</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>  <span class="keywordtype">bool</span> captureFrameI420_RGB565(uint8_t* dst, size_t <span class="comment">/*dst_len*/</span>,</div>
-<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span>                               camera_fb_t* fb, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h) {</div>
-<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;captureFrameI420_RGB565&quot;</span>);</div>
-<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span>    rgb565_to_i420(fb-&gt;buf, dst, w, h);</div>
-<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>    esp_camera_fb_return(fb);</div>
-<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>  }</div>
-<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span> </div>
-<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  841</span><span class="comment">   * @brief Convert YUV422/YUYV framebuffer to I420 format using optimized</span></div>
-<div class="line"><span class="lineno">  842</span><span class="comment">   * functions</span></div>
-<div class="line"><span class="lineno">  843</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  844</span><span class="comment">   * Converts ESP32 camera YUV422 framebuffer to I420 (YUV420 planar) format</span></div>
-<div class="line"><span class="lineno">  845</span><span class="comment">   * using the optimized color conversion functions from h264_color_convert.h.</span></div>
-<div class="line"><span class="lineno">  846</span><span class="comment">   * On ESP32-S3, uses assembly-optimized yuyv2iyuv_esp32s3(), otherwise</span></div>
-<div class="line"><span class="lineno">  847</span><span class="comment">   * uses the standard yuyv2iyuv() function.</span></div>
-<div class="line"><span class="lineno">  848</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  849</span><span class="comment">   * @param dst Destination I420 buffer</span></div>
-<div class="line"><span class="lineno">  850</span><span class="comment">   * @param dst_len Size of destination buffer (unused, validated by caller)</span></div>
-<div class="line"><span class="lineno">  851</span><span class="comment">   * @param fb Camera framebuffer containing YUV422/YUYV data</span></div>
-<div class="line"><span class="lineno">  852</span><span class="comment">   * @param w Frame width in pixels</span></div>
-<div class="line"><span class="lineno">  853</span><span class="comment">   * @param h Frame height in pixels</span></div>
-<div class="line"><span class="lineno">  854</span><span class="comment">   * @return true on successful conversion, false on error</span></div>
-<div class="line"><span class="lineno">  855</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  856</span><span class="comment">   * @note YUV422 format: Y0 U0 Y1 V0 (4 bytes for 2 pixels)</span></div>
-<div class="line"><span class="lineno">  857</span><span class="comment">   * @note I420 format: Y plane + U plane + V plane (separate planes)</span></div>
-<div class="line"><span class="lineno">  858</span><span class="comment">   * @note Uses hardware-optimized assembly on ESP32-S3 when available</span></div>
-<div class="line"><span class="lineno">  859</span><span class="comment">   * @note Automatically releases framebuffer after conversion</span></div>
-<div class="line"><span class="lineno">  860</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span>  <span class="keywordtype">bool</span> captureFrameI420_YUV422(uint8_t* dst, size_t <span class="comment">/*dst_len*/</span>,</div>
-<div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span>                               camera_fb_t* fb, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h) {</div>
-<div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;captureFrameI420_YUV422&quot;</span>);</div>
-<div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span>    uint8_t* p = fb-&gt;buf;</div>
-<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span> </div>
-<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>    <span class="comment">// Use optimized color conversion functions from h264_color_convert.h</span></div>
-<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span><span class="preprocessor">#</span><span class="preprocessor">ifdef</span> <span class="preprocessor">HAVE_ESP32S3</span></div>
-<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>    <span class="comment">// Use assembly-optimized version on ESP32-S3</span></div>
-<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span>    yuyv2iyuv_esp32s3((uint32_t)h, (uint32_t)w, p, dst);</div>
-<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span><span class="preprocessor">#</span><span class="preprocessor">else</span></div>
-<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span>    <span class="comment">// Use standard optimized version on other platforms</span></div>
-<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>    <a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">yuyv2iyuv</a><a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">(</a>(uint32_t)h<a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">,</a> (uint32_t)w<a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">,</a> p<a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">,</a> dst<a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">)</a>;</div>
-<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
-<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span> </div>
-<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>    esp_camera_fb_return(fb);</div>
-<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span>  }</div>
-<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span>};</div>
-<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span> </div>
-<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  881</span><span class="comment"> * @brief Type alias for H264Encoder using default PSRAM allocation</span></div>
-<div class="line"><span class="lineno">  882</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  883</span><span class="comment"> * Provides a simpler way to declare H264Encoder instances without specifying</span></div>
-<div class="line"><span class="lineno">  884</span><span class="comment"> * the allocator template parameter. Uses PSRAMAllocator&lt;uint8_t&gt; by default.</span></div>
-<div class="line"><span class="lineno">  885</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  886</span><span class="comment"> * Example usage:</span></div>
-<div class="line"><span class="lineno">  887</span><span class="comment"> * @code</span></div>
-<div class="line"><span class="lineno">  888</span><span class="comment"> * H264EncoderPSRAM encoder;  // Instead of H264Encoder&lt;PSRAMAllocator&lt;uint8_t&gt;&gt;</span></div>
-<div class="line"><span class="lineno">  889</span><span class="comment"> * @endcode</span></div>
-<div class="line"><span class="lineno">  890</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00891" name="l00891"></a><span class="lineno"><a class="line" href="namespaceesp__h264.html#a49032557bd99cf01d020975dd0ec7027">  891</a></span><span class="keyword">using</span> H264EncoderPSRAM = <a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt;<a class="code hl_class" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator</a>&lt;uint8_t&gt;&gt;;</div>
-<div class="line"><a id="l00892" name="l00892"></a><span class="lineno">  892</span> </div>
-<div class="line"><a id="l00893" name="l00893"></a><span class="lineno">  893</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  894</span><span class="comment"> * @brief Type alias for H264Encoder using internal RAM allocation</span></div>
-<div class="line"><span class="lineno">  895</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  896</span><span class="comment"> * Provides a simpler way to declare H264Encoder instances that use fast</span></div>
-<div class="line"><span class="lineno">  897</span><span class="comment"> * internal RAM instead of external PSRAM.</span></div>
-<div class="line"><span class="lineno">  898</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  899</span><span class="comment"> * Example usage:</span></div>
-<div class="line"><span class="lineno">  900</span><span class="comment"> * @code</span></div>
-<div class="line"><span class="lineno">  901</span><span class="comment"> * H264EncoderRAM encoder;   // Instead of H264Encoder&lt;RAMAllocator&lt;uint8_t&gt;&gt;</span></div>
-<div class="line"><span class="lineno">  902</span><span class="comment"> * @endcode</span></div>
-<div class="line"><span class="lineno">  903</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00904" name="l00904"></a><span class="lineno"><a class="line" href="namespaceesp__h264.html#a7ac7efc1f5f7bfe28169496e48342ead">  904</a></span><span class="keyword">using</span> H264EncoderRAM = <a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt;<a class="code hl_class" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator</a>&lt;uint8_t&gt;&gt;;</div>
-<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span> </div>
-<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span>}  <span class="comment">// namespace esp_h264</span></div>
-<div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span> </div>
-<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span><span class="preprocessor">#</span><span class="preprocessor">ifdef</span> <span class="preprocessor">ARDUINO</span></div>
-<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span><span class="keyword">using</span> <span class="keyword">namespace</span> esp_h264;</div>
-<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><span class="lineno">  821</span><span class="comment">   * Converts ESP32 camera RGB565 framebuffer to I420 (YUV420 planar) format.</span></div>
+<div class="line"><span class="lineno">  822</span><span class="comment">   * Performs RGB to YUV color space conversion with proper scaling and</span></div>
+<div class="line"><span class="lineno">  823</span><span class="comment">   * subsampling.</span></div>
+<div class="line"><span class="lineno">  824</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  825</span><span class="comment">   * @param dst Destination I420 buffer</span></div>
+<div class="line"><span class="lineno">  826</span><span class="comment">   * @param dst_len Size of destination buffer (unused, validated by caller)</span></div>
+<div class="line"><span class="lineno">  827</span><span class="comment">   * @param fb Camera framebuffer containing RGB565 data</span></div>
+<div class="line"><span class="lineno">  828</span><span class="comment">   * @param w Frame width in pixels</span></div>
+<div class="line"><span class="lineno">  829</span><span class="comment">   * @param h Frame height in pixels</span></div>
+<div class="line"><span class="lineno">  830</span><span class="comment">   * @return true on successful conversion, false on error</span></div>
+<div class="line"><span class="lineno">  831</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  832</span><span class="comment">   * @note Y plane: full resolution luminance</span></div>
+<div class="line"><span class="lineno">  833</span><span class="comment">   * @note U/V planes: 2×2 subsampled chrominance (quarter resolution)</span></div>
+<div class="line"><span class="lineno">  834</span><span class="comment">   * @note Automatically releases framebuffer after conversion</span></div>
+<div class="line"><span class="lineno">  835</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>  <span class="keywordtype">bool</span> captureFrameI420_RGB565(uint8_t* dst, size_t <span class="comment">/*dst_len*/</span>,</div>
+<div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span>                               camera_fb_t* fb, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h) {</div>
+<div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;captureFrameI420_RGB565&quot;</span>);</div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span>    rgb565_to_i420(fb-&gt;buf, dst, w, h);</div>
+<div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span>    esp_camera_fb_return(fb);</div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>  }</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span> </div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  845</span><span class="comment">   * @brief Convert YUV422/YUYV framebuffer to I420 format using optimized</span></div>
+<div class="line"><span class="lineno">  846</span><span class="comment">   * functions</span></div>
+<div class="line"><span class="lineno">  847</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  848</span><span class="comment">   * Converts ESP32 camera YUV422 framebuffer to I420 (YUV420 planar) format</span></div>
+<div class="line"><span class="lineno">  849</span><span class="comment">   * using the optimized color conversion functions from h264_color_convert.h.</span></div>
+<div class="line"><span class="lineno">  850</span><span class="comment">   * On ESP32-S3, uses assembly-optimized yuyv2iyuv_esp32s3(), otherwise</span></div>
+<div class="line"><span class="lineno">  851</span><span class="comment">   * uses the standard yuyv2iyuv() function.</span></div>
+<div class="line"><span class="lineno">  852</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  853</span><span class="comment">   * @param dst Destination I420 buffer</span></div>
+<div class="line"><span class="lineno">  854</span><span class="comment">   * @param dst_len Size of destination buffer (unused, validated by caller)</span></div>
+<div class="line"><span class="lineno">  855</span><span class="comment">   * @param fb Camera framebuffer containing YUV422/YUYV data</span></div>
+<div class="line"><span class="lineno">  856</span><span class="comment">   * @param w Frame width in pixels</span></div>
+<div class="line"><span class="lineno">  857</span><span class="comment">   * @param h Frame height in pixels</span></div>
+<div class="line"><span class="lineno">  858</span><span class="comment">   * @return true on successful conversion, false on error</span></div>
+<div class="line"><span class="lineno">  859</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  860</span><span class="comment">   * @note YUV422 format: Y0 U0 Y1 V0 (4 bytes for 2 pixels)</span></div>
+<div class="line"><span class="lineno">  861</span><span class="comment">   * @note I420 format: Y plane + U plane + V plane (separate planes)</span></div>
+<div class="line"><span class="lineno">  862</span><span class="comment">   * @note Uses hardware-optimized assembly on ESP32-S3 when available</span></div>
+<div class="line"><span class="lineno">  863</span><span class="comment">   * @note Automatically releases framebuffer after conversion</span></div>
+<div class="line"><span class="lineno">  864</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span>  <span class="keywordtype">bool</span> captureFrameI420_YUV422(uint8_t* dst, size_t <span class="comment">/*dst_len*/</span>,</div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span>                               camera_fb_t* fb, <span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h) {</div>
+<div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span>    ESP_LOGD(<a class="code hl_variable" href="classesp__h264_1_1H264Encoder.html#ae7d9c64644585526560e9e6824fd84dc">TAG</a>, <span class="stringliteral">&quot;captureFrameI420_YUV422&quot;</span>);</div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span>    uint8_t* p = fb-&gt;buf;</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span> </div>
+<div class="line"><a id="l00870" name="l00870"></a><span class="lineno">  870</span>    <span class="comment">// Use optimized color conversion functions from h264_color_convert.h</span></div>
+<div class="line"><a id="l00871" name="l00871"></a><span class="lineno">  871</span><span class="preprocessor">#</span><span class="preprocessor">ifdef</span> <span class="preprocessor">HAVE_ESP32S3</span></div>
+<div class="line"><a id="l00872" name="l00872"></a><span class="lineno">  872</span>    <span class="comment">// Use assembly-optimized version on ESP32-S3</span></div>
+<div class="line"><a id="l00873" name="l00873"></a><span class="lineno">  873</span>    yuyv2iyuv_esp32s3((uint32_t)h, (uint32_t)w, p, dst);</div>
+<div class="line"><a id="l00874" name="l00874"></a><span class="lineno">  874</span><span class="preprocessor">#</span><span class="preprocessor">else</span></div>
+<div class="line"><a id="l00875" name="l00875"></a><span class="lineno">  875</span>    <span class="comment">// Use standard optimized version on other platforms</span></div>
+<div class="line"><a id="l00876" name="l00876"></a><span class="lineno">  876</span>    <a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">yuyv2iyuv</a><a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">(</a>(uint32_t)h<a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">,</a> (uint32_t)w<a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">,</a> p<a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">,</a> dst<a class="code hl_function" href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">)</a>;</div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span> </div>
+<div class="line"><a id="l00879" name="l00879"></a><span class="lineno">  879</span>    esp_camera_fb_return(fb);</div>
+<div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span>  }</div>
+<div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span>};</div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span> </div>
+<div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  885</span><span class="comment"> * @brief Type alias for H264Encoder using default PSRAM allocation</span></div>
+<div class="line"><span class="lineno">  886</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  887</span><span class="comment"> * Provides a simpler way to declare H264Encoder instances without specifying</span></div>
+<div class="line"><span class="lineno">  888</span><span class="comment"> * the allocator template parameter. Uses PSRAMAllocator&lt;uint8_t&gt; by default.</span></div>
+<div class="line"><span class="lineno">  889</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  890</span><span class="comment"> * Example usage:</span></div>
+<div class="line"><span class="lineno">  891</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">  892</span><span class="comment"> * H264EncoderPSRAM encoder;  // Instead of H264Encoder&lt;PSRAMAllocator&lt;uint8_t&gt;&gt;</span></div>
+<div class="line"><span class="lineno">  893</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">  894</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno"><a class="line" href="namespaceesp__h264.html#a49032557bd99cf01d020975dd0ec7027">  895</a></span><span class="keyword">using</span> H264EncoderPSRAM = <a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt;<a class="code hl_class" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator</a>&lt;uint8_t&gt;&gt;;</div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span> </div>
+<div class="line"><a id="l00897" name="l00897"></a><span class="lineno">  897</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  898</span><span class="comment"> * @brief Type alias for H264Encoder using internal RAM allocation</span></div>
+<div class="line"><span class="lineno">  899</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  900</span><span class="comment"> * Provides a simpler way to declare H264Encoder instances that use fast</span></div>
+<div class="line"><span class="lineno">  901</span><span class="comment"> * internal RAM instead of external PSRAM.</span></div>
+<div class="line"><span class="lineno">  902</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  903</span><span class="comment"> * Example usage:</span></div>
+<div class="line"><span class="lineno">  904</span><span class="comment"> * @code</span></div>
+<div class="line"><span class="lineno">  905</span><span class="comment"> * H264EncoderRAM encoder;   // Instead of H264Encoder&lt;RAMAllocator&lt;uint8_t&gt;&gt;</span></div>
+<div class="line"><span class="lineno">  906</span><span class="comment"> * @endcode</span></div>
+<div class="line"><span class="lineno">  907</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno"><a class="line" href="namespaceesp__h264.html#a7ac7efc1f5f7bfe28169496e48342ead">  908</a></span><span class="keyword">using</span> H264EncoderRAM = <a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt;<a class="code hl_class" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator</a>&lt;uint8_t&gt;&gt;;</div>
+<div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span> </div>
+<div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span>}  <span class="comment">// namespace esp_h264</span></div>
+<div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span> </div>
+<div class="line"><a id="l00912" name="l00912"></a><span class="lineno">  912</span><span class="preprocessor">#</span><span class="preprocessor">ifdef</span> <span class="preprocessor">ARDUINO</span></div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span><span class="keyword">using</span> <span class="keyword">namespace</span> esp_h264;</div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
 <div class="ttc" id="aclassesp__h264_1_1H264Encoder_html"><div class="ttname"><a href="classesp__h264_1_1H264Encoder.html">esp_h264::H264Encoder</a></div><div class="ttdoc">Template class for capturing frames from ESP32 camera and encoding to H.264.</div><div class="ttdef"><b>Definition:</b> H264Encoder.h:79</div></div>
 <div class="ttc" id="aclassesp__h264_1_1H264Encoder_html_a3227f3836ead655e7173eb513ea45309"><div class="ttname"><a href="classesp__h264_1_1H264Encoder.html#a3227f3836ead655e7173eb513ea45309">esp_h264::H264Encoder::captureH264</a></div><div class="ttdeci">bool captureH264(Print &amp;out)</div><div class="ttdoc">Capture frame, encode to H.264, and stream with frame rate control.</div><div class="ttdef"><b>Definition:</b> H264Encoder.h:384</div></div>
 <div class="ttc" id="aclassesp__h264_1_1H264Encoder_html_a399a07624206d02608614e551213c1e2"><div class="ttname"><a href="classesp__h264_1_1H264Encoder.html#a399a07624206d02608614e551213c1e2">esp_h264::H264Encoder::H264Encoder</a></div><div class="ttdeci">H264Encoder()</div><div class="ttdoc">Default constructor.</div><div class="ttdef"><b>Definition:</b> H264Encoder.h:181</div></div>
@@ -1008,6 +1012,7 @@ $(function() {
 <div class="ttc" id="aesp__h264__enc__single_8h_html_a0c41035e0f0becaf66e32a3840cee67a"><div class="ttname"><a href="esp__h264__enc__single_8h.html#a0c41035e0f0becaf66e32a3840cee67a">esp_h264_enc_handle_t</a></div><div class="ttdeci">struct esp_h264_enc_if * esp_h264_enc_handle_t</div><div class="ttdoc">H.264 single stream encoder handle.</div><div class="ttdef"><b>Definition:</b> esp_h264_enc_single.h:19</div></div>
 <div class="ttc" id="aesp__h264__enc__single__sw_8c_html_a5269e93a476666d6be2f1917f32e6956"><div class="ttname"><a href="esp__h264__enc__single__sw_8c.html#a5269e93a476666d6be2f1917f32e6956">esp_h264_enc_sw_new</a></div><div class="ttdeci">esp_h264_err_t esp_h264_enc_sw_new(const esp_h264_enc_cfg_sw_t *cfg, esp_h264_enc_handle_t *out_enc)</div><div class="ttdoc">This function is used to create a new instance of the esp_h264_enc_t data structure,...</div><div class="ttdef"><b>Definition:</b> esp_h264_enc_single_sw.c:182</div></div>
 <div class="ttc" id="aesp__h264__enc__single__sw_8h_html_aa9dfa2b7b75eed2c2cc9c352802e7c8d"><div class="ttname"><a href="esp__h264__enc__single__sw_8h.html#aa9dfa2b7b75eed2c2cc9c352802e7c8d">esp_h264_enc_cfg_sw_t</a></div><div class="ttdeci">esp_h264_enc_cfg_t esp_h264_enc_cfg_sw_t</div><div class="ttdoc">Configuration type for software-based H.264 encoder.</div><div class="ttdef"><b>Definition:</b> esp_h264_enc_single_sw.h:24</div></div>
+<div class="ttc" id="aesp__h264__types_8h_html_aa24d48f4e5115ebf5df6f0c1e53187f8a6e7ccae107f423fca41279523eebf8e7"><div class="ttname"><a href="esp__h264__types_8h.html#aa24d48f4e5115ebf5df6f0c1e53187f8a6e7ccae107f423fca41279523eebf8e7">ESP_H264_RAW_FMT_I420</a></div><div class="ttdeci">@ ESP_H264_RAW_FMT_I420</div><div class="ttdef"><b>Definition:</b> esp_h264_types.h:61</div></div>
 <div class="ttc" id="aesp__h264__types_8h_html_af33c05bf0df0a22eb633b30ae0ae13fca86565e433ee99e33655227f09f614d8d"><div class="ttname"><a href="esp__h264__types_8h.html#af33c05bf0df0a22eb633b30ae0ae13fca86565e433ee99e33655227f09f614d8d">ESP_H264_ERR_OK</a></div><div class="ttdeci">@ ESP_H264_ERR_OK</div><div class="ttdef"><b>Definition:</b> esp_h264_types.h:24</div></div>
 <div class="ttc" id="ah264__color__convert_8h_html_a03a13ee89a4fcaaee55c06be0f116581"><div class="ttname"><a href="h264__color__convert_8h.html#a03a13ee89a4fcaaee55c06be0f116581">yuyv2iyuv</a></div><div class="ttdeci">void yuyv2iyuv(uint32_t height, uint32_t width, uint8_t *in, uint8_t *out)</div><div class="ttdoc">Convert YUYV data to I420 data.</div><div class="ttdef"><b>Definition:</b> h264_color_convert.c:9</div></div>
 <div class="ttc" id="anamespaceesp__h264_html"><div class="ttname"><a href="namespaceesp__h264.html">esp_h264</a></div><div class="ttdef"><b>Definition:</b> H264Decoder.h:32</div></div>
@@ -1037,6 +1042,7 @@ $(function() {
 <div class="ttc" id="astructesp__h264_1_1H264Encoder_1_1Config_html_afbd5944da2e887f9f1163eb064207e58"><div class="ttname"><a href="structesp__h264_1_1H264Encoder_1_1Config.html#afbd5944da2e887f9f1163eb064207e58">esp_h264::H264Encoder::Config::y6_pin</a></div><div class="ttdeci">int y6_pin</div><div class="ttdef"><b>Definition:</b> H264Encoder.h:116</div></div>
 <div class="ttc" id="astructesp__h264__enc__cfg__t_html_a1c6f6258eb60f8f0d2d9d2f4b7cb4eee"><div class="ttname"><a href="structesp__h264__enc__cfg__t.html#a1c6f6258eb60f8f0d2d9d2f4b7cb4eee">esp_h264_enc_cfg_t::res</a></div><div class="ttdeci">esp_h264_resolution_t res</div><div class="ttdef"><b>Definition:</b> esp_h264_types.h:160</div></div>
 <div class="ttc" id="astructesp__h264__enc__cfg__t_html_a2980a5cb9dc9a110cd49d22c12c96a3a"><div class="ttname"><a href="structesp__h264__enc__cfg__t.html#a2980a5cb9dc9a110cd49d22c12c96a3a">esp_h264_enc_cfg_t::fps</a></div><div class="ttdeci">uint8_t fps</div><div class="ttdef"><b>Definition:</b> esp_h264_types.h:155</div></div>
+<div class="ttc" id="astructesp__h264__enc__cfg__t_html_a3911163be2c230eec2732f8e62fbd6af"><div class="ttname"><a href="structesp__h264__enc__cfg__t.html#a3911163be2c230eec2732f8e62fbd6af">esp_h264_enc_cfg_t::pic_type</a></div><div class="ttdeci">esp_h264_raw_format_t pic_type</div><div class="ttdef"><b>Definition:</b> esp_h264_types.h:151</div></div>
 <div class="ttc" id="astructesp__h264__enc__cfg__t_html_aa016a7266c0fdc809313557e0a18a5ec"><div class="ttname"><a href="structesp__h264__enc__cfg__t.html#aa016a7266c0fdc809313557e0a18a5ec">esp_h264_enc_cfg_t::gop</a></div><div class="ttdeci">uint8_t gop</div><div class="ttdef"><b>Definition:</b> esp_h264_types.h:152</div></div>
 <div class="ttc" id="astructesp__h264__enc__cfg__t_html_acf0dab1619d55f677e09774b48ae74be"><div class="ttname"><a href="structesp__h264__enc__cfg__t.html#acf0dab1619d55f677e09774b48ae74be">esp_h264_enc_cfg_t::rc</a></div><div class="ttdeci">esp_h264_enc_rc_t rc</div><div class="ttdef"><b>Definition:</b> esp_h264_types.h:161</div></div>
 <div class="ttc" id="astructesp__h264__enc__in__frame__t_html_a13172bd2529da698bc7521ac6f5b1ec9"><div class="ttname"><a href="structesp__h264__enc__in__frame__t.html#a13172bd2529da698bc7521ac6f5b1ec9">esp_h264_enc_in_frame_t::raw_data</a></div><div class="ttdeci">esp_h264_pkt_t raw_data</div><div class="ttdef"><b>Definition:</b> esp_h264_types.h:187</div></div>
