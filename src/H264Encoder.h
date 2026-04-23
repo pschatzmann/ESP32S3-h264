@@ -58,7 +58,7 @@ namespace esp_h264 {
  * void setup() {
  *   auto cfg = streamer.defaultConfig();
  *   cfg.ssid = "MyWiFi";
- *   cfg.pass = "MyPassword";
+ *   cfg.password = "MyPassword";
  *   cfg.width = 640;
  *   cfg.height = 480;
  *   cfg.fps = 15;
@@ -139,7 +139,7 @@ class H264Encoder {
     ESP_LOGD(TAG, "defaultConfig");
     Config cfg;
     cfg.ssid = nullptr;
-    cfg.pass = nullptr;
+    cfg.password = nullptr;
     cfg.width = 640;
     cfg.height = 480;
     cfg.fps = 15;
@@ -498,14 +498,17 @@ class H264Encoder {
    */
   bool initWiFi() {
     ESP_LOGD(TAG, "initWiFi");
-    if (!cfg_.ssid || !cfg_.pass) return true;  // assume user-managed WiFi
     WiFi.mode(WIFI_STA);
-    WiFi.begin(cfg_.ssid, cfg_.pass);
+    WiFi.begin(cfg_.ssid, cfg_.password);
     unsigned long start = millis();
     while (WiFi.status() != WL_CONNECTED) {
       delay(200);
       if (millis() - start > 15000) return false;
+      Serial.print(".");
     }
+    Serial.println();
+    Serial.print("WiFi connected, IP address: ");
+    Serial.println(WiFi.localIP());
     return true;
   }
 
@@ -696,6 +699,7 @@ class H264Encoder {
     enc_cfg.res.height = (uint16_t)cfg_.height;
     enc_cfg.fps = (uint8_t)cfg_.fps;
     enc_cfg.gop = (uint8_t)(cfg_.fps * 2);
+    enc_cfg.pic_type = ESP_H264_RAW_FMT_I420;
     enc_cfg.rc.bitrate = (uint32_t)(cfg_.width * cfg_.height * cfg_.fps / 20);
     esp_h264_err_t res = esp_h264_enc_sw_new(&enc_cfg, &enc_handle_);
     if (res != ESP_H264_ERR_OK || !enc_handle_) {
