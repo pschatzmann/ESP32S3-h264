@@ -123,6 +123,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3be0362870e34bdf9757e2c38ee5467f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0f63050ca494fcae1b80e25d29c91f8"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">println</a> (const char *s)</td></tr>
 <tr class="separator:ae0f63050ca494fcae1b80e25d29c91f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a332e5c5cfda13cbeb4335f268236ceac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1UDPPrint.html#a332e5c5cfda13cbeb4335f268236ceac">setWriteDelay</a> (unsigned long ms)</td></tr>
+<tr class="memdesc:a332e5c5cfda13cbeb4335f268236ceac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set delay after sending a UDP packet (default 100ms)  <br /></td></tr>
+<tr class="separator:a332e5c5cfda13cbeb4335f268236ceac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A Print implementation that buffers and sends data over UDP. </p>
@@ -138,9 +141,9 @@ Data is buffered up to BUF_SIZE (1400 bytes) before automatic transmission</dd><
 <div class="line">up.<a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a>();  <span class="comment">// Send immediately</span></div>
 <div class="ttc" id="aUDPPrint_8h_html"><div class="ttname"><a href="UDPPrint_8h.html">UDPPrint.h</a></div><div class="ttdoc">header-only Arduino Print implementation that sends data over</div></div>
 <div class="ttc" id="aclassesp__h264_1_1UDPPrint_html"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html">esp_h264::UDPPrint</a></div><div class="ttdoc">A Print implementation that buffers and sends data over UDP.</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:34</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a3be0362870e34bdf9757e2c38ee5467f"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">esp_h264::UDPPrint::print</a></div><div class="ttdeci">size_t print(const char *s)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:94</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a3be0362870e34bdf9757e2c38ee5467f"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">esp_h264::UDPPrint::print</a></div><div class="ttdeci">size_t print(const char *s)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:110</div></div>
 <div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a488f9c863a4bbf02754a1413e3c7bba9"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">esp_h264::UDPPrint::begin</a></div><div class="ttdeci">bool begin(const char *destIp, uint16_t destPort)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:40</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_adac116554b543b7c4228c018a85882f5"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">esp_h264::UDPPrint::flush</a></div><div class="ttdeci">void flush()</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:80</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_adac116554b543b7c4228c018a85882f5"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">esp_h264::UDPPrint::flush</a></div><div class="ttdeci">void flush()</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:82</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4582edda16bc7fb9e757b1e3806031d3" name="a4582edda16bc7fb9e757b1e3806031d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4582edda16bc7fb9e757b1e3806031d3">&#9670;&#160;</a></span>UDPPrint()</h2>
@@ -339,6 +342,34 @@ Data is buffered up to BUF_SIZE (1400 bytes) before automatic transmission</dd><
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a332e5c5cfda13cbeb4335f268236ceac" name="a332e5c5cfda13cbeb4335f268236ceac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a332e5c5cfda13cbeb4335f268236ceac">&#9670;&#160;</a></span>setWriteDelay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setWriteDelay </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>ms</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set delay after sending a UDP packet (default 100ms) </p>
 
 </div>
 </div>
