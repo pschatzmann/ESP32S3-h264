@@ -26,7 +26,7 @@ var searchData=
   ['cmresultsuccess_23',['cmResultSuccess',['../codec__def_8h.html#add45efbc0b84f00d7763730db10d066da958eecd51a0a7c07f93c29c3f0b2acb6',1,'codec_def.h']]],
   ['cmunknownreason_24',['cmUnknownReason',['../codec__def_8h.html#add45efbc0b84f00d7763730db10d066da785fd2a12812e703ccea00ebf313bb61',1,'codec_def.h']]],
   ['cmunsupporteddata_25',['cmUnsupportedData',['../codec__def_8h.html#add45efbc0b84f00d7763730db10d066da4c9783b424204959da2faa8d48e39b9d',1,'codec_def.h']]],
-  ['codec_2dh264_2desp32s3_26',['codec-h264-ESP32S3',['../md_README.html',1,'']]],
+  ['codec_2dh_2e264_20for_20esp32_2ds3_26',['codec-h.264 for ESP32-S3',['../md_README.html',1,'']]],
   ['codec_5fapi_2eh_27',['codec_api.h',['../codec__api_8h.html',1,'']]],
   ['codec_5fapp_5fdef_2eh_28',['codec_app_def.h',['../codec__app__def_8h.html',1,'']]],
   ['codec_5fdef_2eh_29',['codec_def.h',['../codec__def_8h.html',1,'']]],
