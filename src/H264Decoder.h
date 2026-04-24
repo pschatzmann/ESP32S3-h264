@@ -40,7 +40,7 @@ namespace esp_h264 {
  * The class is templated on an allocator type to allow customization of memory
  * allocation strategy (e.g., PSRAM vs regular heap).
  * 
- * @tparam Alloc Memory allocator type for internal buffers (defaults to PSRAMAllocator)
+ * @tparam Alloc Memory allocator type for internal buffers (defaults to PSRAMAllocatorH264)
  * 
  * @note This class intentionally keeps implementation in the header for easy 
  *       integration into Arduino sketches without separate .cpp files
@@ -74,7 +74,7 @@ namespace esp_h264 {
  * }
  * @endcode
  */
-template <typename Alloc = DEFAULT_ALLOCATOR>
+template <typename Alloc = H264_DEFAULT_ALLOCATOR>
 class H264Decoder {
  public:
   /** @brief Logging tag for ESP32 log system */
@@ -636,14 +636,14 @@ class H264Decoder {
  * @brief Type alias for H264Decoder using default PSRAM allocation
  * 
  * Provides a simpler way to declare H264Decoder instances without specifying
- * the allocator template parameter. Uses PSRAMAllocator<uint8_t> by default.
+ * the allocator template parameter. Uses PSRAMAllocatorH264<uint8_t> by default.
  * 
  * Example usage:
  * @code
- * H264DecoderPSRAM decoder(&udp);  // Instead of H264Decoder<PSRAMAllocator<uint8_t>>
+ * H264DecoderPSRAM decoder(&udp);  // Instead of H264Decoder<PSRAMAllocatorH264<uint8_t>>
  * @endcode
  */
-using H264DecoderPSRAM = H264Decoder<PSRAMAllocator<uint8_t>>;
+using H264DecoderPSRAM = H264Decoder<PSRAMAllocatorH264<uint8_t>>;
 
 /**
  * @brief Type alias for H264Decoder using internal RAM allocation
@@ -653,10 +653,10 @@ using H264DecoderPSRAM = H264Decoder<PSRAMAllocator<uint8_t>>;
  * 
  * Example usage:
  * @code
- * H264DecoderRAM decoder(&udp);   // Instead of H264Decoder<RAMAllocator<uint8_t>>
+ * H264DecoderRAM decoder(&udp);   // Instead of H264Decoder<RAMAllocatorH264<uint8_t>>
  * @endcode
  */
-using H264DecoderRAM = H264Decoder<RAMAllocator<uint8_t>>;
+using H264DecoderRAM = H264Decoder<RAMAllocatorH264<uint8_t>>;
 
 }  // namespace esp_h264
 

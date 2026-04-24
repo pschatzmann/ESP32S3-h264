@@ -3,13 +3,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-#include "esp_idf_version.h"
-
-#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 3, 0)
-
 #include "esp_h264_alloc.h"
 #include "esp_h264_cache.h"
 #include "esp_private/esp_cache_private.h"
+
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 3, 0)
+
 
 void *esp_h264_aligned_calloc(uint32_t alignment, uint32_t n, uint32_t size, uint32_t *actual_size, uint32_t caps)
 {

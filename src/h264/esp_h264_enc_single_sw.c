@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+#include "H264Config.h"
 
 #include "esp_h264_enc_single.h"
 #include "h264_color_convert.h"

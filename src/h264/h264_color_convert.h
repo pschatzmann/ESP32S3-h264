@@ -5,6 +5,8 @@
  */
 
 #pragma once
+#include "H264Config.h"
+
 
 #ifdef __cplusplus
 extern "C" {

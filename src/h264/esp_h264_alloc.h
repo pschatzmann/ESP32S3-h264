@@ -5,7 +5,7 @@
  */
 
 #pragma once
-
+#include "H264Config.h"
 #include "esp_idf_version.h"
 #include "esp_heap_caps.h"
 
@@ -17,6 +17,11 @@
  * @brief  Free memory previously allocated
  */
 #define esp_h264_free           heap_caps_free
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 /**
  * @brief  Allocate an aligned chunk of memory which has the given capabilities.
@@ -46,3 +51,7 @@ void *esp_h264_aligned_calloc(uint32_t alignment, uint32_t n, uint32_t size, uin
  *       - others  A pointer to the memory allocated on success
  */
 void *esp_h264_calloc_prefer(uint32_t n, uint32_t size, uint32_t *actual_size, uint32_t caps1, uint32_t caps2);
+
+#ifdef __cplusplus
+}
+#endif
