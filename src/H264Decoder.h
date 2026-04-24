@@ -23,7 +23,6 @@
 
 #include "PSRAMAllocator.h"
 #include "RAMAllocator.h"
-#include "h264/esp_h264_arduino.h"
 #include "h264/esp_h264_dec.h"
 #include "h264/esp_h264_dec_sw.h"
 #include "h264/esp_h264_dec_param.h"

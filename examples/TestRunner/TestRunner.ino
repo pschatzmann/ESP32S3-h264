@@ -2,7 +2,6 @@
  * Runs a small set of non-hardware tests adapted from test_case.c
  */
 
-#include "h264/esp_h264_arduino.h"
 #include "test_case_arduino.h"
 
 void setup() {

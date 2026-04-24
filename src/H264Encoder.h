@@ -14,10 +14,10 @@
 
 #include <vector>
 
+#include "H264Config.h"
 #include "PSRAMAllocator.h"
 #include "RAMAllocator.h"
 #include "esp_camera.h"
-#include "h264/esp_h264_arduino.h"
 #include "h264/esp_h264_enc_single.h"
 #include "h264/esp_h264_enc_single_sw.h"
 #include "h264/esp_h264_types.h"

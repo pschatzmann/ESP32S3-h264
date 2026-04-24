@@ -12,7 +12,8 @@
 #include <type_traits>
 #include <vector>
 
-#include "esp_heap_caps.h"
+#include "H264Config.h"
+#include "h264/esp_h264_alloc.h"
 
 namespace esp_h264 {
 
@@ -89,44 +90,14 @@ class RAMAllocator {
    * @return Pointer to allocated memory
    * @throws std::bad_alloc if allocation fails
    *
-   * @note Memory is aligned to alignof(T)
+   * @note Memory is aligned by 16
    * @note On ESP32, prefers internal DRAM allocation over PSRAM
    */
   T* allocate(std::size_t n) {
     if (n == 0) return nullptr;
-    // total bytes
-    std::size_t bytes = n * sizeof(T);
-    // Prefer Internal RAM: use heap_caps_aligned_calloc if available. Request
-    // alignment equal to alignof(T).
-    void* p = nullptr;
-#if defined(MALLOC_CAP_INTERNAL)
-    // heap_caps_aligned_calloc(alignment, nmemb, size, caps)
-    p = heap_caps_aligned_calloc(alignof(T), n, sizeof(T),
-                                 (unsigned)MALLOC_CAP_INTERNAL);
-#endif
-    if (!p) {
-      // Fallback: try aligned allocation where available
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
-      // aligned_alloc requires size to be multiple of alignment
-      std::size_t align = alignof(T);
-      std::size_t alloc_size = bytes;
-      if (align > 1) {
-        std::size_t rem = alloc_size % align;
-        if (rem) alloc_size += (align - rem);
-      }
-      p = aligned_alloc(align, alloc_size);
-      if (p) {
-        // zero initialize
-        std::memset(p, 0, bytes);
-      } else
-#endif
-      {
-        // last resort: calloc
-        p = std::calloc(n, sizeof(T));
-      }
-    }
-
-    if (!p) throw std::bad_alloc();
+    uint32_t actual_size = 0;
+    void* p = esp_h264_aligned_calloc(
+        16, 1, n * sizeof(T), &actual_size, (uint32_t)MALLOC_CAP_INTERNAL);
     return static_cast<T*>(p);
   }
 
@@ -144,7 +115,7 @@ class RAMAllocator {
    */
   void deallocate(T* p, std::size_t /*n*/) noexcept {
     if (!p) return;
-    heap_caps_free(p);
+    esp_h264_free_internal(p);
   }
 
   /**
