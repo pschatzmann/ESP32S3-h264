@@ -19,8 +19,8 @@ This library is using the standard ESP32 logger that you can configure via the A
 
 ## Documentation
 
-- [Class Documentation](https://pschatzmann.github.io/ESP32S3-h264/namespaceesp__h264.html)
-- [Wiki](https://github.com/pschatzmann/ESP32S3-h264/wiki)
+- [Class Documentation](https://pschatzmann.github.io/codec-ESP32S3-h264/namespaceesp__h264.html)
+- [Wiki](https://github.com/pschatzmann/codec-ESP32S3-h264/wiki)
 - [Examples](examples)
 
 
@@ -30,7 +30,7 @@ For Arduino, you can download the library as zip and call include Library -> zip
 
 ```
 cd  ~/Documents/Arduino/libraries
-git clone https://github.com/pschatzmann/ESP32S3-H264.git
+git clone https://github.com/pschatzmann/codec-ESP32S3-H264.git
 ```
 
 ## Additional Comments
