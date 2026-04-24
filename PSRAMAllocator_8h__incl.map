@@ -1,11 +1,14 @@
 <map id="src/PSRAMAllocator.h" name="src/PSRAMAllocator.h">
-<area shape="rect" id="node1" title="Header&#45;only C++ allocator that prefers PSRAM allocation on ESP32." alt="" coords="263,5,423,31"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,152,76,177"/>
-<area shape="rect" id="node3" title=" " alt="" coords="100,152,165,177"/>
-<area shape="rect" id="node4" title=" " alt="" coords="190,152,257,177"/>
-<area shape="rect" id="node5" title=" " alt="" coords="281,152,331,177"/>
-<area shape="rect" id="node6" title=" " alt="" coords="355,152,447,177"/>
-<area shape="rect" id="node7" title=" " alt="" coords="471,152,533,177"/>
-<area shape="rect" id="node8" href="$RAMAllocator_8h.html" title="Header&#45;only C++ allocator that uses internal RAM (DRAM) on ESP32." alt="" coords="233,79,355,104"/>
-<area shape="rect" id="node9" title=" " alt="" coords="558,152,691,177"/>
+<area shape="rect" id="node1" title="Header&#45;only C++ allocator that prefers PSRAM allocation on ESP32." alt="" coords="273,5,433,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,79,76,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="100,79,165,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="190,79,257,104"/>
+<area shape="rect" id="node5" title=" " alt="" coords="281,79,331,104"/>
+<area shape="rect" id="node6" title=" " alt="" coords="355,79,447,104"/>
+<area shape="rect" id="node7" title=" " alt="" coords="471,79,533,104"/>
+<area shape="rect" id="node8" href="$H264Config_8h.html" title=" " alt="" coords="510,152,619,177"/>
+<area shape="rect" id="node10" href="$esp__h264__alloc_8h.html" title=" " alt="" coords="621,79,791,104"/>
+<area shape="rect" id="node9" title=" " alt="" coords="523,225,607,251"/>
+<area shape="rect" id="node11" title=" " alt="" coords="643,152,779,177"/>
+<area shape="rect" id="node12" title=" " alt="" coords="803,152,937,177"/>
 </map>

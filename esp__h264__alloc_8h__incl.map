@@ -1,5 +1,7 @@
 <map id="src/h264/esp_h264_alloc.h" name="src/h264/esp_h264_alloc.h">
-<area shape="rect" id="node1" title=" " alt="" coords="55,5,249,31"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,79,141,104"/>
-<area shape="rect" id="node3" title=" " alt="" coords="165,79,299,104"/>
+<area shape="rect" id="node1" title=" " alt="" coords="110,5,303,31"/>
+<area shape="rect" id="node2" href="$H264Config_8h.html" title=" " alt="" coords="5,79,115,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="139,79,275,104"/>
+<area shape="rect" id="node5" title=" " alt="" coords="299,79,432,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="18,152,102,177"/>
 </map>

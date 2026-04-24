@@ -143,7 +143,7 @@ Provides proper alignment for the allocated type</dd></dl>
 <div class="line"><a class="code hl_typedef" href="namespaceesp__h264.html#a09738b82c73180ec391a9b8c13ee0f93">RAMVec&lt;uint32_t&gt;</a> fastBuffer;</div>
 <div class="line">fastBuffer.resize(256);</div>
 <div class="ttc" id="aRAMAllocator_8h_html"><div class="ttname"><a href="RAMAllocator_8h.html">RAMAllocator.h</a></div><div class="ttdoc">Header-only C++ allocator that uses internal RAM (DRAM) on ESP32.</div></div>
-<div class="ttc" id="anamespaceesp__h264_html_a09738b82c73180ec391a9b8c13ee0f93"><div class="ttname"><a href="namespaceesp__h264.html#a09738b82c73180ec391a9b8c13ee0f93">esp_h264::RAMVec</a></div><div class="ttdeci">std::vector&lt; T, RAMAllocator&lt; T &gt; &gt; RAMVec</div><div class="ttdoc">Convenience type alias for vectors using RAMAllocator.</div><div class="ttdef"><b>Definition:</b> RAMAllocator.h:179</div></div>
+<div class="ttc" id="anamespaceesp__h264_html_a09738b82c73180ec391a9b8c13ee0f93"><div class="ttname"><a href="namespaceesp__h264.html#a09738b82c73180ec391a9b8c13ee0f93">esp_h264::RAMVec</a></div><div class="ttdeci">std::vector&lt; T, RAMAllocator&lt; T &gt; &gt; RAMVec</div><div class="ttdoc">Convenience type alias for vectors using RAMAllocator.</div><div class="ttdef"><b>Definition:</b> RAMAllocator.h:150</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="afb9ded5f49336ae503bb9f2035ea902b" name="afb9ded5f49336ae503bb9f2035ea902b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afb9ded5f49336ae503bb9f2035ea902b">&#9670;&#160;</a></span>value_type</h2>
@@ -276,7 +276,7 @@ Provides proper alignment for the allocated type</dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Memory is aligned to alignof(T) </dd>
+<dl class="section note"><dt>Note</dt><dd>Memory is aligned by 16 </dd>
 <dd>
 On ESP32, prefers internal DRAM allocation over PSRAM </dd></dl>
 
