@@ -12,6 +12,6 @@
 #include "RAMAllocatorH264.h"
 
 #ifndef H264_DEFAULT_ALLOCATOR
-#define H264_DEFAULT_ALLOCATOR RAMAllocatorH264<uint8_t>
+#define H264_DEFAULT_ALLOCATOR PSRAMAllocatorH264<uint8_t>
 #endif
 #endif
