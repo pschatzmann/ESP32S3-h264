@@ -5,19 +5,19 @@
 
 namespace esp_h264 {
 /**
- * @brief RTPPacketizer class to packetize H.264 NAL units into RTP packets.
+ * @brief RDPPacketizer class to packetize H.264 NAL units into RTP packets.
  * This class takes raw H.264 NAL units (in Annex-B format) and packetizes them
  * into RTP packets suitable for streaming over UDP.
  * 
  * This way you can e.g. Send H264 frames to QGroundcontrol
  */
-class RTPPacketizer : public Print {
+class RDPPacketizer : public Print {
  public:
   static constexpr size_t MTU = 1200;
   static constexpr uint8_t RTP_VERSION = 2;
   static constexpr uint8_t RTP_PAYLOAD_TYPE = 96;
 
-  RTPPacketizer(Print &out,
+  RDPPacketizer(Print &out,
                 uint32_t ssrc = 0x12345678)
       : out_(out), ssrc_(ssrc) {
         buffer_.reserve(MTU);
@@ -26,6 +26,7 @@ class RTPPacketizer : public Print {
   // Call once per encoded frame
   size_t write(const uint8_t* data, size_t len) {
     if (!data || len < 5) return 0;
+    ESP_LOGI(TAG, "Packetizing frame of size %u bytes", (unsigned)len);
 
     // Stable timestamp (better than millis jitter)
     timestamp_ += 3000;  // ~30 FPS (90000 / 30)

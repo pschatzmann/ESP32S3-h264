@@ -17,31 +17,34 @@
 #include "RDPPacketizer.h"
 #include "test/test.h"  // Contains test_raw and test_raw_len
 
-// Destination for UDP streaming (set to your receiver)
-const char* DEST_IP = "192.168.1.44";
-const uint16_t DEST_PORT = 5000;
+// The encoder needs more stack
+SET_LOOP_TASK_STACK_SIZE(60 * 1024);  
+
 
 H264Encoder encoder;
 UDPPrint udp;
 RDPPacketizer rdp(udp);
+// Destination for UDP streaming (set to your receiver)
+const char* DEST_IP = "192.168.1.44";
+const uint16_t DEST_PORT = 5000;
+const char* WIFI_SSID = "ssid";
+const char* WIFI_PASS = "pwd";
 
 void setup() {
   Serial.begin(115200);
   delay(500);
   // configure streamer (populate global cfg)
   auto cfg = encoder.defaultConfig();
-  cfg.ssid = "ssid";
-  cfg.password = "pwd";
-  cfg.width = 640;
-  cfg.height = 480;
-  cfg.fps = 15;
-  cfg.bitrate = 500000; // 500 kbps
-  cfg.gop_size = 30; // Keyframe every 30 frames
-  cfg.
+  cfg.width = 320;
+  cfg.height = 240;
+  cfg.fps = 5;
+  cfg.gop = 5; // Keyframe every 100 frames
   if (!encoder.begin(cfg)) {
     Serial.println("Streamer failed to start");
     while (true) delay(1000);
   }
+
+  udp.initWiFi(WIFI_SSID, WIFI_PASS);
   if (!udp.begin(DEST_IP, DEST_PORT)){
     Serial.println("UDP failed to start");
     while (true) delay(1000);
@@ -51,5 +54,5 @@ void setup() {
 }
 
 void loop() {
-  encoder.encodeRGB565(test_yuv, test_yuv_len, rdp);
+  encoder.encodeRGB565(test_raw, test_raw_len, rdp);
 }

@@ -7,6 +7,7 @@
 
 #include <Arduino.h>
 #include <WiFiUdp.h>
+#include <WiFi.h>
 
 namespace esp_h264 {
 
@@ -35,6 +36,23 @@ class UDPPrint : public Print {
  public:
   UDPPrint() : udp_(new WiFiUDP()), destPort_(0), bufPos_(0) {}
   ~UDPPrint() { delete udp_; }
+
+  bool initWiFi(const char* ssid, const char* password) {
+    ESP_LOGD(TAG, "initWiFi");
+    WiFi.mode(WIFI_STA);
+    WiFi.setSleep(false);
+    WiFi.begin(ssid, password);
+    unsigned long start = millis();
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(200);
+      if (millis() - start > 15000) return false;
+      Serial.print(".");
+    }
+    Serial.println();
+    Serial.print("WiFi connected, IP address: ");
+    Serial.println(WiFi.localIP());
+    return true;
+  }
 
   // Begin with numeric IP string
   bool begin(const char* destIp, uint16_t destPort) {
@@ -74,7 +92,8 @@ class UDPPrint : public Print {
       size -= tocopy;
     }
     flush();
-    ESP_LOGI("UDPPrint", "Buffered and sent %u bytes to %s:%u", (unsigned)written, destIp_.c_str(), destPort_);
+    ESP_LOGI("UDPPrint", "Buffered and sent %u bytes to %s:%u",
+             (unsigned)written, destIp_.c_str(), destPort_);
     return written;
   }
 
@@ -100,9 +119,10 @@ class UDPPrint : public Print {
     }
 
     if (!sent) {
-      ESP_LOGE("UDPPrint", "Failed to send UDP packet %u bytes to %s:%u after retries",
+      ESP_LOGE("UDPPrint",
+               "Failed to send UDP packet %u bytes to %s:%u after retries",
                (unsigned)to_send, destIp_.c_str(), destPort_);
-    } 
+    }
     bufPos_ = 0;
   }
 

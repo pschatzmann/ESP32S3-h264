@@ -35,21 +35,23 @@
 #include "H264Encoder.h"
 #include "UDPPrint.h"
 
+// The encoder needs more stack
+SET_LOOP_TASK_STACK_SIZE(60 * 1024);
+
 // Destination for UDP streaming (set to your receiver)
+const char* WIFI_SSID = "YourSSID";
+const char* WIFI_PASS = "YourPassword";
 const char* DEST_IP = "192.168.1.100";
 const uint16_t DEST_PORT = 5000;
 
 H264Encoder encoder;
 UDPPrint udp;
 
-
 void setup() {
   Serial.begin(115200);
   delay(500);
   // configure streamer (populate global cfg)
   auto cfg = encoder.defaultConfig();
-  cfg.ssid = "YourSSID";
-  cfg.password = "YourPassword";
   cfg.width = 640;
   cfg.height = 480;
   cfg.fps = 15;
@@ -58,10 +60,10 @@ void setup() {
     Serial.println("Streamer failed to start");
     while (1) delay(1000);
   }
+
+  udp.initWiFi(WIFI_SSID, WIFI_PASS);
   udp.begin(DEST_IP, DEST_PORT);
   Serial.println("Streamer started");
 }
 
-void loop() {
-  encoder.captureH264(udp);
-}
+void loop() { encoder.captureH264(udp); }

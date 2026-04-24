@@ -8,8 +8,6 @@
  */
 
 #include <Arduino.h>
-#include <WiFi.h>
-#include <WiFiUdp.h>
 #include <esp_log.h>
 
 #include <vector>
@@ -135,8 +133,6 @@ class H264Encoder {
   Config defaultConfig() {
     ESP_LOGD(TAG, "defaultConfig");
     Config cfg;
-    cfg.ssid = nullptr;
-    cfg.password = nullptr;
     cfg.width = 640;
     cfg.height = 480;
     cfg.fps = 15;
@@ -217,10 +213,6 @@ class H264Encoder {
     // init camera if requested
     if (cfg_.use_camera) {
       if (!initCamera()) return false;
-    }
-    // init wifi only when ssid and password are provided!
-    if (cfg_.ssid && cfg_.password) {
-      if (!initWiFi()) return false;
     }
     return initData();
   }
@@ -560,30 +552,6 @@ class H264Encoder {
   esp_h264_enc_handle_t enc_handle_ = nullptr;
   std::vector<uint8_t, Alloc> in_buf_;
   std::vector<uint8_t, Alloc> out_buf_;
-
-  /**
-   * @brief Initialize WiFi connection using Config credentials
-   * @return true if WiFi connection established or credentials not provided
-   * (user-managed), false on timeout
-   * @note Skips initialization if Config::ssid or Config::pass is nullptr
-   * @note 15 second connection timeout
-   */
-  bool initWiFi() {
-    ESP_LOGD(TAG, "initWiFi");
-    WiFi.mode(WIFI_STA);
-    WiFi.setSleep(false);
-    WiFi.begin(cfg_.ssid, cfg_.password);
-    unsigned long start = millis();
-    while (WiFi.status() != WL_CONNECTED) {
-      delay(200);
-      if (millis() - start > 15000) return false;
-      Serial.print(".");
-    }
-    Serial.println();
-    Serial.print("WiFi connected, IP address: ");
-    Serial.println(WiFi.localIP());
-    return true;
-  }
 
   /**
    * @brief Initialize ESP32 camera with Config pin mappings and settings
