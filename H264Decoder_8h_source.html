@@ -152,7 +152,7 @@ $(function() {
 <div class="line"><span class="lineno">   74</span><span class="comment"> * }</span></div>
 <div class="line"><span class="lineno">   75</span><span class="comment"> * @endcode</span></div>
 <div class="line"><span class="lineno">   76</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Alloc = <a class="code hl_define" href="H264Config_8h.html#a20e1dc8d822cad235e0ab211345d8fdd">H264_DEFAULT_ALLOCATOR</a>&gt;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Alloc = H264_DEFAULT_ALLOCATOR&gt;</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classesp__h264_1_1H264Decoder.html">   78</a></span><span class="keyword">class</span> <a class="code hl_class" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a> {</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="comment">/** @brief Logging tag for ESP32 log system */</span></div>
@@ -721,7 +721,7 @@ $(function() {
 <div class="line"><span class="lineno">  643</span><span class="comment"> * H264DecoderPSRAM decoder(&amp;udp);  // Instead of H264Decoder&lt;PSRAMAllocatorH264&lt;uint8_t&gt;&gt;</span></div>
 <div class="line"><span class="lineno">  644</span><span class="comment"> * @endcode</span></div>
 <div class="line"><span class="lineno">  645</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00646" name="l00646"></a><span class="lineno"><a class="line" href="namespaceesp__h264.html#ab8a423f6826b433118423b8764e8099c">  646</a></span><span class="keyword">using</span> <a class="code hl_namespace" href="namespaceesp__h264.html">H264DecoderPSRAM</a> = <a class="code hl_namespace" href="namespaceesp__h264.html">H264Decoder</a>&lt;<a class="code hl_namespace" href="namespaceesp__h264.html">PSRAMAllocatorH264</a>&lt;<a class="code hl_namespace" href="namespaceesp__h264.html">uint8_t</a>&gt;&gt;;</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno"><a class="line" href="namespaceesp__h264.html#ab8a423f6826b433118423b8764e8099c">  646</a></span><span class="keyword">using</span> H264DecoderPSRAM = <a class="code hl_class" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt;PSRAMAllocatorH264&lt;uint8_t&gt;&gt;;</div>
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> </div>
 <div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span><span class="comment">/**</span></div>
 <div class="line"><span class="lineno">  649</span><span class="comment"> * @brief Type alias for H264Decoder using internal RAM allocation</span></div>
@@ -734,14 +734,13 @@ $(function() {
 <div class="line"><span class="lineno">  656</span><span class="comment"> * H264DecoderRAM decoder(&amp;udp);   // Instead of H264Decoder&lt;RAMAllocatorH264&lt;uint8_t&gt;&gt;</span></div>
 <div class="line"><span class="lineno">  657</span><span class="comment"> * @endcode</span></div>
 <div class="line"><span class="lineno">  658</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00659" name="l00659"></a><span class="lineno"><a class="line" href="namespaceesp__h264.html#afa9cd59419d738f1b0b15d6e52322b4b">  659</a></span><span class="keyword">using</span> <a class="code hl_namespace" href="namespaceesp__h264.html">H264DecoderRAM</a> = <a class="code hl_namespace" href="namespaceesp__h264.html">H264Decoder</a>&lt;<a class="code hl_namespace" href="namespaceesp__h264.html">RAMAllocatorH264</a>&lt;<a class="code hl_namespace" href="namespaceesp__h264.html">uint8_t</a>&gt;&gt;;</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno"><a class="line" href="namespaceesp__h264.html#afa9cd59419d738f1b0b15d6e52322b4b">  659</a></span><span class="keyword">using</span> H264DecoderRAM = <a class="code hl_class" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt;RAMAllocatorH264&lt;uint8_t&gt;&gt;;</div>
 <div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span> </div>
 <div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>}  <span class="comment">// namespace esp_h264</span></div>
 <div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> </div>
 <div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span><span class="preprocessor">#</span><span class="preprocessor">ifdef</span> <span class="preprocessor">ARDUINO</span></div>
 <div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span><span class="keyword">using</span> <span class="keyword">namespace</span> esp_h264;</div>
 <div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
-<div class="ttc" id="aH264Config_8h_html_a20e1dc8d822cad235e0ab211345d8fdd"><div class="ttname"><a href="H264Config_8h.html#a20e1dc8d822cad235e0ab211345d8fdd">H264_DEFAULT_ALLOCATOR</a></div><div class="ttdeci">#define H264_DEFAULT_ALLOCATOR</div><div class="ttdef"><b>Definition:</b> H264Config.h:11</div></div>
 <div class="ttc" id="aclassesp__h264_1_1H264Decoder_html"><div class="ttname"><a href="classesp__h264_1_1H264Decoder.html">esp_h264::H264Decoder</a></div><div class="ttdoc">Template class for decoding H.264 streams to raw video frames.</div><div class="ttdef"><b>Definition:</b> H264Decoder.h:78</div></div>
 <div class="ttc" id="aclassesp__h264_1_1H264Decoder_html_a0fe3ddf350d0e1a0ee305284e1a1a862"><div class="ttname"><a href="classesp__h264_1_1H264Decoder.html#a0fe3ddf350d0e1a0ee305284e1a1a862">esp_h264::H264Decoder::getFrame</a></div><div class="ttdeci">bool getFrame(uint8_t *dst, size_t dst_len, uint32_t &amp;width, uint32_t &amp;height)</div><div class="ttdoc">Retrieve decoded frame data.</div><div class="ttdef"><b>Definition:</b> H264Decoder.h:345</div></div>
 <div class="ttc" id="aclassesp__h264_1_1H264Decoder_html_a111d605437c24504fb1ecf44865f9389"><div class="ttname"><a href="classesp__h264_1_1H264Decoder.html#a111d605437c24504fb1ecf44865f9389">esp_h264::H264Decoder::getDecodeErrors</a></div><div class="ttdeci">uint32_t getDecodeErrors() const</div><div class="ttdoc">Get total number of decode errors.</div><div class="ttdef"><b>Definition:</b> H264Decoder.h:387</div></div>

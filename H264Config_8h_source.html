@@ -85,9 +85,14 @@ $(function() {
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#</span>  <span class="preprocessor">error</span> <span class="stringliteral">&quot;This library is only compatible with ESP32-S3. Please check your board configuration.&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> <span class="preprocessor">H264_DEFAULT_ALLOCATOR</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="H264Config_8h.html#a20e1dc8d822cad235e0ab211345d8fdd">   11</a></span><span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">H264_DEFAULT_ALLOCATOR</span> <span class="preprocessor">esp_h264</span><span class="preprocessor">::</span><span class="preprocessor">RAMAllocatorH264</span><span class="preprocessor">&lt;</span><span class="preprocessor">uint8_t</span><span class="preprocessor">&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#</span><span class="preprocessor">ifdef</span> __cplusplus</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;PSRAMAllocatorH264.h&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#</span><span class="preprocessor">include</span> <span class="preprocessor">&quot;RAMAllocatorH264.h&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#</span><span class="preprocessor">ifndef</span> H264_DEFAULT_ALLOCATOR</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#</span><span class="preprocessor">define</span> <span class="preprocessor">H264_DEFAULT_ALLOCATOR</span> <span class="preprocessor">RAMAllocatorH264</span><span class="preprocessor">&lt;</span><span class="preprocessor">uint8_t</span><span class="preprocessor">&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#</span><span class="preprocessor">endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
