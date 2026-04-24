@@ -40,7 +40,7 @@
 const char* DEST_IP = "192.168.1.100";
 const uint16_t DEST_PORT = 5000;
 
-H264Encoder streamer;
+H264Encoder encoder;
 UDPPrint up;
 
 
@@ -48,14 +48,14 @@ void setup() {
   Serial.begin(115200);
   delay(500);
   // configure streamer (populate global cfg)
-  auto cfg = streamer.defaultConfig();
+  auto cfg = encoder.defaultConfig();
   cfg.ssid = "YourSSID";
   cfg.password = "YourPassword";
   cfg.width = 640;
   cfg.height = 480;
   cfg.fps = 15;
   cfg.use_camera = true;  // Enable camera initialization
-  if (!streamer.begin(cfg)) {
+  if (!encoder.begin(cfg)) {
     Serial.println("Streamer failed to start");
     while (1) delay(1000);
   }
@@ -64,6 +64,6 @@ void setup() {
 }
 
 void loop() {
-  streamer.captureH264(up);
+  encoder.captureH264(up);
   up.flush();
 }

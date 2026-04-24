@@ -21,8 +21,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "PSRAMAllocator.h"
-#include "RAMAllocator.h"
+#include "H264Config.h"
 #include "h264/esp_h264_arduino.h"
 #include "h264/esp_h264_dec.h"
 #include "h264/esp_h264_dec_sw.h"
@@ -75,7 +74,7 @@ namespace esp_h264 {
  * }
  * @endcode
  */
-template <typename Alloc = esp_h264::PSRAMAllocator<uint8_t>>
+template <typename Alloc = DEFAULT_ALLOCATOR>
 class H264Decoder {
  public:
   /** @brief Logging tag for ESP32 log system */
