@@ -15,8 +15,8 @@
 #include <vector>
 
 #include "H264Config.h"
-#include "PSRAMAllocator.h"
-#include "RAMAllocator.h"
+#include "PSRAMAllocatorH264.h"
+#include "RAMAllocatorH264.h"
 #include "esp_camera.h"
 #include "h264/esp_h264_enc_single.h"
 #include "h264/esp_h264_enc_single_sw.h"
@@ -38,7 +38,7 @@ namespace esp_h264 {
  * allocation strategy (e.g., PSRAM vs regular heap).
  *
  * @tparam Alloc Memory allocator type for internal buffers (defaults to
- * PSRAMAllocator)
+ * PSRAMAllocatorH264)
  *
  * @note This class intentionally keeps implementation in the header for easy
  *       integration into Arduino sketches without separate .cpp files
@@ -75,7 +75,7 @@ namespace esp_h264 {
  * }
  * @endcode
  */
-template <typename Alloc = esp_h264::PSRAMAllocator<uint8_t>>
+template <typename Alloc = esp_h264::PSRAMAllocatorH264<uint8_t>>
 class H264Encoder {
  public:
   /** @brief Logging tag for ESP32 log system */
@@ -976,14 +976,14 @@ class H264Encoder {
  * @brief Type alias for H264Encoder using default PSRAM allocation
  *
  * Provides a simpler way to declare H264Encoder instances without specifying
- * the allocator template parameter. Uses PSRAMAllocator<uint8_t> by default.
+ * the allocator template parameter. Uses PSRAMAllocatorH264<uint8_t> by default.
  *
  * Example usage:
  * @code
- * H264EncoderPSRAM encoder;  // Instead of H264Encoder<PSRAMAllocator<uint8_t>>
+ * H264EncoderPSRAM encoder;  // Instead of H264Encoder<PSRAMAllocatorH264<uint8_t>>
  * @endcode
  */
-using H264EncoderPSRAM = H264Encoder<PSRAMAllocator<uint8_t>>;
+using H264EncoderPSRAM = H264Encoder<PSRAMAllocatorH264<uint8_t>>;
 
 /**
  * @brief Type alias for H264Encoder using internal RAM allocation
@@ -993,10 +993,10 @@ using H264EncoderPSRAM = H264Encoder<PSRAMAllocator<uint8_t>>;
  *
  * Example usage:
  * @code
- * H264EncoderRAM encoder;   // Instead of H264Encoder<RAMAllocator<uint8_t>>
+ * H264EncoderRAM encoder;   // Instead of H264Encoder<RAMAllocatorH264<uint8_t>>
  * @endcode
  */
-using H264EncoderRAM = H264Encoder<RAMAllocator<uint8_t>>;
+using H264EncoderRAM = H264Encoder<RAMAllocatorH264<uint8_t>>;
 
 }  // namespace esp_h264
 

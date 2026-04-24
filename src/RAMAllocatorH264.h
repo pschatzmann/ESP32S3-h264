@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file RAMAllocator.h
+ * @file RAMAllocatorH264.h
  * @brief Header-only C++ allocator that uses internal RAM (DRAM) on ESP32
  */
 
@@ -18,10 +18,10 @@
 namespace esp_h264 {
 
 /**
- * @class RAMAllocator
+ * @class RAMAllocatorH264
  * @brief STL-compatible allocator that uses internal RAM (DRAM) allocation
  *
- * RAMAllocator is a custom C++ allocator that allocates memory from internal
+ * RAMAllocatorH264 is a custom C++ allocator that allocates memory from internal
  * DRAM using heap_caps_aligned_calloc with MALLOC_CAP_INTERNAL. This ensures
  * allocation from fast internal memory rather than external PSRAM.
  *
@@ -40,10 +40,10 @@ namespace esp_h264 {
  *
  * Example usage:
  * @code
- * #include "RAMAllocator.h"
+ * #include "RAMAllocatorH264.h"
  *
  * // Use with std::vector for small, fast buffers
- * std::vector<uint32_t, RAMAllocator<uint32_t>> smallBuffer;
+ * std::vector<uint32_t, RAMAllocatorH264<uint32_t>> smallBuffer;
  * smallBuffer.resize(256);  // Small buffer in fast internal RAM
  *
  * // Or use the convenience alias
@@ -52,7 +52,7 @@ namespace esp_h264 {
  * @endcode
  */
 template <typename T = uint8_t>
-class RAMAllocator {
+class RAMAllocatorH264 {
  public:
   /** @brief The type of objects this allocator can allocate */
   using value_type = T;
@@ -60,21 +60,21 @@ class RAMAllocator {
   /**
    * @brief Default constructor
    *
-   * Constructs a RAMAllocator. No initialization needed.
+   * Constructs a RAMAllocatorH264. No initialization needed.
    */
-  RAMAllocator() noexcept {}
+  RAMAllocatorH264() noexcept {}
 
   /**
    * @brief Copy constructor from different allocator type
    *
-   * Allows construction from RAMAllocator of different type U.
+   * Allows construction from RAMAllocatorH264 of different type U.
    * Required for STL allocator requirements.
    *
    * @tparam U The type parameter of the source allocator
    * @param other Source allocator (unused)
    */
   template <class U>
-  RAMAllocator(const RAMAllocator<U>&) noexcept {}
+  RAMAllocatorH264(const RAMAllocatorH264<U>&) noexcept {}
 
   /**
    * @brief Allocate memory for n objects of type T in internal RAM
@@ -129,32 +129,32 @@ class RAMAllocator {
   template <class U>
   struct rebind {
     /** @brief The rebound allocator type */
-    typedef RAMAllocator<U> other;
+    typedef RAMAllocatorH264<U> other;
   };
 };
 
 /**
- * @brief Convenience type alias for vectors using RAMAllocator
+ * @brief Convenience type alias for vectors using RAMAllocatorH264
  *
- * RAMVec provides a shorter way to declare vectors that use RAMAllocator.
+ * RAMVec provides a shorter way to declare vectors that use RAMAllocatorH264.
  *
  * @tparam T The element type of the vector
  *
  * Example usage:
  * @code
  * RAMVec<uint32_t> buffer;  // Instead of std::vector<uint32_t,
- * RAMAllocator<uint32_t>> buffer.resize(256);
+ * RAMAllocatorH264<uint32_t>> buffer.resize(256);
  * @endcode
  */
 template <typename T>
-using RAMVec = std::vector<T, RAMAllocator<T>>;
+using RAMVec = std::vector<T, RAMAllocatorH264<T>>;
 
 }  // namespace esp_h264
 
 /**
- * @brief Equality operator for RAMAllocator instances
+ * @brief Equality operator for RAMAllocatorH264 instances
  *
- * All RAMAllocator instances are considered equal regardless of their
+ * All RAMAllocatorH264 instances are considered equal regardless of their
  * template type parameter, as required by STL allocator requirements.
  *
  * @tparam T First allocator's value type
@@ -164,15 +164,15 @@ using RAMVec = std::vector<T, RAMAllocator<T>>;
  * @return true Always returns true
  */
 template <class T, class U>
-inline bool operator==(const esp_h264::RAMAllocator<T>&,
-                       const esp_h264::RAMAllocator<U>&) noexcept {
+inline bool operator==(const esp_h264::RAMAllocatorH264<T>&,
+                       const esp_h264::RAMAllocatorH264<U>&) noexcept {
   return true;
 }
 
 /**
- * @brief Inequality operator for RAMAllocator instances
+ * @brief Inequality operator for RAMAllocatorH264 instances
  *
- * All RAMAllocator instances are considered equal, so inequality
+ * All RAMAllocatorH264 instances are considered equal, so inequality
  * always returns false.
  *
  * @tparam T First allocator's value type
@@ -182,7 +182,7 @@ inline bool operator==(const esp_h264::RAMAllocator<T>&,
  * @return false Always returns false
  */
 template <class T, class U>
-inline bool operator!=(const esp_h264::RAMAllocator<T>&,
-                       const esp_h264::RAMAllocator<U>&) noexcept {
+inline bool operator!=(const esp_h264::RAMAllocatorH264<T>&,
+                       const esp_h264::RAMAllocatorH264<U>&) noexcept {
   return false;
 }

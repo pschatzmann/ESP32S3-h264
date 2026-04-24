@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file PSRAMAllocator.h
+ * @file PSRAMAllocatorH264.h
  * @brief Header-only C++ allocator that prefers PSRAM allocation on ESP32
  */
 
@@ -18,17 +18,17 @@
 namespace esp_h264 {
 
 /**
- * @class PSRAMAllocator
+ * @class PSRAMAllocatorH264
  * @brief STL-compatible allocator that prefers PSRAM allocation with fallback
  *
- * PSRAMAllocator is a custom C++ allocator that attempts to allocate memory in
+ * PSRAMAllocatorH264 is a custom C++ allocator that attempts to allocate memory in
  * external PSRAM (using heap_caps_aligned_calloc with MALLOC_CAP_SPIRAM) and
  * falls back to regular heap allocation if PSRAM allocation fails.
  *
  * This allocator is particularly useful for ESP32 platforms with external PSRAM
  * where large buffers (like video frames) should be stored in PSRAM to preserve
  * internal SRAM for other uses. For small, frequently-accessed buffers that
- * need fast access, consider using RAMAllocator instead.
+ * need fast access, consider using RAMAllocatorH264 instead.
  *
  * @tparam T The type of objects to allocate
  *
@@ -41,23 +41,23 @@ namespace esp_h264 {
  *
  * Example usage:
  * @code
- * #include "PSRAMAllocator.h"
+ * #include "PSRAMAllocatorH264.h"
  *
- * // Use PSRAMAllocator with std::vector for large buffers
- * std::vector<uint8_t, PSRAMAllocator<uint8_t>> largeBuffer;
+ * // Use PSRAMAllocatorH264 with std::vector for large buffers
+ * std::vector<uint8_t, PSRAMAllocatorH264<uint8_t>> largeBuffer;
  * largeBuffer.resize(1024 * 1024);  // Large buffer preferably in PSRAM
  *
  * // Or use the convenience alias
  * PSVec<uint8_t> videoFrame;    // Large video frame data in PSRAM
  * videoFrame.resize(640 * 480 * 3);
  *
- * // For small buffers in fast RAM, use RAMAllocator (separate header)
- * #include "RAMAllocator.h"
+ * // For small buffers in fast RAM, use RAMAllocatorH264 (separate header)
+ * #include "RAMAllocatorH264.h"
  * RAMVec<uint16_t> lookupTable; // Small lookup table in fast RAM
  * @endcode
  */
 template <typename T = uint8_t>
-class PSRAMAllocator {
+class PSRAMAllocatorH264 {
  public:
   /** @brief The type of objects this allocator can allocate */
   using value_type = T;
@@ -65,21 +65,21 @@ class PSRAMAllocator {
   /**
    * @brief Default constructor
    *
-   * Constructs a PSRAMAllocator. No initialization needed.
+   * Constructs a PSRAMAllocatorH264. No initialization needed.
    */
-  PSRAMAllocator() noexcept {}
+  PSRAMAllocatorH264() noexcept {}
 
   /**
    * @brief Copy constructor from different allocator type
    *
-   * Allows construction from PSRAMAllocator of different type U.
+   * Allows construction from PSRAMAllocatorH264 of different type U.
    * Required for STL allocator requirements.
    *
    * @tparam U The type parameter of the source allocator
    * @param other Source allocator (unused)
    */
   template <class U>
-  PSRAMAllocator(const PSRAMAllocator<U>&) noexcept {}
+  PSRAMAllocatorH264(const PSRAMAllocatorH264<U>&) noexcept {}
 
   /**
    * @brief Allocate memory for n objects of type T
@@ -134,32 +134,32 @@ class PSRAMAllocator {
   template <class U>
   struct rebind {
     /** @brief The rebound allocator type */
-    typedef PSRAMAllocator<U> other;
+    typedef PSRAMAllocatorH264<U> other;
   };
 };
 
 /**
- * @brief Convenience type alias for vectors using PSRAMAllocator
+ * @brief Convenience type alias for vectors using PSRAMAllocatorH264
  *
- * PSVec provides a shorter way to declare vectors that use PSRAMAllocator.
+ * PSVec provides a shorter way to declare vectors that use PSRAMAllocatorH264.
  *
  * @tparam T The element type of the vector
  *
  * Example usage:
  * @code
  * PSVec<uint8_t> buffer;  // Instead of std::vector<uint8_t,
- * PSRAMAllocator<uint8_t>> buffer.resize(1024);
+ * PSRAMAllocatorH264<uint8_t>> buffer.resize(1024);
  * @endcode
  */
 template <typename T>
-using PSVec = std::vector<T, PSRAMAllocator<T>>;
+using PSVec = std::vector<T, PSRAMAllocatorH264<T>>;
 
 }  // namespace esp_h264
 
 /**
- * @brief Equality operator for PSRAMAllocator instances
+ * @brief Equality operator for PSRAMAllocatorH264 instances
  *
- * All PSRAMAllocator instances are considered equal regardless of their
+ * All PSRAMAllocatorH264 instances are considered equal regardless of their
  * template type parameter, as required by STL allocator requirements.
  *
  * @tparam T First allocator's value type
@@ -169,15 +169,15 @@ using PSVec = std::vector<T, PSRAMAllocator<T>>;
  * @return true Always returns true
  */
 template <class T, class U>
-inline bool operator==(const esp_h264::PSRAMAllocator<T>&,
-                       const esp_h264::PSRAMAllocator<U>&) noexcept {
+inline bool operator==(const esp_h264::PSRAMAllocatorH264<T>&,
+                       const esp_h264::PSRAMAllocatorH264<U>&) noexcept {
   return true;
 }
 
 /**
- * @brief Inequality operator for PSRAMAllocator instances
+ * @brief Inequality operator for PSRAMAllocatorH264 instances
  *
- * All PSRAMAllocator instances are considered equal, so inequality
+ * All PSRAMAllocatorH264 instances are considered equal, so inequality
  * always returns false.
  *
  * @tparam T First allocator's value type
@@ -187,7 +187,7 @@ inline bool operator==(const esp_h264::PSRAMAllocator<T>&,
  * @return false Always returns false
  */
 template <class T, class U>
-inline bool operator!=(const esp_h264::PSRAMAllocator<T>&,
-                       const esp_h264::PSRAMAllocator<U>&) noexcept {
+inline bool operator!=(const esp_h264::PSRAMAllocatorH264<T>&,
+                       const esp_h264::PSRAMAllocatorH264<U>&) noexcept {
   return false;
 }
