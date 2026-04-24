@@ -1,7 +1,7 @@
 var searchData=
 [
   ['align_5fup_0',['ALIGN_UP',['../esp__h264__alloc_8h.html#aa5fa723824d7c959575be2aa4891fb87',1,'esp_h264_alloc.h']]],
-  ['allocate_1',['allocate',['../classesp__h264_1_1RAMAllocator.html#a4cc7f0a97979de2d09de195784b44474',1,'esp_h264::RAMAllocator::allocate()'],['../classesp__h264_1_1PSRAMAllocator.html#a4cc7f0a97979de2d09de195784b44474',1,'esp_h264::PSRAMAllocator::allocate()']]],
+  ['allocate_1',['allocate',['../classesp__h264_1_1RAMAllocatorH264.html#a4cc7f0a97979de2d09de195784b44474',1,'esp_h264::RAMAllocatorH264::allocate()'],['../classesp__h264_1_1PSRAMAllocatorH264.html#a4cc7f0a97979de2d09de195784b44474',1,'esp_h264::PSRAMAllocatorH264::allocate()']]],
   ['asp_5f10x11_2',['ASP_10x11',['../codec__app__def_8h.html#adbd8bd746ca63717f84667c9f0501d8ba09f79feb33a9772bed907a9c0017ca4a',1,'codec_app_def.h']]],
   ['asp_5f12x11_3',['ASP_12x11',['../codec__app__def_8h.html#adbd8bd746ca63717f84667c9f0501d8bad02b29c2a27366a9c99e0c7619c9c2c2',1,'codec_app_def.h']]],
   ['asp_5f15x11_4',['ASP_15x11',['../codec__app__def_8h.html#adbd8bd746ca63717f84667c9f0501d8ba32986323b1701efb8e6d6c99e7af8d87',1,'codec_app_def.h']]],

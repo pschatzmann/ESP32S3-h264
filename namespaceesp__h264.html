@@ -84,11 +84,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template class for capturing frames from ESP32 camera and encoding to H.264.  <a href="classesp__h264_1_1H264Encoder.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-compatible allocator that prefers PSRAM allocation with fallback.  <a href="classesp__h264_1_1PSRAMAllocator.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">PSRAMAllocatorH264</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-compatible allocator that prefers PSRAM allocation with fallback.  <a href="classesp__h264_1_1PSRAMAllocatorH264.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-compatible allocator that uses internal RAM (DRAM) allocation.  <a href="classesp__h264_1_1RAMAllocator.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1RAMAllocatorH264.html">RAMAllocatorH264</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-compatible allocator that uses internal RAM (DRAM) allocation.  <a href="classesp__h264_1_1RAMAllocatorH264.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1UDPPrint.html">UDPPrint</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Print implementation that buffers and sends data over UDP.  <a href="classesp__h264_1_1UDPPrint.html#details">More...</a><br /></td></tr>
@@ -96,153 +96,153 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a24ff6cc5137d251b55417d196177f471"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#a24ff6cc5137d251b55417d196177f471">H264DecoderPSRAM</a> = <a class="el" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt; <a class="el" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator</a>&lt; uint8_t &gt; &gt;</td></tr>
-<tr class="memdesc:a24ff6cc5137d251b55417d196177f471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for <a class="el" href="classesp__h264_1_1H264Decoder.html" title="Template class for decoding H.264 streams to raw video frames.">H264Decoder</a> using default PSRAM allocation.  <br /></td></tr>
-<tr class="separator:a24ff6cc5137d251b55417d196177f471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d7942b1c9ca97a74a6abce0d9e3f3df"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#a3d7942b1c9ca97a74a6abce0d9e3f3df">H264DecoderRAM</a> = <a class="el" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt; <a class="el" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator</a>&lt; uint8_t &gt; &gt;</td></tr>
-<tr class="memdesc:a3d7942b1c9ca97a74a6abce0d9e3f3df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for <a class="el" href="classesp__h264_1_1H264Decoder.html" title="Template class for decoding H.264 streams to raw video frames.">H264Decoder</a> using internal RAM allocation.  <br /></td></tr>
-<tr class="separator:a3d7942b1c9ca97a74a6abce0d9e3f3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49032557bd99cf01d020975dd0ec7027"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#a49032557bd99cf01d020975dd0ec7027">H264EncoderPSRAM</a> = <a class="el" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt; <a class="el" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator</a>&lt; uint8_t &gt; &gt;</td></tr>
-<tr class="memdesc:a49032557bd99cf01d020975dd0ec7027"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> using default PSRAM allocation.  <br /></td></tr>
-<tr class="separator:a49032557bd99cf01d020975dd0ec7027"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ac7efc1f5f7bfe28169496e48342ead"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#a7ac7efc1f5f7bfe28169496e48342ead">H264EncoderRAM</a> = <a class="el" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt; <a class="el" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator</a>&lt; uint8_t &gt; &gt;</td></tr>
-<tr class="memdesc:a7ac7efc1f5f7bfe28169496e48342ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> using internal RAM allocation.  <br /></td></tr>
-<tr class="separator:a7ac7efc1f5f7bfe28169496e48342ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a285401e6c529d95e541e499261b4917f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a285401e6c529d95e541e499261b4917f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#a285401e6c529d95e541e499261b4917f">PSVec</a> = std::vector&lt; T, <a class="el" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator</a>&lt; T &gt; &gt;</td></tr>
-<tr class="memdesc:a285401e6c529d95e541e499261b4917f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1PSRAMAllocator.html" title="STL-compatible allocator that prefers PSRAM allocation with fallback.">PSRAMAllocator</a>.  <br /></td></tr>
-<tr class="separator:a285401e6c529d95e541e499261b4917f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09738b82c73180ec391a9b8c13ee0f93"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a09738b82c73180ec391a9b8c13ee0f93"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#a09738b82c73180ec391a9b8c13ee0f93">RAMVec</a> = std::vector&lt; T, <a class="el" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator</a>&lt; T &gt; &gt;</td></tr>
-<tr class="memdesc:a09738b82c73180ec391a9b8c13ee0f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1RAMAllocator.html" title="STL-compatible allocator that uses internal RAM (DRAM) allocation.">RAMAllocator</a>.  <br /></td></tr>
-<tr class="separator:a09738b82c73180ec391a9b8c13ee0f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a423f6826b433118423b8764e8099c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#ab8a423f6826b433118423b8764e8099c">H264DecoderPSRAM</a> = <a class="el" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt; <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">PSRAMAllocatorH264</a>&lt; uint8_t &gt; &gt;</td></tr>
+<tr class="memdesc:ab8a423f6826b433118423b8764e8099c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for <a class="el" href="classesp__h264_1_1H264Decoder.html" title="Template class for decoding H.264 streams to raw video frames.">H264Decoder</a> using default PSRAM allocation.  <br /></td></tr>
+<tr class="separator:ab8a423f6826b433118423b8764e8099c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa9cd59419d738f1b0b15d6e52322b4b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#afa9cd59419d738f1b0b15d6e52322b4b">H264DecoderRAM</a> = <a class="el" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt; <a class="el" href="classesp__h264_1_1RAMAllocatorH264.html">RAMAllocatorH264</a>&lt; uint8_t &gt; &gt;</td></tr>
+<tr class="memdesc:afa9cd59419d738f1b0b15d6e52322b4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for <a class="el" href="classesp__h264_1_1H264Decoder.html" title="Template class for decoding H.264 streams to raw video frames.">H264Decoder</a> using internal RAM allocation.  <br /></td></tr>
+<tr class="separator:afa9cd59419d738f1b0b15d6e52322b4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e2357c8c76652dd12ec270972a30a1d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#a1e2357c8c76652dd12ec270972a30a1d">H264EncoderPSRAM</a> = <a class="el" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt; <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">PSRAMAllocatorH264</a>&lt; uint8_t &gt; &gt;</td></tr>
+<tr class="memdesc:a1e2357c8c76652dd12ec270972a30a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> using default PSRAM allocation.  <br /></td></tr>
+<tr class="separator:a1e2357c8c76652dd12ec270972a30a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2165e48f01f4543729495135bddacca"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#ae2165e48f01f4543729495135bddacca">H264EncoderRAM</a> = <a class="el" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt; <a class="el" href="classesp__h264_1_1RAMAllocatorH264.html">RAMAllocatorH264</a>&lt; uint8_t &gt; &gt;</td></tr>
+<tr class="memdesc:ae2165e48f01f4543729495135bddacca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias for <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> using internal RAM allocation.  <br /></td></tr>
+<tr class="separator:ae2165e48f01f4543729495135bddacca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e2073337c7bba732c5ff9b6033600a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ac5e2073337c7bba732c5ff9b6033600a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#ac5e2073337c7bba732c5ff9b6033600a">PSVec</a> = std::vector&lt; T, <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">PSRAMAllocatorH264</a>&lt; T &gt; &gt;</td></tr>
+<tr class="memdesc:ac5e2073337c7bba732c5ff9b6033600a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html" title="STL-compatible allocator that prefers PSRAM allocation with fallback.">PSRAMAllocatorH264</a>.  <br /></td></tr>
+<tr class="separator:ac5e2073337c7bba732c5ff9b6033600a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59bd799b8d89d81f287cc56dc0ca3b66"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a59bd799b8d89d81f287cc56dc0ca3b66"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#a59bd799b8d89d81f287cc56dc0ca3b66">RAMVec</a> = std::vector&lt; T, <a class="el" href="classesp__h264_1_1RAMAllocatorH264.html">RAMAllocatorH264</a>&lt; T &gt; &gt;</td></tr>
+<tr class="memdesc:a59bd799b8d89d81f287cc56dc0ca3b66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1RAMAllocatorH264.html" title="STL-compatible allocator that uses internal RAM (DRAM) allocation.">RAMAllocatorH264</a>.  <br /></td></tr>
+<tr class="separator:a59bd799b8d89d81f287cc56dc0ca3b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="a24ff6cc5137d251b55417d196177f471" name="a24ff6cc5137d251b55417d196177f471"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24ff6cc5137d251b55417d196177f471">&#9670;&#160;</a></span>H264DecoderPSRAM</h2>
+<a id="ab8a423f6826b433118423b8764e8099c" name="ab8a423f6826b433118423b8764e8099c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8a423f6826b433118423b8764e8099c">&#9670;&#160;</a></span>H264DecoderPSRAM</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceesp__h264.html#a24ff6cc5137d251b55417d196177f471">H264DecoderPSRAM</a> =  <a class="el" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt;<a class="el" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator</a>&lt;uint8_t&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespaceesp__h264.html#ab8a423f6826b433118423b8764e8099c">H264DecoderPSRAM</a> =  <a class="el" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt;<a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">PSRAMAllocatorH264</a>&lt;uint8_t&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Type alias for <a class="el" href="classesp__h264_1_1H264Decoder.html" title="Template class for decoding H.264 streams to raw video frames.">H264Decoder</a> using default PSRAM allocation. </p>
-<p>Provides a simpler way to declare <a class="el" href="classesp__h264_1_1H264Decoder.html" title="Template class for decoding H.264 streams to raw video frames.">H264Decoder</a> instances without specifying the allocator template parameter. Uses PSRAMAllocator&lt;uint8_t&gt; by default.</p>
-<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Decoder.html">H264DecoderPSRAM</a> decoder(&amp;udp);  <span class="comment">// Instead of H264Decoder&lt;PSRAMAllocator&lt;uint8_t&gt;&gt;</span></div>
+<p>Provides a simpler way to declare <a class="el" href="classesp__h264_1_1H264Decoder.html" title="Template class for decoding H.264 streams to raw video frames.">H264Decoder</a> instances without specifying the allocator template parameter. Uses PSRAMAllocatorH264&lt;uint8_t&gt; by default.</p>
+<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Decoder.html">H264DecoderPSRAM</a> decoder(&amp;udp);  <span class="comment">// Instead of H264Decoder&lt;PSRAMAllocatorH264&lt;uint8_t&gt;&gt;</span></div>
 <div class="ttc" id="aclassesp__h264_1_1H264Decoder_html"><div class="ttname"><a href="classesp__h264_1_1H264Decoder.html">esp_h264::H264Decoder</a></div><div class="ttdoc">Template class for decoding H.264 streams to raw video frames.</div><div class="ttdef"><b>Definition:</b> H264Decoder.h:78</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a3d7942b1c9ca97a74a6abce0d9e3f3df" name="a3d7942b1c9ca97a74a6abce0d9e3f3df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d7942b1c9ca97a74a6abce0d9e3f3df">&#9670;&#160;</a></span>H264DecoderRAM</h2>
+<a id="afa9cd59419d738f1b0b15d6e52322b4b" name="afa9cd59419d738f1b0b15d6e52322b4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa9cd59419d738f1b0b15d6e52322b4b">&#9670;&#160;</a></span>H264DecoderRAM</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceesp__h264.html#a3d7942b1c9ca97a74a6abce0d9e3f3df">H264DecoderRAM</a> =  <a class="el" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt;<a class="el" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator</a>&lt;uint8_t&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespaceesp__h264.html#afa9cd59419d738f1b0b15d6e52322b4b">H264DecoderRAM</a> =  <a class="el" href="classesp__h264_1_1H264Decoder.html">H264Decoder</a>&lt;<a class="el" href="classesp__h264_1_1RAMAllocatorH264.html">RAMAllocatorH264</a>&lt;uint8_t&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Type alias for <a class="el" href="classesp__h264_1_1H264Decoder.html" title="Template class for decoding H.264 streams to raw video frames.">H264Decoder</a> using internal RAM allocation. </p>
 <p>Provides a simpler way to declare <a class="el" href="classesp__h264_1_1H264Decoder.html" title="Template class for decoding H.264 streams to raw video frames.">H264Decoder</a> instances that use fast internal RAM instead of external PSRAM.</p>
-<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Decoder.html">H264DecoderRAM</a> decoder(&amp;udp);   <span class="comment">// Instead of H264Decoder&lt;RAMAllocator&lt;uint8_t&gt;&gt;</span></div>
+<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Decoder.html">H264DecoderRAM</a> decoder(&amp;udp);   <span class="comment">// Instead of H264Decoder&lt;RAMAllocatorH264&lt;uint8_t&gt;&gt;</span></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a49032557bd99cf01d020975dd0ec7027" name="a49032557bd99cf01d020975dd0ec7027"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49032557bd99cf01d020975dd0ec7027">&#9670;&#160;</a></span>H264EncoderPSRAM</h2>
+<a id="a1e2357c8c76652dd12ec270972a30a1d" name="a1e2357c8c76652dd12ec270972a30a1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e2357c8c76652dd12ec270972a30a1d">&#9670;&#160;</a></span>H264EncoderPSRAM</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceesp__h264.html#a49032557bd99cf01d020975dd0ec7027">H264EncoderPSRAM</a> =  <a class="el" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt;<a class="el" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator</a>&lt;uint8_t&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespaceesp__h264.html#a1e2357c8c76652dd12ec270972a30a1d">H264EncoderPSRAM</a> =  <a class="el" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt;<a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">PSRAMAllocatorH264</a>&lt;uint8_t&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Type alias for <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> using default PSRAM allocation. </p>
-<p>Provides a simpler way to declare <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> instances without specifying the allocator template parameter. Uses PSRAMAllocator&lt;uint8_t&gt; by default.</p>
-<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264EncoderPSRAM</a> encoder;  <span class="comment">// Instead of H264Encoder&lt;PSRAMAllocator&lt;uint8_t&gt;&gt;</span></div>
+<p>Provides a simpler way to declare <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> instances without specifying the allocator template parameter. Uses PSRAMAllocatorH264&lt;uint8_t&gt; by default.</p>
+<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264EncoderPSRAM</a> encoder;  <span class="comment">// Instead of H264Encoder&lt;PSRAMAllocatorH264&lt;uint8_t&gt;&gt;</span></div>
 <div class="ttc" id="aclassesp__h264_1_1H264Encoder_html"><div class="ttname"><a href="classesp__h264_1_1H264Encoder.html">esp_h264::H264Encoder</a></div><div class="ttdoc">Template class for capturing frames from ESP32 camera and encoding to H.264.</div><div class="ttdef"><b>Definition:</b> H264Encoder.h:79</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a7ac7efc1f5f7bfe28169496e48342ead" name="a7ac7efc1f5f7bfe28169496e48342ead"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ac7efc1f5f7bfe28169496e48342ead">&#9670;&#160;</a></span>H264EncoderRAM</h2>
+<a id="ae2165e48f01f4543729495135bddacca" name="ae2165e48f01f4543729495135bddacca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2165e48f01f4543729495135bddacca">&#9670;&#160;</a></span>H264EncoderRAM</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceesp__h264.html#a7ac7efc1f5f7bfe28169496e48342ead">H264EncoderRAM</a> =  <a class="el" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt;<a class="el" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator</a>&lt;uint8_t&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespaceesp__h264.html#ae2165e48f01f4543729495135bddacca">H264EncoderRAM</a> =  <a class="el" href="classesp__h264_1_1H264Encoder.html">H264Encoder</a>&lt;<a class="el" href="classesp__h264_1_1RAMAllocatorH264.html">RAMAllocatorH264</a>&lt;uint8_t&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Type alias for <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> using internal RAM allocation. </p>
 <p>Provides a simpler way to declare <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> instances that use fast internal RAM instead of external PSRAM.</p>
-<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264EncoderRAM</a> encoder;   <span class="comment">// Instead of H264Encoder&lt;RAMAllocator&lt;uint8_t&gt;&gt;</span></div>
+<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264EncoderRAM</a> encoder;   <span class="comment">// Instead of H264Encoder&lt;RAMAllocatorH264&lt;uint8_t&gt;&gt;</span></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a285401e6c529d95e541e499261b4917f" name="a285401e6c529d95e541e499261b4917f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a285401e6c529d95e541e499261b4917f">&#9670;&#160;</a></span>PSVec</h2>
+<a id="ac5e2073337c7bba732c5ff9b6033600a" name="ac5e2073337c7bba732c5ff9b6033600a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5e2073337c7bba732c5ff9b6033600a">&#9670;&#160;</a></span>PSVec</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceesp__h264.html#a285401e6c529d95e541e499261b4917f">PSVec</a> =  std::vector&lt;T, <a class="el" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator</a>&lt;T&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespaceesp__h264.html#ac5e2073337c7bba732c5ff9b6033600a">PSVec</a> =  std::vector&lt;T, <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">PSRAMAllocatorH264</a>&lt;T&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1PSRAMAllocator.html" title="STL-compatible allocator that prefers PSRAM allocation with fallback.">PSRAMAllocator</a>. </p>
-<p>PSVec provides a shorter way to declare vectors that use <a class="el" href="classesp__h264_1_1PSRAMAllocator.html" title="STL-compatible allocator that prefers PSRAM allocation with fallback.">PSRAMAllocator</a>.</p>
+<p>Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html" title="STL-compatible allocator that prefers PSRAM allocation with fallback.">PSRAMAllocatorH264</a>. </p>
+<p>PSVec provides a shorter way to declare vectors that use <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html" title="STL-compatible allocator that prefers PSRAM allocation with fallback.">PSRAMAllocatorH264</a>.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>The element type of the vector</td></tr>
   </table>
   </dd>
 </dl>
-<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="namespaceesp__h264.html#a285401e6c529d95e541e499261b4917f">PSVec&lt;uint8_t&gt;</a> buffer;  <span class="comment">// Instead of std::vector&lt;uint8_t,</span></div>
-<div class="line"><a class="code hl_class" href="classesp__h264_1_1PSRAMAllocator.html">PSRAMAllocator&lt;uint8_t&gt;</a>&gt; buffer.resize(1024);</div>
-<div class="ttc" id="aclassesp__h264_1_1PSRAMAllocator_html"><div class="ttname"><a href="classesp__h264_1_1PSRAMAllocator.html">esp_h264::PSRAMAllocator</a></div><div class="ttdoc">STL-compatible allocator that prefers PSRAM allocation with fallback.</div><div class="ttdef"><b>Definition:</b> PSRAMAllocator.h:60</div></div>
-<div class="ttc" id="anamespaceesp__h264_html_a285401e6c529d95e541e499261b4917f"><div class="ttname"><a href="namespaceesp__h264.html#a285401e6c529d95e541e499261b4917f">esp_h264::PSVec</a></div><div class="ttdeci">std::vector&lt; T, PSRAMAllocator&lt; T &gt; &gt; PSVec</div><div class="ttdoc">Convenience type alias for vectors using PSRAMAllocator.</div><div class="ttdef"><b>Definition:</b> PSRAMAllocator.h:155</div></div>
+<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="namespaceesp__h264.html#ac5e2073337c7bba732c5ff9b6033600a">PSVec&lt;uint8_t&gt;</a> buffer;  <span class="comment">// Instead of std::vector&lt;uint8_t,</span></div>
+<div class="line"><a class="code hl_class" href="classesp__h264_1_1PSRAMAllocatorH264.html">PSRAMAllocatorH264&lt;uint8_t&gt;</a>&gt; buffer.resize(1024);</div>
+<div class="ttc" id="aclassesp__h264_1_1PSRAMAllocatorH264_html"><div class="ttname"><a href="classesp__h264_1_1PSRAMAllocatorH264.html">esp_h264::PSRAMAllocatorH264</a></div><div class="ttdoc">STL-compatible allocator that prefers PSRAM allocation with fallback.</div><div class="ttdef"><b>Definition:</b> PSRAMAllocatorH264.h:60</div></div>
+<div class="ttc" id="anamespaceesp__h264_html_ac5e2073337c7bba732c5ff9b6033600a"><div class="ttname"><a href="namespaceesp__h264.html#ac5e2073337c7bba732c5ff9b6033600a">esp_h264::PSVec</a></div><div class="ttdeci">std::vector&lt; T, PSRAMAllocatorH264&lt; T &gt; &gt; PSVec</div><div class="ttdoc">Convenience type alias for vectors using PSRAMAllocatorH264.</div><div class="ttdef"><b>Definition:</b> PSRAMAllocatorH264.h:155</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a09738b82c73180ec391a9b8c13ee0f93" name="a09738b82c73180ec391a9b8c13ee0f93"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09738b82c73180ec391a9b8c13ee0f93">&#9670;&#160;</a></span>RAMVec</h2>
+<a id="a59bd799b8d89d81f287cc56dc0ca3b66" name="a59bd799b8d89d81f287cc56dc0ca3b66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59bd799b8d89d81f287cc56dc0ca3b66">&#9670;&#160;</a></span>RAMVec</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceesp__h264.html#a09738b82c73180ec391a9b8c13ee0f93">RAMVec</a> =  std::vector&lt;T, <a class="el" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator</a>&lt;T&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespaceesp__h264.html#a59bd799b8d89d81f287cc56dc0ca3b66">RAMVec</a> =  std::vector&lt;T, <a class="el" href="classesp__h264_1_1RAMAllocatorH264.html">RAMAllocatorH264</a>&lt;T&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1RAMAllocator.html" title="STL-compatible allocator that uses internal RAM (DRAM) allocation.">RAMAllocator</a>. </p>
-<p>RAMVec provides a shorter way to declare vectors that use <a class="el" href="classesp__h264_1_1RAMAllocator.html" title="STL-compatible allocator that uses internal RAM (DRAM) allocation.">RAMAllocator</a>.</p>
+<p>Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1RAMAllocatorH264.html" title="STL-compatible allocator that uses internal RAM (DRAM) allocation.">RAMAllocatorH264</a>. </p>
+<p>RAMVec provides a shorter way to declare vectors that use <a class="el" href="classesp__h264_1_1RAMAllocatorH264.html" title="STL-compatible allocator that uses internal RAM (DRAM) allocation.">RAMAllocatorH264</a>.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>The element type of the vector</td></tr>
   </table>
   </dd>
 </dl>
-<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="namespaceesp__h264.html#a09738b82c73180ec391a9b8c13ee0f93">RAMVec&lt;uint32_t&gt;</a> buffer;  <span class="comment">// Instead of std::vector&lt;uint32_t,</span></div>
-<div class="line"><a class="code hl_class" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator&lt;uint32_t&gt;</a>&gt; buffer.resize(256);</div>
-<div class="ttc" id="aclassesp__h264_1_1RAMAllocator_html"><div class="ttname"><a href="classesp__h264_1_1RAMAllocator.html">esp_h264::RAMAllocator</a></div><div class="ttdoc">STL-compatible allocator that uses internal RAM (DRAM) allocation.</div><div class="ttdef"><b>Definition:</b> RAMAllocator.h:55</div></div>
-<div class="ttc" id="anamespaceesp__h264_html_a09738b82c73180ec391a9b8c13ee0f93"><div class="ttname"><a href="namespaceesp__h264.html#a09738b82c73180ec391a9b8c13ee0f93">esp_h264::RAMVec</a></div><div class="ttdeci">std::vector&lt; T, RAMAllocator&lt; T &gt; &gt; RAMVec</div><div class="ttdoc">Convenience type alias for vectors using RAMAllocator.</div><div class="ttdef"><b>Definition:</b> RAMAllocator.h:150</div></div>
+<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_typedef" href="namespaceesp__h264.html#a59bd799b8d89d81f287cc56dc0ca3b66">RAMVec&lt;uint32_t&gt;</a> buffer;  <span class="comment">// Instead of std::vector&lt;uint32_t,</span></div>
+<div class="line"><a class="code hl_class" href="classesp__h264_1_1RAMAllocatorH264.html">RAMAllocatorH264&lt;uint32_t&gt;</a>&gt; buffer.resize(256);</div>
+<div class="ttc" id="aclassesp__h264_1_1RAMAllocatorH264_html"><div class="ttname"><a href="classesp__h264_1_1RAMAllocatorH264.html">esp_h264::RAMAllocatorH264</a></div><div class="ttdoc">STL-compatible allocator that uses internal RAM (DRAM) allocation.</div><div class="ttdef"><b>Definition:</b> RAMAllocatorH264.h:55</div></div>
+<div class="ttc" id="anamespaceesp__h264_html_a59bd799b8d89d81f287cc56dc0ca3b66"><div class="ttname"><a href="namespaceesp__h264.html#a59bd799b8d89d81f287cc56dc0ca3b66">esp_h264::RAMVec</a></div><div class="ttdeci">std::vector&lt; T, RAMAllocatorH264&lt; T &gt; &gt; RAMVec</div><div class="ttdoc">Convenience type alias for vectors using RAMAllocatorH264.</div><div class="ttdef"><b>Definition:</b> RAMAllocatorH264.h:150</div></div>
 </div><!-- fragment --> 
 </div>
 </div>

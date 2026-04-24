@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['deallocate_0',['deallocate',['../classesp__h264_1_1RAMAllocator.html#add772824b463abc65c190e2b503b74a9',1,'esp_h264::RAMAllocator::deallocate()'],['../classesp__h264_1_1PSRAMAllocator.html#add772824b463abc65c190e2b503b74a9',1,'esp_h264::PSRAMAllocator::deallocate()']]],
+  ['deallocate_0',['deallocate',['../classesp__h264_1_1RAMAllocatorH264.html#add772824b463abc65c190e2b503b74a9',1,'esp_h264::RAMAllocatorH264::deallocate()'],['../classesp__h264_1_1PSRAMAllocatorH264.html#add772824b463abc65c190e2b503b74a9',1,'esp_h264::PSRAMAllocatorH264::deallocate()']]],
   ['deblocking_5fidc_5f0_1',['DEBLOCKING_IDC_0',['../codec__def_8h.html#a99fb83031ce9923c84392b4e92f956b5acf8156db50770c7608c7be33f989d265',1,'codec_def.h']]],
   ['deblocking_5fidc_5f1_2',['DEBLOCKING_IDC_1',['../codec__def_8h.html#a99fb83031ce9923c84392b4e92f956b5ae9019efa7d8d9beb85d3048e52218f78',1,'codec_def.h']]],
   ['deblocking_5fidc_5f2_3',['DEBLOCKING_IDC_2',['../codec__def_8h.html#a99fb83031ce9923c84392b4e92f956b5a5f648051e92dd73b067642f9f988c1c5',1,'codec_def.h']]],

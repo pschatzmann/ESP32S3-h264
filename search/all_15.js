@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['value_5ftype_0',['value_type',['../classesp__h264_1_1RAMAllocator.html#afb9ded5f49336ae503bb9f2035ea902b',1,'esp_h264::RAMAllocator::value_type()'],['../classesp__h264_1_1PSRAMAllocator.html#afb9ded5f49336ae503bb9f2035ea902b',1,'esp_h264::PSRAMAllocator::value_type()']]],
+  ['value_5ftype_0',['value_type',['../classesp__h264_1_1RAMAllocatorH264.html#afb9ded5f49336ae503bb9f2035ea902b',1,'esp_h264::RAMAllocatorH264::value_type()'],['../classesp__h264_1_1PSRAMAllocatorH264.html#afb9ded5f49336ae503bb9f2035ea902b',1,'esp_h264::PSRAMAllocatorH264::value_type()']]],
   ['vf_5fcomponent_1',['VF_COMPONENT',['../codec__app__def_8h.html#a37333a61eef415466eaa46302466119ca682f9e99e32961c83f2d64cb6211fae7',1,'codec_app_def.h']]],
   ['vf_5fmac_2',['VF_MAC',['../codec__app__def_8h.html#a37333a61eef415466eaa46302466119ca0295b15275601926b164391fa4eaf92c',1,'codec_app_def.h']]],
   ['vf_5fntsc_3',['VF_NTSC',['../codec__app__def_8h.html#a37333a61eef415466eaa46302466119cae10f0ebae34b1bb1cf74780267198640',1,'codec_app_def.h']]],

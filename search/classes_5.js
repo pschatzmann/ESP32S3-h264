@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['psramallocator_0',['PSRAMAllocator',['../classesp__h264_1_1PSRAMAllocator.html',1,'esp_h264']]]
+  ['psramallocatorh264_0',['PSRAMAllocatorH264',['../classesp__h264_1_1PSRAMAllocatorH264.html',1,'esp_h264']]]
 ];

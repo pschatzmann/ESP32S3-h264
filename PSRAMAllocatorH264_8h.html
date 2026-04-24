@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ESP32S3-H264 Codec: src/RAMAllocator.h File Reference</title>
+<title>ESP32S3-H264 Codec: src/PSRAMAllocatorH264.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,11 +78,11 @@ $(function() {
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">RAMAllocator.h File Reference</div></div>
+  <div class="headertitle"><div class="title">PSRAMAllocatorH264.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Header-only C++ allocator that uses internal RAM (DRAM) on ESP32.  
+<p>Header-only C++ allocator that prefers PSRAM allocation on ESP32.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdlib&gt;</code><br />
@@ -93,11 +93,11 @@ $(function() {
 <code>#include &quot;<a class="el" href="H264Config_8h_source.html">H264Config.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="esp__h264__alloc_8h_source.html">h264/esp_h264_alloc.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
-Include dependency graph for RAMAllocator.h:</div>
+Include dependency graph for PSRAMAllocatorH264.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="RAMAllocator_8h__incl.png" border="0" usemap="#asrc_2RAMAllocator_8h" alt=""/></div>
-<map name="asrc_2RAMAllocator_8h" id="asrc_2RAMAllocator_8h">
-<area shape="rect" title="Header&#45;only C++ allocator that uses internal RAM (DRAM) on ESP32." alt="" coords="281,5,425,31"/>
+<div class="center"><img src="PSRAMAllocatorH264_8h__incl.png" border="0" usemap="#asrc_2PSRAMAllocatorH264_8h" alt=""/></div>
+<map name="asrc_2PSRAMAllocatorH264_8h" id="asrc_2PSRAMAllocatorH264_8h">
+<area shape="rect" title="Header&#45;only C++ allocator that prefers PSRAM allocation on ESP32." alt="" coords="255,5,450,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,76,104"/>
 <area shape="rect" title=" " alt="" coords="100,79,165,104"/>
 <area shape="rect" title=" " alt="" coords="190,79,257,104"/>
@@ -114,23 +114,23 @@ Include dependency graph for RAMAllocator.h:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="RAMAllocator_8h__dep__incl.png" border="0" usemap="#asrc_2RAMAllocator_8hdep" alt=""/></div>
-<map name="asrc_2RAMAllocator_8hdep" id="asrc_2RAMAllocator_8hdep">
-<area shape="rect" title="Header&#45;only C++ allocator that uses internal RAM (DRAM) on ESP32." alt="" coords="89,5,233,31"/>
+<div class="center"><img src="PSRAMAllocatorH264_8h__dep__incl.png" border="0" usemap="#asrc_2PSRAMAllocatorH264_8hdep" alt=""/></div>
+<map name="asrc_2PSRAMAllocatorH264_8hdep" id="asrc_2PSRAMAllocatorH264_8hdep">
+<area shape="rect" title="Header&#45;only C++ allocator that prefers PSRAM allocation on ESP32." alt="" coords="64,5,259,31"/>
 <area shape="rect" href="H264Decoder_8h.html" title="ESP32&#45;S3 H.264 Decoder with Stream Input Support." alt="" coords="5,79,149,104"/>
 <area shape="rect" href="H264Encoder_8h.html" title="Header&#45;only helper to capture frames from ESP32 camera and encode to H.264." alt="" coords="174,79,317,104"/>
 </map>
 </div>
 </div>
-<p><a href="RAMAllocator_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="PSRAMAllocatorH264_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1RAMAllocator.html">RAMAllocator&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-compatible allocator that uses internal RAM (DRAM) allocation.  <a href="classesp__h264_1_1RAMAllocator.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">PSRAMAllocatorH264&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-compatible allocator that prefers PSRAM allocation with fallback.  <a href="classesp__h264_1_1PSRAMAllocatorH264.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1RAMAllocator_1_1rebind.html">RAMAllocator&lt; T &gt;::rebind&lt; U &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebind allocator to different type.  <a href="structesp__h264_1_1RAMAllocator_1_1rebind.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1PSRAMAllocatorH264_1_1rebind.html">PSRAMAllocatorH264&lt; T &gt;::rebind&lt; U &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebind allocator to different type.  <a href="structesp__h264_1_1PSRAMAllocatorH264_1_1rebind.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -140,27 +140,27 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a09738b82c73180ec391a9b8c13ee0f93"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a09738b82c73180ec391a9b8c13ee0f93"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#a09738b82c73180ec391a9b8c13ee0f93">RAMVec</a> = std::vector&lt; T, RAMAllocator&lt; T &gt; &gt;</td></tr>
-<tr class="memdesc:a09738b82c73180ec391a9b8c13ee0f93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1RAMAllocator.html" title="STL-compatible allocator that uses internal RAM (DRAM) allocation.">RAMAllocator</a>.  <br /></td></tr>
-<tr class="separator:a09738b82c73180ec391a9b8c13ee0f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e2073337c7bba732c5ff9b6033600a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ac5e2073337c7bba732c5ff9b6033600a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceesp__h264.html#ac5e2073337c7bba732c5ff9b6033600a">PSVec</a> = std::vector&lt; T, PSRAMAllocatorH264&lt; T &gt; &gt;</td></tr>
+<tr class="memdesc:ac5e2073337c7bba732c5ff9b6033600a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience type alias for vectors using <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html" title="STL-compatible allocator that prefers PSRAM allocation with fallback.">PSRAMAllocatorH264</a>.  <br /></td></tr>
+<tr class="separator:ac5e2073337c7bba732c5ff9b6033600a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a866d1b5efc2e6086bfe6f07760994b66"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
-<tr class="memitem:a866d1b5efc2e6086bfe6f07760994b66"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="RAMAllocator_8h.html#a866d1b5efc2e6086bfe6f07760994b66">operator==</a> (const <a class="el" href="classesp__h264_1_1RAMAllocator.html">esp_h264::RAMAllocator</a>&lt; T &gt; &amp;, const <a class="el" href="classesp__h264_1_1RAMAllocator.html">esp_h264::RAMAllocator</a>&lt; U &gt; &amp;) noexcept</td></tr>
-<tr class="memdesc:a866d1b5efc2e6086bfe6f07760994b66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator for RAMAllocator instances.  <br /></td></tr>
-<tr class="separator:a866d1b5efc2e6086bfe6f07760994b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1b8f56de1e0732afe24caf49c9f1ccf"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
-<tr class="memitem:af1b8f56de1e0732afe24caf49c9f1ccf"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="RAMAllocator_8h.html#af1b8f56de1e0732afe24caf49c9f1ccf">operator!=</a> (const <a class="el" href="classesp__h264_1_1RAMAllocator.html">esp_h264::RAMAllocator</a>&lt; T &gt; &amp;, const <a class="el" href="classesp__h264_1_1RAMAllocator.html">esp_h264::RAMAllocator</a>&lt; U &gt; &amp;) noexcept</td></tr>
-<tr class="memdesc:af1b8f56de1e0732afe24caf49c9f1ccf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inequality operator for RAMAllocator instances.  <br /></td></tr>
-<tr class="separator:af1b8f56de1e0732afe24caf49c9f1ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d51d9afeb84d5a709e7eaac271fb461"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
+<tr class="memitem:a5d51d9afeb84d5a709e7eaac271fb461"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="PSRAMAllocatorH264_8h.html#a5d51d9afeb84d5a709e7eaac271fb461">operator==</a> (const <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">esp_h264::PSRAMAllocatorH264</a>&lt; T &gt; &amp;, const <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">esp_h264::PSRAMAllocatorH264</a>&lt; U &gt; &amp;) noexcept</td></tr>
+<tr class="memdesc:a5d51d9afeb84d5a709e7eaac271fb461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator for PSRAMAllocatorH264 instances.  <br /></td></tr>
+<tr class="separator:a5d51d9afeb84d5a709e7eaac271fb461"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c9319da13cf43d7ab7784a633495b85"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
+<tr class="memitem:a1c9319da13cf43d7ab7784a633495b85"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="PSRAMAllocatorH264_8h.html#a1c9319da13cf43d7ab7784a633495b85">operator!=</a> (const <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">esp_h264::PSRAMAllocatorH264</a>&lt; T &gt; &amp;, const <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">esp_h264::PSRAMAllocatorH264</a>&lt; U &gt; &amp;) noexcept</td></tr>
+<tr class="memdesc:a1c9319da13cf43d7ab7784a633495b85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inequality operator for PSRAMAllocatorH264 instances.  <br /></td></tr>
+<tr class="separator:a1c9319da13cf43d7ab7784a633495b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Header-only C++ allocator that uses internal RAM (DRAM) on ESP32. </p>
+<div class="textblock"><p>Header-only C++ allocator that prefers PSRAM allocation on ESP32. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="af1b8f56de1e0732afe24caf49c9f1ccf" name="af1b8f56de1e0732afe24caf49c9f1ccf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1b8f56de1e0732afe24caf49c9f1ccf">&#9670;&#160;</a></span>operator!=()</h2>
+<a id="a1c9319da13cf43d7ab7784a633495b85" name="a1c9319da13cf43d7ab7784a633495b85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c9319da13cf43d7ab7784a633495b85">&#9670;&#160;</a></span>operator!=()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,13 +171,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">bool operator!= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classesp__h264_1_1RAMAllocator.html">esp_h264::RAMAllocator</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">esp_h264::PSRAMAllocatorH264</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classesp__h264_1_1RAMAllocator.html">esp_h264::RAMAllocator</a>&lt; U &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">esp_h264::PSRAMAllocatorH264</a>&lt; U &gt; &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -193,8 +193,8 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Inequality operator for RAMAllocator instances. </p>
-<p>All RAMAllocator instances are considered equal, so inequality always returns false.</p>
+<p>Inequality operator for PSRAMAllocatorH264 instances. </p>
+<p>All PSRAMAllocatorH264 instances are considered equal, so inequality always returns false.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>First allocator's value type </td></tr>
@@ -213,8 +213,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a866d1b5efc2e6086bfe6f07760994b66" name="a866d1b5efc2e6086bfe6f07760994b66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a866d1b5efc2e6086bfe6f07760994b66">&#9670;&#160;</a></span>operator==()</h2>
+<a id="a5d51d9afeb84d5a709e7eaac271fb461" name="a5d51d9afeb84d5a709e7eaac271fb461"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d51d9afeb84d5a709e7eaac271fb461">&#9670;&#160;</a></span>operator==()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,13 +225,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">bool operator== </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classesp__h264_1_1RAMAllocator.html">esp_h264::RAMAllocator</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">esp_h264::PSRAMAllocatorH264</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classesp__h264_1_1RAMAllocator.html">esp_h264::RAMAllocator</a>&lt; U &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classesp__h264_1_1PSRAMAllocatorH264.html">esp_h264::PSRAMAllocatorH264</a>&lt; U &gt; &amp;&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -247,8 +247,8 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Equality operator for RAMAllocator instances. </p>
-<p>All RAMAllocator instances are considered equal regardless of their template type parameter, as required by STL allocator requirements.</p>
+<p>Equality operator for PSRAMAllocatorH264 instances. </p>
+<p>All PSRAMAllocatorH264 instances are considered equal regardless of their template type parameter, as required by STL allocator requirements.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>First allocator's value type </td></tr>
