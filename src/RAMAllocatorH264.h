@@ -96,7 +96,7 @@ class RAMAllocatorH264 {
     if (n == 0) return nullptr;
     uint32_t actual_size = 0;
     void* p = esp_h264_aligned_calloc(
-        16, 1, n * sizeof(T), &actual_size, (uint32_t)MALLOC_CAP_INTERNAL);
+      16, n, sizeof(T), &actual_size, (uint32_t)MALLOC_CAP_INTERNAL);
     assert(p != nullptr);
     return static_cast<T*>(p);
   }

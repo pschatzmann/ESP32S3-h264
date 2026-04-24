@@ -391,9 +391,6 @@ class H264Encoder {
     out_frame.raw_data.buffer = out_buf_.data();
     out_frame.raw_data.len = out_buf_.size();
 
-    // Zero out the output buffer before encoding for diagnostics
-    memset(out_buf_.data(), 0xAA, out_buf_.size());
-
     ESP_LOGD(
         TAG,
         "Starting encoding: input size=%u bytes, output buffer size=%u bytes",
@@ -405,31 +402,10 @@ class H264Encoder {
       return false;
     }
 
-    if (out_frame.raw_data.len == out_buf_.size()) {
-      // Ugly Hack: Find the actual end of the encoded data by looking for
-      // trailing 0xAA bytes
-      size_t end = out_frame.raw_data.len;
-      for (int j = out_frame.raw_data.len; j > 0 && out_buf_[j - 1] == 0xAA; --j) {
-        end = j - 1;
-      }
-      ESP_LOGW(TAG,
-               "Encoding succeeded: output size=%u bytes, frame type=%d, found "
-               "end at %u",
-               (unsigned)out_frame.raw_data.len, out_frame.frame_type,
-               (unsigned)end);
-
-      out_frame.raw_data.len = end;
-    } else {
-      ESP_LOGD(TAG,
-               "Encoding succeeded: output size=%u bytes, frame type=%d",
-               (unsigned int)out_frame.raw_data.len,
-               out_frame.frame_type);
-    }
-
     size_t written = 0;
-    if (out_frame.raw_data.len > 0) {
+    if (out_frame.length > 0) {
       const uint8_t* buf = out_frame.raw_data.buffer;
-      size_t to_write = out_frame.raw_data.len;
+      size_t to_write = out_frame.length;
       const int max_retries = 5;
       int attempts = 0;
       while (written < to_write && attempts < max_retries) {
@@ -450,7 +426,7 @@ class H264Encoder {
       }
     }
     ESP_LOGI(TAG, "Encoded frame: i420=%u bytes, h264=%u bytes",
-             (unsigned)in_frame.raw_data.len, (unsigned)out_frame.raw_data.len);
+             (unsigned)in_frame.raw_data.len, (unsigned)out_frame.length);
 
     return (r == ESP_H264_ERR_OK);
   }
