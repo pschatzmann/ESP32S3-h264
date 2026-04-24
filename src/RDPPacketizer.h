@@ -82,6 +82,7 @@ class RDPPacketizer : public Print {
 
   std::vector<uint8_t> sps_;
   std::vector<uint8_t> pps_;
+  const char* TAG = "RDPPacketizer";
 
   // -------------------------
   // RTP send helpers
