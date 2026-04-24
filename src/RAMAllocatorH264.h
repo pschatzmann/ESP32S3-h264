@@ -5,7 +5,6 @@
  * @brief Header-only C++ allocator that uses internal RAM (DRAM) on ESP32
  */
 
-#include <cstddef>
 #include <cstdlib>
 #include <cstring>
 #include <new>
@@ -116,7 +115,7 @@ class RAMAllocatorH264 {
    */
   void deallocate(T* p, std::size_t /*n*/) noexcept {
     if (!p) return;
-    esp_h264_free_internal(p);
+    esp_h264_free(p);
   }
 
   /**

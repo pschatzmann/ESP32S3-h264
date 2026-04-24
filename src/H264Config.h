@@ -7,6 +7,11 @@
 #  error "This library is only compatible with ESP32-S3. Please check your board configuration."
 #endif
 
+#ifdef __cplusplus
+#include "PSRAMAllocatorH264.h"
+#include "RAMAllocatorH264.h"
+
 #ifndef H264_DEFAULT_ALLOCATOR
-#define H264_DEFAULT_ALLOCATOR esp_h264::RAMAllocatorH264<uint8_t>
+#define H264_DEFAULT_ALLOCATOR RAMAllocatorH264<uint8_t>
+#endif
 #endif

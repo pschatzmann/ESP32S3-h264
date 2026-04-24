@@ -5,7 +5,6 @@
  * @brief Header-only C++ allocator that prefers PSRAM allocation on ESP32
  */
 
-#include <cstddef>
 #include <cstdlib>
 #include <cstring>
 #include <new>
@@ -121,7 +120,7 @@ class PSRAMAllocatorH264 {
    */
   void deallocate(T* p, std::size_t /*n*/) noexcept {
     if (!p) return;
-    heap_caps_free(p);
+    esp_h264_free(p);
   }
 
   /**
