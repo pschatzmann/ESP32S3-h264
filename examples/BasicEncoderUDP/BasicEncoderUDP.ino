@@ -6,6 +6,7 @@
  *
  * - Configure your WiFi SSID and password in the cfg struct.
  * - Set DEST_IP and DEST_PORT to the receiver's address.
+ * - Compile with Partition Scheme Huge App and PSRAM activated
  * - The example uses a test YUV frame from test.h.
  * 
  * You can view the result with the help of ffmpeg on the receiving end:
@@ -14,26 +15,29 @@
  */
 #include "H264Encoder.h"
 #include "UDPPrint.h"
-#include "test.h"  // Contains test_yuv and test_yuv_size
+#include "test/test.h"  // Contains test_raw and test_raw_len
 
 // Destination for UDP streaming (set to your receiver)
 const char* DEST_IP = "192.168.1.44";
 const uint16_t DEST_PORT = 5000;
 
-H264Encoder streamer;
+H264Encoder encoder;
 UDPPrint udp;
 
 void setup() {
   Serial.begin(115200);
   delay(500);
   // configure streamer (populate global cfg)
-  auto cfg = streamer.defaultConfig();
+  auto cfg = encoder.defaultConfig();
   cfg.ssid = "ssid";
   cfg.password = "pwd";
-  cfg.width = 640;
-  cfg.height = 480;
+  cfg.width = 320;
+  cfg.height = 240;
   cfg.fps = 15;
-  if (!streamer.begin(cfg)) {
+  cfg.gop = 100;
+  cfg.qp_min = 30; // Minimum quantization parameter [0, 51]. (lower is better quality, but higher bitrate)
+  cfg.qp_max = 40; // Maximum quantization parameter [0, 51]. (higher is worse quality
+  if (!encoder.begin(cfg)) {
     Serial.println("Streamer failed to start");
     while (true) delay(1000);
   }
@@ -46,5 +50,5 @@ void setup() {
 }
 
 void loop() {
-  streamer.encode(test_yuv, test_yuv_len, udp);
+  encoder.encodeRGB565(test_raw, test_raw_len, udp);
 }
