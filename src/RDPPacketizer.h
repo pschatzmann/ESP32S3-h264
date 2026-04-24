@@ -89,6 +89,7 @@ class RDPPacketizer : public Print {
   // -------------------------
 
   void sendPacket(const uint8_t* payload, size_t payload_len, bool marker) {
+    ESP_LOGD(TAG, "sendPacket: %u bytes", (unsigned)payload_len);
     uint8_t rtp[12];
     buildHeader(rtp, marker);
     buffer_.clear();
@@ -100,6 +101,7 @@ class RDPPacketizer : public Print {
   }
 
   void sendNAL(const uint8_t* data, size_t len, bool last_nal_of_frame) {
+    ESP_LOGD(TAG, "sendNAL: size=%u bytes, last_nal_of_frame=%d", (unsigned)len, last_nal_of_frame);
     if (len <= MTU - 12) {
       sendPacket(data, len, last_nal_of_frame);
       return;
