@@ -14,7 +14,7 @@ var searchData=
   ['benablessei_11',['bEnableSSEI',['../structTagEncParamExt.html#af6c0b779a75048bee35282b48b516416',1,'TagEncParamExt']]],
   ['bfullrange_12',['bFullRange',['../structSSpatialLayerConfig.html#aba883c5f7aa76ee5359d223c5af9919b',1,'SSpatialLayerConfig']]],
   ['bislosslesslink_13',['bIsLosslessLink',['../structTagEncParamExt.html#a3d404a8841c86eb6f28bc425baf9116d',1,'TagEncParamExt']]],
-  ['bitrate_14',['bitrate',['../structesp__h264__enc__rc__t.html#a32678c62007e0748dae550bd1007a07d',1,'esp_h264_enc_rc_t']]],
+  ['bitrate_14',['bitrate',['../structesp__h264__enc__rc__t.html#a32678c62007e0748dae550bd1007a07d',1,'esp_h264_enc_rc_t::bitrate()'],['../structesp__h264_1_1H264Encoder_1_1Config.html#ab5d8e1788d02d0e52941a0778776e289',1,'esp_h264::H264Encoder::Config::bitrate()']]],
   ['boverscanappropriateflag_15',['bOverscanAppropriateFlag',['../structTagVuiSarInfo.html#ac902cfab94706e9ffb67409f895b91dc',1,'TagVuiSarInfo']]],
   ['bparseonly_16',['bParseOnly',['../structTagSVCDecodingParam.html#a1f6e9f40b37dc574a8b5d350ee1f2dd7',1,'TagSVCDecodingParam']]],
   ['bprefixnaladdingctrl_17',['bPrefixNalAddingCtrl',['../structTagEncParamExt.html#a2b724f03eed270267c1a6f8ac045397d',1,'TagEncParamExt']]],

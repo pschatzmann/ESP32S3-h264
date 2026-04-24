@@ -105,46 +105,91 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a16c084b439c50b60b975ee30a37bfad5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a16c084b439c50b60b975ee30a37bfad5">outBufferSize</a> = 400 * 1024</td></tr>
 <tr class="memdesc:a16c084b439c50b60b975ee30a37bfad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output buffer size for encoded H.264 data (bytes)  <br /></td></tr>
 <tr class="separator:a16c084b439c50b60b975ee30a37bfad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd24cda08e24884d2b4e2ac769371ff8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#afd24cda08e24884d2b4e2ac769371ff8">gop</a> = -1</td></tr>
+<tr class="memdesc:afd24cda08e24884d2b4e2ac769371ff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Group of Pictures (default: fps)  <br /></td></tr>
+<tr class="separator:afd24cda08e24884d2b4e2ac769371ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5d8e1788d02d0e52941a0778776e289"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#ab5d8e1788d02d0e52941a0778776e289">bitrate</a> = -1</td></tr>
+<tr class="memdesc:ab5d8e1788d02d0e52941a0778776e289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bitrate in bps (default: width*height*fps*30/100)  <br /></td></tr>
+<tr class="separator:ab5d8e1788d02d0e52941a0778776e289"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15a149465086e593846e1fa23ea29346"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a15a149465086e593846e1fa23ea29346">qp_min</a> = -1</td></tr>
+<tr class="memdesc:a15a149465086e593846e1fa23ea29346"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum quantizer parameter (default: 28)  <br /></td></tr>
+<tr class="separator:a15a149465086e593846e1fa23ea29346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95174ecdc7e81a215448e91b4413db6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a95174ecdc7e81a215448e91b4413db6b">qp_max</a> = -1</td></tr>
+<tr class="memdesc:a95174ecdc7e81a215448e91b4413db6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum quantizer parameter (default: 30)  <br /></td></tr>
+<tr class="separator:a95174ecdc7e81a215448e91b4413db6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adba0ab9883d90c273af445dad3ab6b76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#adba0ab9883d90c273af445dad3ab6b76">use_camera</a> = false</td></tr>
+<tr class="memdesc:adba0ab9883d90c273af445dad3ab6b76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal flag to track camera state.  <br /></td></tr>
 <tr class="separator:adba0ab9883d90c273af445dad3ab6b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37f18ac93c71df2671bcd7fbad37d47d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a37f18ac93c71df2671bcd7fbad37d47d">pwdn_pin</a> = -1</td></tr>
+<tr class="memdesc:a37f18ac93c71df2671bcd7fbad37d47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera PWDN pin.  <br /></td></tr>
 <tr class="separator:a37f18ac93c71df2671bcd7fbad37d47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b8b4e78308c9cf861e4d27f32878dcf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a2b8b4e78308c9cf861e4d27f32878dcf">reset_pin</a> = -1</td></tr>
+<tr class="memdesc:a2b8b4e78308c9cf861e4d27f32878dcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera RESET pin.  <br /></td></tr>
 <tr class="separator:a2b8b4e78308c9cf861e4d27f32878dcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0bd8341e8c07130b95cf43fbeb0b550"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#ab0bd8341e8c07130b95cf43fbeb0b550">xclk_pin</a> = -1</td></tr>
+<tr class="memdesc:ab0bd8341e8c07130b95cf43fbeb0b550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera XCLK pin.  <br /></td></tr>
 <tr class="separator:ab0bd8341e8c07130b95cf43fbeb0b550"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa662d40fedaae0e20cf68b58036e8a74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#aa662d40fedaae0e20cf68b58036e8a74">siod_pin</a> = -1</td></tr>
+<tr class="memdesc:aa662d40fedaae0e20cf68b58036e8a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera SIOD pin.  <br /></td></tr>
 <tr class="separator:aa662d40fedaae0e20cf68b58036e8a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace7002e0c4a5e6460be2ff34e9f73dd5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#ace7002e0c4a5e6460be2ff34e9f73dd5">sioc_pin</a> = -1</td></tr>
+<tr class="memdesc:ace7002e0c4a5e6460be2ff34e9f73dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera SIOC pin.  <br /></td></tr>
 <tr class="separator:ace7002e0c4a5e6460be2ff34e9f73dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5df04aa502dc4b703ea225bb7d002c50"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a5df04aa502dc4b703ea225bb7d002c50">y2_pin</a> = -1</td></tr>
+<tr class="memdesc:a5df04aa502dc4b703ea225bb7d002c50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera Y2 pin.  <br /></td></tr>
 <tr class="separator:a5df04aa502dc4b703ea225bb7d002c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd7b4408f3c9073753251f8b77bb0475"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#acd7b4408f3c9073753251f8b77bb0475">y3_pin</a> = -1</td></tr>
+<tr class="memdesc:acd7b4408f3c9073753251f8b77bb0475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera Y3 pin.  <br /></td></tr>
 <tr class="separator:acd7b4408f3c9073753251f8b77bb0475"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a330fe5cae1ef26c6495214c97347328c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a330fe5cae1ef26c6495214c97347328c">y4_pin</a> = -1</td></tr>
+<tr class="memdesc:a330fe5cae1ef26c6495214c97347328c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera Y4 pin.  <br /></td></tr>
 <tr class="separator:a330fe5cae1ef26c6495214c97347328c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5d1d7c07e964d73d28bf6869f807024"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#ab5d1d7c07e964d73d28bf6869f807024">y5_pin</a> = -1</td></tr>
+<tr class="memdesc:ab5d1d7c07e964d73d28bf6869f807024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera Y5 pin.  <br /></td></tr>
 <tr class="separator:ab5d1d7c07e964d73d28bf6869f807024"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbd5944da2e887f9f1163eb064207e58"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#afbd5944da2e887f9f1163eb064207e58">y6_pin</a> = -1</td></tr>
+<tr class="memdesc:afbd5944da2e887f9f1163eb064207e58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera Y6 pin.  <br /></td></tr>
 <tr class="separator:afbd5944da2e887f9f1163eb064207e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afae7d562f304ef03570ef018589a9702"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#afae7d562f304ef03570ef018589a9702">y7_pin</a> = -1</td></tr>
+<tr class="memdesc:afae7d562f304ef03570ef018589a9702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera Y7 pin.  <br /></td></tr>
 <tr class="separator:afae7d562f304ef03570ef018589a9702"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1afead7c923d4bb7e0465fd98004c047"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a1afead7c923d4bb7e0465fd98004c047">y8_pin</a> = -1</td></tr>
+<tr class="memdesc:a1afead7c923d4bb7e0465fd98004c047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera Y8 pin.  <br /></td></tr>
 <tr class="separator:a1afead7c923d4bb7e0465fd98004c047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f242b68a2d06fc3433e73d45ac904db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#a8f242b68a2d06fc3433e73d45ac904db">y9_pin</a> = -1</td></tr>
+<tr class="memdesc:a8f242b68a2d06fc3433e73d45ac904db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera Y9 pin.  <br /></td></tr>
 <tr class="separator:a8f242b68a2d06fc3433e73d45ac904db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5595ce05bfe6cac4678dbfe6be7d59f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#ab5595ce05bfe6cac4678dbfe6be7d59f">vsync_pin</a> = -1</td></tr>
+<tr class="memdesc:ab5595ce05bfe6cac4678dbfe6be7d59f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera VSYNC pin.  <br /></td></tr>
 <tr class="separator:ab5595ce05bfe6cac4678dbfe6be7d59f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af46177ef24020b50be8d4a50a0f77b06"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#af46177ef24020b50be8d4a50a0f77b06">href_pin</a> = -1</td></tr>
+<tr class="memdesc:af46177ef24020b50be8d4a50a0f77b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera HREF pin.  <br /></td></tr>
 <tr class="separator:af46177ef24020b50be8d4a50a0f77b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba1e767bf57a069b0977a413e785d13f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesp__h264_1_1H264Encoder_1_1Config.html#aba1e767bf57a069b0977a413e785d13f">pclk_pin</a> = -1</td></tr>
+<tr class="memdesc:aba1e767bf57a069b0977a413e785d13f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera PCLK pin.  <br /></td></tr>
 <tr class="separator:aba1e767bf57a069b0977a413e785d13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename Alloc = esp_h264::PSRAMAllocatorH264&lt;uint8_t&gt;&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Alloc = esp_h264::RAMAllocatorH264&lt;uint8_t&gt;&gt;<br />
 struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration structure for camera, WiFi, and encoder settings. </p>
 <p>Contains all parameters needed to configure the camera module, WiFi connection, H.264 encoder, and pin assignments for ESP32 camera boards. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab5d8e1788d02d0e52941a0778776e289" name="ab5d8e1788d02d0e52941a0778776e289"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5d8e1788d02d0e52941a0778776e289">&#9670;&#160;</a></span>bitrate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int bitrate = -1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bitrate in bps (default: width*height*fps*30/100) </p>
+
+</div>
+</div>
 <a id="a45b67662d620a977a2cfe519f7ab6273" name="a45b67662d620a977a2cfe519f7ab6273"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a45b67662d620a977a2cfe519f7ab6273">&#9670;&#160;</a></span>fps</h2>
 
@@ -158,6 +203,22 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
 </div><div class="memdoc">
 
 <p>Target frames per second. </p>
+
+</div>
+</div>
+<a id="afd24cda08e24884d2b4e2ac769371ff8" name="afd24cda08e24884d2b4e2ac769371ff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd24cda08e24884d2b4e2ac769371ff8">&#9670;&#160;</a></span>gop</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gop = -1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Group of Pictures (default: fps) </p>
 
 </div>
 </div>
@@ -188,6 +249,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Camera HREF pin. </p>
 
 </div>
 </div>
@@ -235,6 +298,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
       </table>
 </div><div class="memdoc">
 
+<p>Camera PCLK pin. </p>
+
 </div>
 </div>
 <a id="a37f18ac93c71df2671bcd7fbad37d47d" name="a37f18ac93c71df2671bcd7fbad37d47d"></a>
@@ -248,6 +313,40 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Camera PWDN pin. </p>
+
+</div>
+</div>
+<a id="a95174ecdc7e81a215448e91b4413db6b" name="a95174ecdc7e81a215448e91b4413db6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95174ecdc7e81a215448e91b4413db6b">&#9670;&#160;</a></span>qp_max</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int qp_max = -1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Maximum quantizer parameter (default: 30) </p>
+
+</div>
+</div>
+<a id="a15a149465086e593846e1fa23ea29346" name="a15a149465086e593846e1fa23ea29346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15a149465086e593846e1fa23ea29346">&#9670;&#160;</a></span>qp_min</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int qp_min = -1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Minimum quantizer parameter (default: 28) </p>
 
 </div>
 </div>
@@ -263,6 +362,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
       </table>
 </div><div class="memdoc">
 
+<p>Camera RESET pin. </p>
+
 </div>
 </div>
 <a id="ace7002e0c4a5e6460be2ff34e9f73dd5" name="ace7002e0c4a5e6460be2ff34e9f73dd5"></a>
@@ -277,6 +378,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
       </table>
 </div><div class="memdoc">
 
+<p>Camera SIOC pin. </p>
+
 </div>
 </div>
 <a id="aa662d40fedaae0e20cf68b58036e8a74" name="aa662d40fedaae0e20cf68b58036e8a74"></a>
@@ -290,6 +393,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Camera SIOD pin. </p>
 
 </div>
 </div>
@@ -321,6 +426,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
       </table>
 </div><div class="memdoc">
 
+<p>Internal flag to track camera state. </p>
+
 </div>
 </div>
 <a id="ab5595ce05bfe6cac4678dbfe6be7d59f" name="ab5595ce05bfe6cac4678dbfe6be7d59f"></a>
@@ -334,6 +441,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Camera VSYNC pin. </p>
 
 </div>
 </div>
@@ -365,6 +474,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
       </table>
 </div><div class="memdoc">
 
+<p>Camera XCLK pin. </p>
+
 </div>
 </div>
 <a id="a5df04aa502dc4b703ea225bb7d002c50" name="a5df04aa502dc4b703ea225bb7d002c50"></a>
@@ -378,6 +489,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Camera Y2 pin. </p>
 
 </div>
 </div>
@@ -393,6 +506,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
       </table>
 </div><div class="memdoc">
 
+<p>Camera Y3 pin. </p>
+
 </div>
 </div>
 <a id="a330fe5cae1ef26c6495214c97347328c" name="a330fe5cae1ef26c6495214c97347328c"></a>
@@ -406,6 +521,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Camera Y4 pin. </p>
 
 </div>
 </div>
@@ -421,6 +538,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
       </table>
 </div><div class="memdoc">
 
+<p>Camera Y5 pin. </p>
+
 </div>
 </div>
 <a id="afbd5944da2e887f9f1163eb064207e58" name="afbd5944da2e887f9f1163eb064207e58"></a>
@@ -434,6 +553,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Camera Y6 pin. </p>
 
 </div>
 </div>
@@ -449,6 +570,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
       </table>
 </div><div class="memdoc">
 
+<p>Camera Y7 pin. </p>
+
 </div>
 </div>
 <a id="a1afead7c923d4bb7e0465fd98004c047" name="a1afead7c923d4bb7e0465fd98004c047"></a>
@@ -463,6 +586,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
       </table>
 </div><div class="memdoc">
 
+<p>Camera Y8 pin. </p>
+
 </div>
 </div>
 <a id="a8f242b68a2d06fc3433e73d45ac904db" name="a8f242b68a2d06fc3433e73d45ac904db"></a>
@@ -476,6 +601,8 @@ struct esp_h264::H264Encoder&lt; Alloc &gt;::Config</div><p>Configuration struct
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Camera Y9 pin. </p>
 
 </div>
 </div>

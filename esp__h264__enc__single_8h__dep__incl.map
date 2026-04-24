@@ -4,7 +4,8 @@
 <area shape="rect" id="node3" href="$esp__h264__enc__single_8c.html" title=" " alt="" coords="545,93,718,133"/>
 <area shape="rect" id="node4" href="$esp__h264__enc__single__sw_8c.html" title=" " alt="" coords="173,181,346,221"/>
 <area shape="rect" id="node5" href="$esp__h264__enc__single__sw_8h.html" title=" " alt="" coords="297,93,470,133"/>
-<area shape="rect" id="node7" href="$esp__h264__sw__enc__test_8h.html" title=" " alt="" coords="605,181,773,221"/>
+<area shape="rect" id="node8" href="$esp__h264__sw__enc__test_8h.html" title=" " alt="" coords="605,181,773,221"/>
 <area shape="rect" id="node6" href="$esp__h264__arduino_8h.html" title=" " alt="" coords="370,189,581,214"/>
-<area shape="rect" id="node8" href="$esp__h264__sw__enc__test_8c.html" title=" " alt="" coords="605,269,773,309"/>
+<area shape="rect" id="node7" href="$H264Decoder_8h.html" title="ESP32&#45;S3 H.264 Decoder with Stream Input Support." alt="" coords="403,277,547,302"/>
+<area shape="rect" id="node9" href="$esp__h264__sw__enc__test_8c.html" title=" " alt="" coords="605,269,773,309"/>
 </map>
