@@ -6,7 +6,7 @@ var searchData=
   ['h264bsdfree_3',['h264bsdFree',['../h264bsd__decoder_8h.html#aa89a4ad764321322641cb5661cabdffd',1,'h264bsd_decoder.h']]],
   ['h264bsdinit_4',['h264bsdInit',['../h264bsd__decoder_8h.html#ae92f423d7b892ac3b53985f2473aa424',1,'h264bsd_decoder.h']]],
   ['h264bsdshutdown_5',['h264bsdShutdown',['../h264bsd__decoder_8h.html#a95078ee94cd7498b42de25a36fb3fefc',1,'h264bsd_decoder.h']]],
-  ['h264decoder_6',['H264Decoder',['../classesp__h264_1_1H264Decoder.html#a9e01fc10d8b869e7203c7fb95c5c3136',1,'esp_h264::H264Decoder::H264Decoder(Stream *input_stream)'],['../classesp__h264_1_1H264Decoder.html#a671d964cfa5e2ce5eb9b7f70b4b156bc',1,'esp_h264::H264Decoder::H264Decoder()']]],
+  ['h264decoder_6',['H264Decoder',['../classesp__h264_1_1H264Decoder.html#a3d6b017e18ff9dfb21f70bdf1b8398dd',1,'esp_h264::H264Decoder::H264Decoder(Stream &amp;input_stream)'],['../classesp__h264_1_1H264Decoder.html#a671d964cfa5e2ce5eb9b7f70b4b156bc',1,'esp_h264::H264Decoder::H264Decoder()']]],
   ['h264encoder_7',['H264Encoder',['../classesp__h264_1_1H264Encoder.html#a399a07624206d02608614e551213c1e2',1,'esp_h264::H264Encoder']]],
   ['hasframe_8',['hasFrame',['../classesp__h264_1_1H264Decoder.html#a5fd3cce38129cdf16de9f459694c5b6c',1,'esp_h264::H264Decoder']]]
 ];
