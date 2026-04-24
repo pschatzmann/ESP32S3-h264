@@ -103,6 +103,7 @@ class PSRAMAllocatorH264 {
     uint32_t actual_size = 0;
     void* p = esp_h264_aligned_calloc(
         16, 1, n * sizeof(T), &actual_size, (uint32_t)MALLOC_CAP_SPIRAM);
+    assert(p != nullptr);
     return static_cast<T*>(p);
   }
 
