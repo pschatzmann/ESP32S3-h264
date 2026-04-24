@@ -1,17 +1,15 @@
 <map id="src/H264Encoder.h" name="src/H264Encoder.h">
-<area shape="rect" id="node1" title="Header&#45;only helper to capture frames from ESP32 camera and encode to H.264." alt="" coords="369,5,512,31"/>
-<area shape="rect" id="node2" title=" " alt="" coords="176,225,260,251"/>
-<area shape="rect" id="node3" title=" " alt="" coords="32,79,94,104"/>
-<area shape="rect" id="node4" title=" " alt="" coords="119,79,207,104"/>
-<area shape="rect" id="node5" title=" " alt="" coords="232,79,316,104"/>
-<area shape="rect" id="node6" title=" " alt="" coords="340,79,402,104"/>
-<area shape="rect" id="node7" href="$H264Config_8h.html" title=" " alt="" coords="386,152,495,177"/>
-<area shape="rect" id="node8" title=" " alt="" coords="478,79,592,104"/>
-<area shape="rect" id="node9" href="$esp__h264__enc__single_8h.html" title=" " alt="" coords="888,152,1096,177"/>
-<area shape="rect" id="node10" href="$esp__h264__types_8h.html" title=" " alt="" coords="878,299,1016,324"/>
-<area shape="rect" id="node14" href="$esp__h264__enc__single__sw_8h.html" title=" " alt="" coords="939,79,1171,104"/>
-<area shape="rect" id="node15" href="$h264__color__convert_8h.html" title=" " alt="" coords="616,79,814,104"/>
-<area shape="rect" id="node13" href="$esp__h264__enc__param_8h.html" title=" " alt="" coords="985,225,1160,251"/>
-<area shape="rect" id="node11" title=" " alt="" coords="861,372,932,397"/>
-<area shape="rect" id="node12" title=" " alt="" coords="956,372,1039,397"/>
+<area shape="rect" id="node1" title="Header&#45;only helper to capture frames from ESP32 camera and encode to H.264." alt="" coords="262,5,404,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="74,225,158,251"/>
+<area shape="rect" id="node3" title=" " alt="" coords="30,79,114,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="138,79,200,104"/>
+<area shape="rect" id="node5" href="$H264Config_8h.html" title=" " alt="" coords="184,152,293,177"/>
+<area shape="rect" id="node6" title=" " alt="" coords="276,79,390,104"/>
+<area shape="rect" id="node7" href="$esp__h264__enc__single_8h.html" title=" " alt="" coords="686,152,894,177"/>
+<area shape="rect" id="node8" href="$esp__h264__types_8h.html" title=" " alt="" coords="676,299,814,324"/>
+<area shape="rect" id="node12" href="$esp__h264__enc__single__sw_8h.html" title=" " alt="" coords="737,79,969,104"/>
+<area shape="rect" id="node13" href="$h264__color__convert_8h.html" title=" " alt="" coords="414,79,612,104"/>
+<area shape="rect" id="node11" href="$esp__h264__enc__param_8h.html" title=" " alt="" coords="783,225,958,251"/>
+<area shape="rect" id="node9" title=" " alt="" coords="659,372,730,397"/>
+<area shape="rect" id="node10" title=" " alt="" coords="754,372,837,397"/>
 </map>

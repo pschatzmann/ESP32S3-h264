@@ -109,6 +109,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4582edda16bc7fb9e757b1e3806031d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31e85282ff366d92dd22b8eb4e78814c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1UDPPrint.html#a31e85282ff366d92dd22b8eb4e78814c">~UDPPrint</a> ()</td></tr>
 <tr class="separator:a31e85282ff366d92dd22b8eb4e78814c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a5d3d70e473a7f31d6d62c687cfd6d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1UDPPrint.html#a4a5d3d70e473a7f31d6d62c687cfd6d3">initWiFi</a> (const char *ssid, const char *password)</td></tr>
+<tr class="separator:a4a5d3d70e473a7f31d6d62c687cfd6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a488f9c863a4bbf02754a1413e3c7bba9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">begin</a> (const char *destIp, uint16_t destPort)</td></tr>
 <tr class="separator:a488f9c863a4bbf02754a1413e3c7bba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a1acbb5aa65dcf995b145839e7dd743"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classesp__h264_1_1UDPPrint.html#a8a1acbb5aa65dcf995b145839e7dd743">begin</a> (const IPAddress &amp;addr, uint16_t destPort)</td></tr>
@@ -140,10 +142,10 @@ Data is buffered up to BUF_SIZE (1400 bytes) before automatic transmission</dd><
 <div class="line">up.<a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">print</a>(<span class="stringliteral">&quot;Hello World&quot;</span>);</div>
 <div class="line">up.<a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a>();  <span class="comment">// Send immediately</span></div>
 <div class="ttc" id="aUDPPrint_8h_html"><div class="ttname"><a href="UDPPrint_8h.html">UDPPrint.h</a></div><div class="ttdoc">header-only Arduino Print implementation that sends data over</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html">esp_h264::UDPPrint</a></div><div class="ttdoc">A Print implementation that buffers and sends data over UDP.</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:34</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a3be0362870e34bdf9757e2c38ee5467f"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">esp_h264::UDPPrint::print</a></div><div class="ttdeci">size_t print(const char *s)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:110</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a488f9c863a4bbf02754a1413e3c7bba9"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">esp_h264::UDPPrint::begin</a></div><div class="ttdeci">bool begin(const char *destIp, uint16_t destPort)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:40</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_adac116554b543b7c4228c018a85882f5"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">esp_h264::UDPPrint::flush</a></div><div class="ttdeci">void flush()</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:82</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html">esp_h264::UDPPrint</a></div><div class="ttdoc">A Print implementation that buffers and sends data over UDP.</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:35</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a3be0362870e34bdf9757e2c38ee5467f"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">esp_h264::UDPPrint::print</a></div><div class="ttdeci">size_t print(const char *s)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:130</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a488f9c863a4bbf02754a1413e3c7bba9"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">esp_h264::UDPPrint::begin</a></div><div class="ttdeci">bool begin(const char *destIp, uint16_t destPort)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:58</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_adac116554b543b7c4228c018a85882f5"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">esp_h264::UDPPrint::flush</a></div><div class="ttdeci">void flush()</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:101</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4582edda16bc7fb9e757b1e3806031d3" name="a4582edda16bc7fb9e757b1e3806031d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4582edda16bc7fb9e757b1e3806031d3">&#9670;&#160;</a></span>UDPPrint()</h2>
@@ -282,6 +284,42 @@ Data is buffered up to BUF_SIZE (1400 bytes) before automatic transmission</dd><
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a5d3d70e473a7f31d6d62c687cfd6d3" name="a4a5d3d70e473a7f31d6d62c687cfd6d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a5d3d70e473a7f31d6d62c687cfd6d3">&#9670;&#160;</a></span>initWiFi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool initWiFi </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ssid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>password</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

@@ -1,4 +1,0 @@
-<map id="RTPPacketizer" name="RTPPacketizer">
-<area shape="rect" id="node1" title="RTPPacketizer class to packetize H.264 NAL units into RTP packets. This class takes raw H...." alt="" coords="5,79,117,104"/>
-<area shape="rect" id="node2" title=" " alt="" coords="35,5,87,31"/>
-</map>
