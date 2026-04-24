@@ -32,7 +32,6 @@
   handling for production use.
 */
 
-// Use header-only H264Encoder
 #include "H264Encoder.h"
 #include "UDPPrint.h"
 
@@ -41,7 +40,7 @@ const char* DEST_IP = "192.168.1.100";
 const uint16_t DEST_PORT = 5000;
 
 H264Encoder encoder;
-UDPPrint up;
+UDPPrint udp;
 
 
 void setup() {
@@ -59,11 +58,10 @@ void setup() {
     Serial.println("Streamer failed to start");
     while (1) delay(1000);
   }
-  up.begin(DEST_IP, DEST_PORT);
+  udp.begin(DEST_IP, DEST_PORT);
   Serial.println("Streamer started");
 }
 
 void loop() {
-  encoder.captureH264(up);
-  up.flush();
+  encoder.captureH264(udp);
 }

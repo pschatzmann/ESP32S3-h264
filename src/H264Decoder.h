@@ -138,8 +138,8 @@ class H264Decoder {
    * @note The stream must remain valid for the lifetime of the decoder
    * @note Call begin() to initialize decoder resources
    */
-  explicit H264Decoder(Stream* input_stream) : input_stream_(input_stream) {
-    ESP_LOGD(TAG, "H264Decoder(Stream*)");
+  explicit H264Decoder(Stream& input_stream) : input_stream_(&input_stream) {
+    ESP_LOGD(TAG, "H264Decoder(Stream&)");
   }
   
   /**

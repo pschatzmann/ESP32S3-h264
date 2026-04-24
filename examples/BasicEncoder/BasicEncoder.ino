@@ -15,7 +15,6 @@
 #include "H264Encoder.h"
 #include "UDPPrint.h"
 #include "test.h"  // Contains test_yuv and test_yuv_size
-#include "vector"
 
 // Destination for UDP streaming (set to your receiver)
 const char* DEST_IP = "192.168.1.44";
@@ -23,7 +22,6 @@ const uint16_t DEST_PORT = 5000;
 
 H264Encoder streamer;
 UDPPrint udp;
-std::vector<uint8_t> data;
 
 void setup() {
   Serial.begin(115200);
@@ -44,13 +42,9 @@ void setup() {
     while (true) delay(1000);
   }
   
-  data.resize(test_yuv_len);
-  assert(data.size() == test_yuv_len);
-  memcpy(data.data(), test_yuv, test_yuv_len);
-
   Serial.println("Streamer started");
 }
 
 void loop() {
-  streamer.encode(data.data(), test_yuv_len, udp);
+  streamer.encode(test_yuv, test_yuv_len, udp);
 }
