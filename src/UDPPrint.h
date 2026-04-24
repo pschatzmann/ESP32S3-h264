@@ -73,6 +73,8 @@ class UDPPrint : public Print {
       written += tocopy;
       size -= tocopy;
     }
+    flush();
+    ESP_LOGI("UDPPrint", "Buffered and sent %u bytes to %s:%u", (unsigned)written, destIp_.c_str(), destPort_);
     return written;
   }
 
@@ -80,13 +82,27 @@ class UDPPrint : public Print {
   void flush() {
     if (bufPos_ == 0) return;
     if (!udp_) return;
-    if (!udp_->beginPacket(destIp_.c_str(), destPort_)) {
-      // unable to start packet
-      bufPos_ = 0;
-      return;
+
+    size_t to_send = bufPos_;
+
+    bool sent = false;
+    size_t written = 0;
+    int retry = 10;
+    while (!sent && retry-- > 0) {
+      if (!udp_->beginPacket(destIp_.c_str(), destPort_)) {
+        // unable to start packet
+        bufPos_ = 0;
+        return;
+      }
+      written = udp_->write(buffer_, bufPos_);
+      sent = udp_->endPacket();
+      delay(write_delay_ms);
     }
-    udp_->write(buffer_, bufPos_);
-    udp_->endPacket();
+
+    if (!sent) {
+      ESP_LOGE("UDPPrint", "Failed to send UDP packet %u bytes to %s:%u after retries",
+               (unsigned)to_send, destIp_.c_str(), destPort_);
+    } 
     bufPos_ = 0;
   }
 
@@ -104,13 +120,17 @@ class UDPPrint : public Print {
     return print(buffer);
   }
 
+  /// Set delay after sending a UDP packet (default 100ms)
+  void setWriteDelay(unsigned long ms) { write_delay_ms = ms; }
+
  private:
   WiFiUDP* udp_;
   String destIp_;
   uint16_t destPort_;
-  static constexpr size_t BUF_SIZE = 1400;
+  static constexpr size_t BUF_SIZE = 1200;
   uint8_t buffer_[BUF_SIZE];
   size_t bufPos_;
+  size_t write_delay_ms = 20;
 };
 
 }  // namespace esp_h264
