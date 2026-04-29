@@ -930,9 +930,9 @@ $(function() {
 <div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; w; ++x) {</div>
 <div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>        <span class="keywordtype">int</span> i = (y * w + x) * 2;</div>
 <div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>        <span class="comment">// little endien</span></div>
-<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>        <span class="comment">// uint16_t val = src[i] | (src[i + 1] &lt;&lt; 8);</span></div>
+<div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>        uint16_t val = src[i] | (src[i + 1] &lt;&lt; 8);</div>
 <div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>        <span class="comment">// big endian</span></div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>        uint16_t val = (src[i] &lt;&lt; 8) | src[i + 1];</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>        <span class="comment">//uint16_t val = (src[i] &lt;&lt; 8) | src[i + 1];</span></div>
 <div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span> </div>
 <div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>        <span class="comment">// Better RGB expansion</span></div>
 <div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>        uint8_t r = ((val &gt;&gt; 11) &amp; 0x1F);</div>
