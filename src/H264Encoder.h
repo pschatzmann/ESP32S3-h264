@@ -85,10 +85,6 @@ class H264Encoder {
    * connection, H.264 encoder, and pin assignments for ESP32 camera boards.
    */
   struct Config {
-    const char* ssid =
-        nullptr;  ///< WiFi SSID (nullptr to skip WiFi initialization)
-    const char* password =
-        nullptr;       ///< WiFi password (nullptr to skip WiFi initialization)
     int width = 640;   ///< Frame width in pixels
     int height = 480;  ///< Frame height in pixels
     int fps = 15;      ///< Target frames per second
