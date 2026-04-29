@@ -11,10 +11,9 @@ var searchData=
   ['size_8',['size',['../structSVideoProperty.html#ab2c6b258f02add8fdf4cfc7c371dd772',1,'SVideoProperty']]],
   ['slayerinfo_9',['sLayerInfo',['../structSFrameBSInfo.html#a40336ca3263c9b9b6855b8c7df7eca3b',1,'SFrameBSInfo']]],
   ['src_5fpic_10',['src_pic',['../structesp__h264__enc__sw__handle.html#aad99a353f50a3e7fb4785876c7be6623',1,'esp_h264_enc_sw_handle']]],
-  ['ssid_11',['ssid',['../structesp__h264_1_1H264Encoder_1_1Config.html#a587ba0cb07f02913598610049a3bbb79',1,'esp_h264::H264Encoder::Config']]],
-  ['ssliceargument_12',['sSliceArgument',['../structSSpatialLayerConfig.html#a99db42b7210777d86c0bd02121b9bf93',1,'SSpatialLayerConfig']]],
-  ['sspatiallayers_13',['sSpatialLayers',['../structTagEncParamExt.html#aa9b0d9fb9aa545dd510985f44ca2b20f',1,'TagEncParamExt']]],
-  ['ssystembuffer_14',['sSystemBuffer',['../structTagBufferInfo.html#a1fb6f002ba5b310496577832dd42be30',1,'TagBufferInfo']]],
-  ['svideoproperty_15',['sVideoProperty',['../structTagSVCDecodingParam.html#a10338cdd64d88490058f0f9ad9fb7ca6',1,'TagSVCDecodingParam']]],
-  ['sw_5fbase_16',['sw_base',['../structesp__h264__enc__sw__param__t.html#a77edf5510a710881c852f1813734ec67',1,'esp_h264_enc_sw_param_t']]]
+  ['ssliceargument_11',['sSliceArgument',['../structSSpatialLayerConfig.html#a99db42b7210777d86c0bd02121b9bf93',1,'SSpatialLayerConfig']]],
+  ['sspatiallayers_12',['sSpatialLayers',['../structTagEncParamExt.html#aa9b0d9fb9aa545dd510985f44ca2b20f',1,'TagEncParamExt']]],
+  ['ssystembuffer_13',['sSystemBuffer',['../structTagBufferInfo.html#a1fb6f002ba5b310496577832dd42be30',1,'TagBufferInfo']]],
+  ['svideoproperty_14',['sVideoProperty',['../structTagSVCDecodingParam.html#a10338cdd64d88490058f0f9ad9fb7ca6',1,'TagSVCDecodingParam']]],
+  ['sw_5fbase_15',['sw_base',['../structesp__h264__enc__sw__param__t.html#a77edf5510a710881c852f1813734ec67',1,'esp_h264_enc_sw_param_t']]]
 ];
