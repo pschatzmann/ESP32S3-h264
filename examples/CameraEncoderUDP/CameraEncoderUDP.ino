@@ -30,6 +30,10 @@
   This example focuses on the encoder plumbing and UDP streaming. It is a
   starting point and should be adapted for camera driver specifics and error
   handling for production use.
+
+  You can view the result with the help of ffmpeg on the receiving end:
+  ffplay -f h264 udp://@:5000
+
 */
 
 #include "H264Encoder.h"
@@ -51,10 +55,10 @@ void setup() {
   Serial.begin(115200);
   delay(500);
   // configure streamer (populate global cfg)
-  auto cfg = encoder.defaultConfig();
-  cfg.width = 640;
-  cfg.height = 480;
-  cfg.fps = 15;
+  auto cfg = encoder.defaultConfig("ESP32-S3-N16R8-CAM");
+  cfg.width = 320;
+  cfg.height = 240;
+  cfg.fps = 5;
   cfg.use_camera = true;  // Enable camera initialization
   if (!encoder.begin(cfg)) {
     Serial.println("Streamer failed to start");

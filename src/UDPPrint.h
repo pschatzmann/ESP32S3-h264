@@ -40,8 +40,9 @@ class UDPPrint : public Print {
   bool initWiFi(const char* ssid, const char* password) {
     ESP_LOGD(TAG, "initWiFi");
     WiFi.mode(WIFI_STA);
-    WiFi.setSleep(false);
     WiFi.begin(ssid, password);
+    WiFi.setSleep(false);
+    WiFi.setTxPower(WIFI_POWER_19_5dBm);
     unsigned long start = millis();
     while (WiFi.status() != WL_CONNECTED) {
       delay(200);
@@ -92,7 +93,7 @@ class UDPPrint : public Print {
       size -= tocopy;
     }
     flush();
-    ESP_LOGI("UDPPrint", "Buffered and sent %u bytes to %s:%u",
+    ESP_LOGI(TAG, "Buffered and sent %u bytes to %s:%u",
              (unsigned)written, destIp_.c_str(), destPort_);
     return written;
   }
@@ -119,7 +120,7 @@ class UDPPrint : public Print {
     }
 
     if (!sent) {
-      ESP_LOGE("UDPPrint",
+      ESP_LOGE(TAG,
                "Failed to send UDP packet %u bytes to %s:%u after retries",
                (unsigned)to_send, destIp_.c_str(), destPort_);
     }
@@ -147,6 +148,7 @@ class UDPPrint : public Print {
   WiFiUDP* udp_;
   String destIp_;
   uint16_t destPort_;
+  const char* TAG = "UDPPrint";
   static constexpr size_t BUF_SIZE = 1200;
   uint8_t buffer_[BUF_SIZE];
   size_t bufPos_;

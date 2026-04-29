@@ -152,6 +152,7 @@ class H264Encoder {
    * @return Config Configuration structure for the specified camera preset
    */
   Config defaultConfig(const char* camera) {
+    ESP_LOGI(TAG, "defaultConfig for camera preset: %s", camera);
     for (const auto& mapping : kFallbackMappings) {
       if (strstr(mapping.name, camera) != nullptr) {
         Config cfg = defaultConfig();
@@ -206,6 +207,7 @@ class H264Encoder {
    */
   bool begin(Config cfg) {
     ESP_LOGD(TAG, "begin");
+    sensor = nullptr;
     // copy the provided config into the stored config_
     cfg_ = cfg;
     // init encoder
@@ -490,6 +492,7 @@ class H264Encoder {
    */
   void end() {
     ESP_LOGD(TAG, "end");
+    sensor = nullptr;
     if (enc_handle_) {
       esp_h264_enc_close(enc_handle_);
       esp_h264_enc_del(enc_handle_);
@@ -502,6 +505,9 @@ class H264Encoder {
       out_buf_.clear();
     }
   }
+
+  sensor_t *getSensor() { return sensor; }
+
 
  private:
   struct PinMapping {
@@ -524,13 +530,7 @@ class H264Encoder {
     int pclk_pin;
   };
   static constexpr PinMapping kFallbackMappings[] = {
-      {"ESP32-S3-CAM-TS", -1, -1, 33, 37, 36, 7, 5, 4, 6, 8, 42, 48, 47, 35, 34,
-       41},
-      {"GENERIC_S3_CAM", -1, -1, 40, 17, 18, 39, 41, 42, 12, 3, 14, 47, 13, 21,
-       38, 11},
-      {"ESP32-S3-KORVO", -1, -1, 40, 17, 18, 13, 47, 14, 3, 12, 42, 41, 39, 21,
-       38, 11},
-      {"ESP32-S3-EYE", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
+      {"ESP32-S3-N16R8-CAM", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
        13},
       {"ESP32-S3-CAM", 38, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
        13},
@@ -546,12 +546,19 @@ class H264Encoder {
        7},
       {"ESP32-S3-XIAO", -1, -1, 10, 40, 39, 15, 17, 18, 16, 14, 12, 11, 48, 38,
        47, 13},
+      {"ESP32-S3-CAM-TS", -1, -1, 33, 37, 36, 7, 5, 4, 6, 8, 42, 48, 47, 35, 34,
+       41},
+      {"GENERIC_S3_CAM", -1, -1, 40, 17, 18, 39, 41, 42, 12, 3, 14, 47, 13, 21,
+       38, 11},
+      {"ESP32-S3-KORVO", -1, -1, 40, 17, 18, 13, 47, 14, 3, 12, 42, 41, 39, 21,
+       38, 11},
   };
 
   Config cfg_;
   esp_h264_enc_handle_t enc_handle_ = nullptr;
   std::vector<uint8_t, Alloc> in_buf_;
   std::vector<uint8_t, Alloc> out_buf_;
+  sensor_t * sensor = nullptr;
 
   /**
    * @brief Initialize ESP32 camera with Config pin mappings and settings
@@ -603,9 +610,10 @@ class H264Encoder {
     }
     ESP_LOGD(TAG, "Camera initialized successfully");
 
-    sensor_t* s = esp_camera_sensor_get();
-    if (s) {
-      s->set_framesize(s, fs);
+    sensor = esp_camera_sensor_get();
+    if (sensor) {
+      ESP_LOGI(TAG, "PID: 0x%02X", sensor->id.PID);
+      sensor->set_framesize(sensor, fs);
     }
 
     return true;
@@ -702,16 +710,14 @@ class H264Encoder {
     config.pin_reset = camera_cfg.reset_pin;
     config.xclk_freq_hz = 20000000;
     config.frame_size = fs;
-    config.pixel_format = PIXFORMAT_RGB565;
+    config.pixel_format = PIXFORMAT_YUV422; //PIXFORMAT_RGB565;
     config.fb_count = 1;
-
-    // config.xclk_freq_hz = 10000000;
-    // config.pixel_format = PIXFORMAT_JPEG;
-    // config.frame_size = FRAMESIZE_QQVGA;
     // config.fb_location = CAMERA_FB_IN_DRAM;
     config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
     esp_err_t err = esp_camera_init(&config);
     if (err == ESP_OK) {
+      sensor = esp_camera_sensor_get();
+      ESP_LOGI(TAG, "PID: 0x%02X", sensor->id.PID);
       return true;
     }
 
@@ -721,6 +727,7 @@ class H264Encoder {
     delay(kCameraRetryDelayMs);
     return false;
   }
+
 
   bool samePins(const Config& lhs, const Config& rhs) const {
     return lhs.pwdn_pin == rhs.pwdn_pin && lhs.reset_pin == rhs.reset_pin &&
