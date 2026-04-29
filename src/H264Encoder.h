@@ -85,19 +85,23 @@ class H264Encoder {
    * connection, H.264 encoder, and pin assignments for ESP32 camera boards.
    */
   struct Config {
-    const char* ssid = nullptr;           ///< WiFi SSID (nullptr to skip WiFi initialization)
-    const char* password = nullptr;       ///< WiFi password (nullptr to skip WiFi initialization)
-    int width = 640;                      ///< Frame width in pixels
-    int height = 480;                     ///< Frame height in pixels
-    int fps = 15;                         ///< Target frames per second
-    size_t outBufferSize = 400 * 1024;    ///< Output buffer size for encoded H.264 data (bytes)
+    const char* ssid =
+        nullptr;  ///< WiFi SSID (nullptr to skip WiFi initialization)
+    const char* password =
+        nullptr;       ///< WiFi password (nullptr to skip WiFi initialization)
+    int width = 640;   ///< Frame width in pixels
+    int height = 480;  ///< Frame height in pixels
+    int fps = 15;      ///< Target frames per second
+    size_t outBufferSize =
+        400 * 1024;  ///< Output buffer size for encoded H.264 data (bytes)
 
-    int gop = -1;        ///< Group of Pictures (default: fps)
-    int bitrate = -1;    ///< Bitrate in bps (default: width*height*fps*30/100)
-    int qp_min = -1;     ///< Minimum quantizer parameter (default: 28)
-    int qp_max = -1;     ///< Maximum quantizer parameter (default: 30)
+    int gop = -1;      ///< Group of Pictures (default: fps)
+    int bitrate = -1;  ///< Bitrate in bps (default: width*height*fps*30/100)
+    int qp_min = -1;   ///< Minimum quantizer parameter (default: 28)
+    int qp_max = -1;   ///< Maximum quantizer parameter (default: 30)
 
-    bool use_camera = false; ///< Internal flag to track camera state
+    bool use_camera = false;  ///< Internal flag to track camera state
+    pixformat_t pixel_format = PIXFORMAT_YUV422;  ///< Pixel format for camera capture
 
     int pwdn_pin = -1;   ///< Camera PWDN pin
     int reset_pin = -1;  ///< Camera RESET pin
@@ -137,6 +141,7 @@ class H264Encoder {
     cfg.height = 480;
     cfg.fps = 15;
     cfg.outBufferSize = 0;
+    cfg.pixel_format = PIXFORMAT_YUV422;
     return cfg;
   }
 
@@ -506,8 +511,7 @@ class H264Encoder {
     }
   }
 
-  sensor_t *getSensor() { return sensor; }
-
+  sensor_t* getSensor() { return sensor; }
 
  private:
   struct PinMapping {
@@ -530,8 +534,8 @@ class H264Encoder {
     int pclk_pin;
   };
   static constexpr PinMapping kFallbackMappings[] = {
-      {"ESP32-S3-N16R8-CAM", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
-       13},
+      {"ESP32-S3-N16R8-CAM", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6,
+       7, 13},
       {"ESP32-S3-CAM", 38, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
        13},
       {"ESP32-S3-GOOUUU", -1, -1, 15, 4, 5, 11, 9, 8, 10, 12, 18, 17, 16, 6, 7,
@@ -558,7 +562,7 @@ class H264Encoder {
   esp_h264_enc_handle_t enc_handle_ = nullptr;
   std::vector<uint8_t, Alloc> in_buf_;
   std::vector<uint8_t, Alloc> out_buf_;
-  sensor_t * sensor = nullptr;
+  sensor_t* sensor = nullptr;
 
   /**
    * @brief Initialize ESP32 camera with Config pin mappings and settings
@@ -710,7 +714,7 @@ class H264Encoder {
     config.pin_reset = camera_cfg.reset_pin;
     config.xclk_freq_hz = 20000000;
     config.frame_size = fs;
-    config.pixel_format = PIXFORMAT_YUV422; //PIXFORMAT_RGB565;
+    config.pixel_format = cfg_.pixel_format;  
     config.fb_count = 1;
     // config.fb_location = CAMERA_FB_IN_DRAM;
     config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
@@ -727,7 +731,6 @@ class H264Encoder {
     delay(kCameraRetryDelayMs);
     return false;
   }
-
 
   bool samePins(const Config& lhs, const Config& rhs) const {
     return lhs.pwdn_pin == rhs.pwdn_pin && lhs.reset_pin == rhs.reset_pin &&
@@ -757,9 +760,10 @@ class H264Encoder {
     enc_cfg.fps = (uint8_t)cfg_.fps;
     enc_cfg.gop = (cfg_.gop > 0) ? (uint8_t)cfg_.gop : (uint8_t)cfg_.fps;
     enc_cfg.pic_type = ESP_H264_RAW_FMT_I420;
-    enc_cfg.rc.bitrate = (cfg_.bitrate > 0)
-      ? (uint32_t)cfg_.bitrate
-      : (uint32_t)(cfg_.width * cfg_.height * cfg_.fps * 30 / 100);
+    enc_cfg.rc.bitrate =
+        (cfg_.bitrate > 0)
+            ? (uint32_t)cfg_.bitrate
+            : (uint32_t)(cfg_.width * cfg_.height * cfg_.fps * 30 / 100);
     enc_cfg.rc.qp_min = (cfg_.qp_min >= 0) ? (uint8_t)cfg_.qp_min : 28;
     enc_cfg.rc.qp_max = (cfg_.qp_max >= 0) ? (uint8_t)cfg_.qp_max : 30;
 
@@ -806,7 +810,7 @@ class H264Encoder {
     if (!dst) return false;
     camera_fb_t* fb = esp_camera_fb_get();
     if (!fb) return false;
-
+    
     int w = fb->width;
     int h = fb->height;
     size_t expected = (size_t)w * (size_t)h * 3 / 2;
@@ -843,44 +847,68 @@ class H264Encoder {
    * @param h Frame height in pixels
    */
   void rgb565_to_i420(const uint8_t* src, uint8_t* dst, int w, int h) {
-    // Y plane
+    // --- Y plane ---
     for (int y = 0; y < h; ++y) {
       for (int x = 0; x < w; ++x) {
         int i = (y * w + x) * 2;
-        uint16_t val = src[i] | (src[i + 1] << 8);
-        uint8_t r = (uint8_t)((((val >> 11) & 0x1F) * 527 + 23) >> 6);
-        uint8_t g = (uint8_t)((((val >> 5) & 0x3F) * 259 + 33) >> 6);
-        uint8_t b = (uint8_t)(((val & 0x1F) * 527 + 23) >> 6);
-        uint8_t yv = (uint8_t)((66 * r + 129 * g + 25 * b + 128) >> 8) + 16;
-        dst[y * w + x] = yv;
+        // little endien
+        // uint16_t val = src[i] | (src[i + 1] << 8);
+        // big endian
+        uint16_t val = (src[i] << 8) | src[i + 1];
+
+        // Better RGB expansion
+        uint8_t r = ((val >> 11) & 0x1F);
+        uint8_t g = ((val >> 5) & 0x3F);
+        uint8_t b = (val & 0x1F);
+
+        r = (r << 3) | (r >> 2);
+        g = (g << 2) | (g >> 4);
+        b = (b << 3) | (b >> 2);
+
+        int yv = ((66 * r + 129 * g + 25 * b + 128) >> 8) + 16;
+        dst[y * w + x] = (uint8_t)std::clamp(yv, 0, 255);
       }
     }
+
     uint8_t* uplane = dst + w * h;
     uint8_t* vplane = uplane + (w / 2) * (h / 2);
+
+    // uint8_t* vplane = dst + w * h;
+    // uint8_t* uplane = vplane + (w / 2) * (h / 2);
+
+    // --- UV planes (4:2:0 subsampling) ---
     for (int y = 0; y < h; y += 2) {
       for (int x = 0; x < w; x += 2) {
-        int idx0 = (y * w + x) * 2;
-        int idx1 = (y * w + x + 1) * 2;
-        int idx2 = ((y + 1) * w + x) * 2;
-        int idx3 = ((y + 1) * w + x + 1) * 2;
-        int indices[4] = {idx0, idx1, idx2, idx3};
         int sumU = 0, sumV = 0;
-        for (int k = 0; k < 4; ++k) {
-          int ii = indices[k];
-          uint16_t vval = src[ii] | (src[ii + 1] << 8);
-          uint8_t rr = (uint8_t)((((vval >> 11) & 0x1F) * 527 + 23) >> 6);
-          uint8_t gg = (uint8_t)((((vval >> 5) & 0x3F) * 259 + 33) >> 6);
-          uint8_t bb = (uint8_t)(((vval & 0x1F) * 527 + 23) >> 6);
-          int u = ((-38 * rr - 74 * gg + 112 * bb + 128) >> 8) + 128;
-          int vvv = ((112 * rr - 94 * gg - 18 * bb + 128) >> 8) + 128;
-          sumU += u;
-          sumV += vvv;
+
+        for (int dy = 0; dy < 2; ++dy) {
+          for (int dx = 0; dx < 2; ++dx) {
+            int i = ((y + dy) * w + (x + dx)) * 2;
+            uint16_t val = src[i] | (src[i + 1] << 8);
+
+            uint8_t r = ((val >> 11) & 0x1F);
+            uint8_t g = ((val >> 5) & 0x3F);
+            uint8_t b = (val & 0x1F);
+
+            r = (r << 3) | (r >> 2);
+            g = (g << 2) | (g >> 4);
+            b = (b << 3) | (b >> 2);
+
+            int u = ((-38 * r - 74 * g + 112 * b + 128) >> 8) + 128;
+            int v = ((112 * r - 94 * g - 18 * b + 128) >> 8) + 128;
+
+            sumU += u;
+            sumV += v;
+          }
         }
+
         int ux = x / 2;
         int uy = y / 2;
         int pos = uy * (w / 2) + ux;
-        uplane[pos] = (uint8_t)(sumU / 4);
-        vplane[pos] = (uint8_t)(sumV / 4);
+
+        // Clamp AFTER averaging
+        uplane[pos] = (uint8_t)std::clamp(sumU / 4, 0, 255);
+        vplane[pos] = (uint8_t)std::clamp(sumV / 4, 0, 255);
       }
     }
   }
@@ -955,11 +983,13 @@ class H264Encoder {
  * @brief Type alias for H264Encoder using default PSRAM allocation
  *
  * Provides a simpler way to declare H264Encoder instances without specifying
- * the allocator template parameter. Uses PSRAMAllocatorH264<uint8_t> by default.
+ * the allocator template parameter. Uses PSRAMAllocatorH264<uint8_t> by
+ * default.
  *
  * Example usage:
  * @code
- * H264EncoderPSRAM encoder;  // Instead of H264Encoder<PSRAMAllocatorH264<uint8_t>>
+ * H264EncoderPSRAM encoder;  // Instead of
+ * H264Encoder<PSRAMAllocatorH264<uint8_t>>
  * @endcode
  */
 using H264EncoderPSRAM = H264Encoder<PSRAMAllocatorH264<uint8_t>>;
@@ -972,7 +1002,8 @@ using H264EncoderPSRAM = H264Encoder<PSRAMAllocatorH264<uint8_t>>;
  *
  * Example usage:
  * @code
- * H264EncoderRAM encoder;   // Instead of H264Encoder<RAMAllocatorH264<uint8_t>>
+ * H264EncoderRAM encoder;   // Instead of
+ * H264Encoder<RAMAllocatorH264<uint8_t>>
  * @endcode
  */
 using H264EncoderRAM = H264Encoder<RAMAllocatorH264<uint8_t>>;

@@ -65,6 +65,11 @@ void setup() {
     while (1) delay(1000);
   }
 
+  // 180° rotation = flip + mirror
+  sensor_t *s = encoder.getSensor();
+  s->set_vflip(s, 1);   // vertical flip
+  s->set_hmirror(s, 1); // horizontal mirror
+
   udp.initWiFi(WIFI_SSID, WIFI_PASS);
   udp.begin(DEST_IP, DEST_PORT);
   Serial.println("Streamer started");
