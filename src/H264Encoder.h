@@ -852,9 +852,9 @@ class H264Encoder {
       for (int x = 0; x < w; ++x) {
         int i = (y * w + x) * 2;
         // little endien
-        // uint16_t val = src[i] | (src[i + 1] << 8);
+        uint16_t val = src[i] | (src[i + 1] << 8);
         // big endian
-        uint16_t val = (src[i] << 8) | src[i + 1];
+        //uint16_t val = (src[i] << 8) | src[i + 1];
 
         // Better RGB expansion
         uint8_t r = ((val >> 11) & 0x1F);
