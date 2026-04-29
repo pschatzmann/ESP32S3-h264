@@ -172,7 +172,8 @@ Typedefs</h2></td></tr>
 
 <p>Type alias for <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> using default PSRAM allocation. </p>
 <p>Provides a simpler way to declare <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> instances without specifying the allocator template parameter. Uses PSRAMAllocatorH264&lt;uint8_t&gt; by default.</p>
-<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264EncoderPSRAM</a> encoder;  <span class="comment">// Instead of H264Encoder&lt;PSRAMAllocatorH264&lt;uint8_t&gt;&gt;</span></div>
+<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264EncoderPSRAM</a> encoder;  <span class="comment">// Instead of</span></div>
+<div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264Encoder&lt;PSRAMAllocatorH264&lt;uint8_t&gt;</a>&gt;</div>
 <div class="ttc" id="aclassesp__h264_1_1H264Encoder_html"><div class="ttname"><a href="classesp__h264_1_1H264Encoder.html">esp_h264::H264Encoder</a></div><div class="ttdoc">Template class for capturing frames from ESP32 camera and encoding to H.264.</div><div class="ttdef"><b>Definition:</b> H264Encoder.h:75</div></div>
 </div><!-- fragment --> 
 </div>
@@ -191,7 +192,8 @@ Typedefs</h2></td></tr>
 
 <p>Type alias for <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> using internal RAM allocation. </p>
 <p>Provides a simpler way to declare <a class="el" href="classesp__h264_1_1H264Encoder.html" title="Template class for capturing frames from ESP32 camera and encoding to H.264.">H264Encoder</a> instances that use fast internal RAM instead of external PSRAM.</p>
-<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264EncoderRAM</a> encoder;   <span class="comment">// Instead of H264Encoder&lt;RAMAllocatorH264&lt;uint8_t&gt;&gt;</span></div>
+<p>Example usage: </p><div class="fragment"><div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264EncoderRAM</a> encoder;   <span class="comment">// Instead of</span></div>
+<div class="line"><a class="code hl_class" href="classesp__h264_1_1H264Encoder.html">H264Encoder&lt;RAMAllocatorH264&lt;uint8_t&gt;</a>&gt;</div>
 </div><!-- fragment --> 
 </div>
 </div>
