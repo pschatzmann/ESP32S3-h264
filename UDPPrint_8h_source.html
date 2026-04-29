@@ -118,132 +118,134 @@ $(function() {
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a4a5d3d70e473a7f31d6d62c687cfd6d3">   40</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a4a5d3d70e473a7f31d6d62c687cfd6d3">initWiFi</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* ssid, <span class="keyword">const</span> <span class="keywordtype">char</span>* password) {</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    ESP_LOGD(TAG, <span class="stringliteral">&quot;initWiFi&quot;</span>);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    WiFi.mode(WIFI_STA);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    WiFi.setSleep(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    WiFi.begin(ssid, password);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start = millis();</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">while</span> (WiFi.status() != WL_CONNECTED) {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      delay(200);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      <span class="keywordflow">if</span> (millis() - start &gt; 15000) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      Serial.print(<span class="stringliteral">&quot;.&quot;</span>);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    Serial.println();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    Serial.print(<span class="stringliteral">&quot;WiFi connected, IP address: &quot;</span>);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    Serial.println(WiFi.localIP());</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  }</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="comment">// Begin with numeric IP string</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">   58</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">begin</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* destIp, uint16_t destPort) {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    destIp_ = String(destIp);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    destPort_ = destPort;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// Don&#39;t call udp_-&gt;begin() to bind to a local port; beginPacket will handle</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// it</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    bufPos_ = 0;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="comment">// Begin with IPAddress</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a8a1acbb5aa65dcf995b145839e7dd743">   68</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a8a1acbb5aa65dcf995b145839e7dd743">begin</a>(<span class="keyword">const</span> IPAddress&amp; addr, uint16_t destPort) {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    destIp_ = addr.toString();</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    destPort_ = destPort;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    bufPos_ = 0;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="comment">// Write a single byte</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">   76</a></span>  <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">write</a>(<a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">uint8_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">ch</a>) <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    buffer_[bufPos_++] = ch;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">if</span> (bufPos_ &gt;= <span class="keyword">sizeof</span>(buffer_)) <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">(</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">)</a>;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  }</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="comment">// Write a buffer</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">   83</a></span>  <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">write</a>(<span class="keyword">const</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">uint8_t</a>* <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">data</a>, <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">size</a>) <span class="keyword">override</span> {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    size_t written = 0;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">while</span> (size &gt; 0) {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      size_t space = <span class="keyword">sizeof</span>(buffer_) - bufPos_;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      <span class="keywordflow">if</span> (space == 0) flush();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      size_t tocopy = (size &lt; space) ? size : space;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      memcpy(buffer_ + bufPos_, data + written, tocopy);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      bufPos_ += tocopy;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      written += tocopy;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      size -= tocopy;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">(</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">)</a>;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    ESP_LOGI(<span class="stringliteral">&quot;UDPPrint&quot;</span>, <span class="stringliteral">&quot;Buffered and sent %u bytes to %s:%u&quot;</span>,</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>             (<span class="keywordtype">unsigned</span>)written, destIp_.c_str(), destPort_);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span> written;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  }</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="comment">// Send buffered data immediately</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">  101</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a>() {</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordflow">if</span> (bufPos_ == 0) <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">if</span> (!udp_) <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    size_t to_send = bufPos_;</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">bool</span> sent = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    size_t written = 0;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">int</span> retry = 10;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">while</span> (!sent &amp;&amp; retry-- &gt; 0) {</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>      <span class="keywordflow">if</span> (!udp_-&gt;beginPacket(destIp_.c_str(), destPort_)) {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="comment">// unable to start packet</span></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        bufPos_ = 0;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      }</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      written = udp_-&gt;write(buffer_, bufPos_);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      sent = udp_-&gt;endPacket();</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      delay(write_delay_ms);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">if</span> (!sent) {</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>      ESP_LOGE(<span class="stringliteral">&quot;UDPPrint&quot;</span>,</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>               <span class="stringliteral">&quot;Failed to send UDP packet %u bytes to %s:%u after retries&quot;</span>,</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>               (<span class="keywordtype">unsigned</span>)to_send, destIp_.c_str(), destPort_);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    }</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    bufPos_ = 0;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  }</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="comment">// Convenience: send immediate string</span></div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">  130</a></span>  <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">print</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">s</a>) {</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    size_t len = write((<span class="keyword">const</span> uint8_t*)s, strlen(s));</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">(</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">)</a>;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">return</span> len;</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  }</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">  136</a></span>  <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">println</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">s</a>) {</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">char</span> buffer[strlen(s) + 2]{};</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    strcpy(buffer, s);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    strcat(buffer, <span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordflow">return</span> print(buffer);</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  }</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  <span class="comment">/// Set delay after sending a UDP packet (default 100ms)</span></div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a332e5c5cfda13cbeb4335f268236ceac">  144</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a332e5c5cfda13cbeb4335f268236ceac">setWriteDelay</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> ms) { write_delay_ms = ms; }</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  WiFiUDP* udp_;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  String destIp_;</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  uint16_t destPort_;</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> size_t BUF_SIZE = 1200;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  uint8_t buffer_[<a class="code hl_class" href="classesp__h264_1_1UDPPrint.html">BUF_SIZE</a>];</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  size_t bufPos_;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  size_t write_delay_ms = 20;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>};</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>}  <span class="comment">// namespace esp_h264</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    WiFi.begin(ssid, password);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    WiFi.setSleep(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    WiFi.setTxPower(WIFI_POWER_19_5dBm);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> start = millis();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">while</span> (WiFi.status() != WL_CONNECTED) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      delay(200);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      <span class="keywordflow">if</span> (millis() - start &gt; 15000) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      Serial.print(<span class="stringliteral">&quot;.&quot;</span>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    Serial.println();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    Serial.print(<span class="stringliteral">&quot;WiFi connected, IP address: &quot;</span>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    Serial.println(WiFi.localIP());</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="comment">// Begin with numeric IP string</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">   59</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">begin</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* destIp, uint16_t destPort) {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    destIp_ = String(destIp);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    destPort_ = destPort;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// Don&#39;t call udp_-&gt;begin() to bind to a local port; beginPacket will handle</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// it</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    bufPos_ = 0;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="comment">// Begin with IPAddress</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a8a1acbb5aa65dcf995b145839e7dd743">   69</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a8a1acbb5aa65dcf995b145839e7dd743">begin</a>(<span class="keyword">const</span> IPAddress&amp; addr, uint16_t destPort) {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    destIp_ = addr.toString();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    destPort_ = destPort;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    bufPos_ = 0;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="comment">// Write a single byte</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">   77</a></span>  <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">write</a>(<a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">uint8_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">ch</a>) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    buffer_[bufPos_++] = ch;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">if</span> (bufPos_ &gt;= <span class="keyword">sizeof</span>(buffer_)) <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">(</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">)</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="comment">// Write a buffer</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">   84</a></span>  <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">write</a>(<span class="keyword">const</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">uint8_t</a>* <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">data</a>, <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">size</a>) <span class="keyword">override</span> {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    size_t written = 0;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">while</span> (size &gt; 0) {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      size_t space = <span class="keyword">sizeof</span>(buffer_) - bufPos_;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      <span class="keywordflow">if</span> (space == 0) flush();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      size_t tocopy = (size &lt; space) ? size : space;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      memcpy(buffer_ + bufPos_, data + written, tocopy);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      bufPos_ += tocopy;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      written += tocopy;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      size -= tocopy;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">(</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">)</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    ESP_LOGI(TAG, <span class="stringliteral">&quot;Buffered and sent %u bytes to %s:%u&quot;</span>,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>             (<span class="keywordtype">unsigned</span>)written, destIp_.c_str(), destPort_);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">return</span> written;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="comment">// Send buffered data immediately</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">  102</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a>() {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">if</span> (bufPos_ == 0) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">if</span> (!udp_) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    size_t to_send = bufPos_;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">bool</span> sent = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    size_t written = 0;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">int</span> retry = 10;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">while</span> (!sent &amp;&amp; retry-- &gt; 0) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>      <span class="keywordflow">if</span> (!udp_-&gt;beginPacket(destIp_.c_str(), destPort_)) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="comment">// unable to start packet</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        bufPos_ = 0;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      written = udp_-&gt;write(buffer_, bufPos_);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      sent = udp_-&gt;endPacket();</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>      delay(write_delay_ms);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">if</span> (!sent) {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      ESP_LOGE(TAG,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>               <span class="stringliteral">&quot;Failed to send UDP packet %u bytes to %s:%u after retries&quot;</span>,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>               (<span class="keywordtype">unsigned</span>)to_send, destIp_.c_str(), destPort_);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    bufPos_ = 0;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="comment">// Convenience: send immediate string</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">  131</a></span>  <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">print</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">s</a>) {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    size_t len = write((<span class="keyword">const</span> uint8_t*)s, strlen(s));</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">flush</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">(</a><a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">)</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordflow">return</span> len;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">  137</a></span>  <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">size_t</a> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">println</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">s</a>) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">char</span> buffer[strlen(s) + 2]{};</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    strcpy(buffer, s);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    strcat(buffer, <span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">return</span> print(buffer);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="comment">/// Set delay after sending a UDP packet (default 100ms)</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classesp__h264_1_1UDPPrint.html#a332e5c5cfda13cbeb4335f268236ceac">  145</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classesp__h264_1_1UDPPrint.html#a332e5c5cfda13cbeb4335f268236ceac">setWriteDelay</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> ms) { write_delay_ms = ms; }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  WiFiUDP* udp_;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  String destIp_;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  uint16_t destPort_;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <span class="keyword">const</span> <span class="keywordtype">char</span>* TAG = <span class="stringliteral">&quot;UDPPrint&quot;</span>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> size_t BUF_SIZE = 1200;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  uint8_t buffer_[<a class="code hl_class" href="classesp__h264_1_1UDPPrint.html">BUF_SIZE</a>];</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  size_t bufPos_;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  size_t write_delay_ms = 20;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>};</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>}  <span class="comment">// namespace esp_h264</span></div>
 <div class="ttc" id="aclassesp__h264_1_1UDPPrint_html"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html">esp_h264::UDPPrint</a></div><div class="ttdoc">A Print implementation that buffers and sends data over UDP.</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:35</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a1d61c90a3af999fdc895f2fbf4cd83be"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">esp_h264::UDPPrint::write</a></div><div class="ttdeci">size_t write(const uint8_t *data, size_t size) override</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:83</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a1d61c90a3af999fdc895f2fbf4cd83be"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a1d61c90a3af999fdc895f2fbf4cd83be">esp_h264::UDPPrint::write</a></div><div class="ttdeci">size_t write(const uint8_t *data, size_t size) override</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:84</div></div>
 <div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a31e85282ff366d92dd22b8eb4e78814c"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a31e85282ff366d92dd22b8eb4e78814c">esp_h264::UDPPrint::~UDPPrint</a></div><div class="ttdeci">~UDPPrint()</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:38</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a332e5c5cfda13cbeb4335f268236ceac"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a332e5c5cfda13cbeb4335f268236ceac">esp_h264::UDPPrint::setWriteDelay</a></div><div class="ttdeci">void setWriteDelay(unsigned long ms)</div><div class="ttdoc">Set delay after sending a UDP packet (default 100ms)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:144</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a3be0362870e34bdf9757e2c38ee5467f"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">esp_h264::UDPPrint::print</a></div><div class="ttdeci">size_t print(const char *s)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:130</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a332e5c5cfda13cbeb4335f268236ceac"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a332e5c5cfda13cbeb4335f268236ceac">esp_h264::UDPPrint::setWriteDelay</a></div><div class="ttdeci">void setWriteDelay(unsigned long ms)</div><div class="ttdoc">Set delay after sending a UDP packet (default 100ms)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:145</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a3be0362870e34bdf9757e2c38ee5467f"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a3be0362870e34bdf9757e2c38ee5467f">esp_h264::UDPPrint::print</a></div><div class="ttdeci">size_t print(const char *s)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:131</div></div>
 <div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a4582edda16bc7fb9e757b1e3806031d3"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a4582edda16bc7fb9e757b1e3806031d3">esp_h264::UDPPrint::UDPPrint</a></div><div class="ttdeci">UDPPrint()</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:37</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a488f9c863a4bbf02754a1413e3c7bba9"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">esp_h264::UDPPrint::begin</a></div><div class="ttdeci">bool begin(const char *destIp, uint16_t destPort)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:58</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a488f9c863a4bbf02754a1413e3c7bba9"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a488f9c863a4bbf02754a1413e3c7bba9">esp_h264::UDPPrint::begin</a></div><div class="ttdeci">bool begin(const char *destIp, uint16_t destPort)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:59</div></div>
 <div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a4a5d3d70e473a7f31d6d62c687cfd6d3"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a4a5d3d70e473a7f31d6d62c687cfd6d3">esp_h264::UDPPrint::initWiFi</a></div><div class="ttdeci">bool initWiFi(const char *ssid, const char *password)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:40</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a5a1df0136f5e211583b4c1f462fe29af"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">esp_h264::UDPPrint::write</a></div><div class="ttdeci">size_t write(uint8_t ch) override</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:76</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a8a1acbb5aa65dcf995b145839e7dd743"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a8a1acbb5aa65dcf995b145839e7dd743">esp_h264::UDPPrint::begin</a></div><div class="ttdeci">bool begin(const IPAddress &amp;addr, uint16_t destPort)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:68</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_adac116554b543b7c4228c018a85882f5"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">esp_h264::UDPPrint::flush</a></div><div class="ttdeci">void flush()</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:101</div></div>
-<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_ae0f63050ca494fcae1b80e25d29c91f8"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">esp_h264::UDPPrint::println</a></div><div class="ttdeci">size_t println(const char *s)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:136</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a5a1df0136f5e211583b4c1f462fe29af"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a5a1df0136f5e211583b4c1f462fe29af">esp_h264::UDPPrint::write</a></div><div class="ttdeci">size_t write(uint8_t ch) override</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:77</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_a8a1acbb5aa65dcf995b145839e7dd743"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#a8a1acbb5aa65dcf995b145839e7dd743">esp_h264::UDPPrint::begin</a></div><div class="ttdeci">bool begin(const IPAddress &amp;addr, uint16_t destPort)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:69</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_adac116554b543b7c4228c018a85882f5"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#adac116554b543b7c4228c018a85882f5">esp_h264::UDPPrint::flush</a></div><div class="ttdeci">void flush()</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:102</div></div>
+<div class="ttc" id="aclassesp__h264_1_1UDPPrint_html_ae0f63050ca494fcae1b80e25d29c91f8"><div class="ttname"><a href="classesp__h264_1_1UDPPrint.html#ae0f63050ca494fcae1b80e25d29c91f8">esp_h264::UDPPrint::println</a></div><div class="ttdeci">size_t println(const char *s)</div><div class="ttdef"><b>Definition:</b> UDPPrint.h:137</div></div>
 <div class="ttc" id="anamespaceesp__h264_html"><div class="ttname"><a href="namespaceesp__h264.html">esp_h264</a></div><div class="ttdef"><b>Definition:</b> H264Decoder.h:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

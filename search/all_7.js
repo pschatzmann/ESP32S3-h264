@@ -10,5 +10,6 @@ var searchData=
   ['getframecount_7',['getFrameCount',['../classesp__h264_1_1H264Decoder.html#ae573b41a5de6e234ed260a41666d1c4a',1,'esp_h264::H264Decoder']]],
   ['getframedimensions_8',['getFrameDimensions',['../classesp__h264_1_1H264Decoder.html#a443455e16ce1b8a14f15cb21ada9a988',1,'esp_h264::H264Decoder']]],
   ['getoption_9',['GetOption',['../structISVCEncoderVtbl.html#a5c6ecf11c004e1292ab002311e7a9981',1,'ISVCEncoderVtbl::GetOption()'],['../structISVCDecoderVtbl.html#a97b617c57d140f9eefe505c5371925b7',1,'ISVCDecoderVtbl::GetOption()']]],
-  ['gop_10',['gop',['../structesp__h264__enc__cfg__t.html#aa016a7266c0fdc809313557e0a18a5ec',1,'esp_h264_enc_cfg_t::gop()'],['../structesp__h264__enc__sw__handle.html#aa016a7266c0fdc809313557e0a18a5ec',1,'esp_h264_enc_sw_handle::gop()'],['../structesp__h264_1_1H264Encoder_1_1Config.html#afd24cda08e24884d2b4e2ac769371ff8',1,'esp_h264::H264Encoder::Config::gop()']]]
+  ['getsensor_10',['getSensor',['../classesp__h264_1_1H264Encoder.html#a77ec82d34a83f3cf36361cb492f8499c',1,'esp_h264::H264Encoder']]],
+  ['gop_11',['gop',['../structesp__h264__enc__cfg__t.html#aa016a7266c0fdc809313557e0a18a5ec',1,'esp_h264_enc_cfg_t::gop()'],['../structesp__h264__enc__sw__handle.html#aa016a7266c0fdc809313557e0a18a5ec',1,'esp_h264_enc_sw_handle::gop()'],['../structesp__h264_1_1H264Encoder_1_1Config.html#afd24cda08e24884d2b4e2ac769371ff8',1,'esp_h264::H264Encoder::Config::gop()']]]
 ];
